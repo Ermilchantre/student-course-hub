@@ -503,7 +503,7 @@ class AdminLoginController
 
         // Constructs reset link
         $resetLink = 'http://' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . $basePath . '/admin/reset-password?token=' . urlencode($token);
-        
+
         $subject = 'Password Reset Request - Student Course Hub';
         $body = "<p>Hello, $userName!</p><p>We received a request to reset your password. Click the link below to set a new password:</p>"
             . "<p><a href='$resetLink'>$resetLink</a></p>"
