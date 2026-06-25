@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /student-course-hub/
+
+RewriteRule ^$ public/ [R=301,L]
+RewriteRule ^(.*)$ public/$1 [L]

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as HTML5 to ensure standardized rendering.
+   Functionality: Instructs browsers to use HTML5 standards, enabling modern web features and consistent parsing.
+   Client-Side Role: Ensures compatibility with modern browsers for proper page display.
+   Logic: Uses DOCTYPE declaration to prevent quirks mode and enforce HTML5 rendering.
+-->
+<html lang="en">
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Root container for the Interest Registered success page, specifying the document language.
+   Functionality: Sets English as the language for accessibility and contains all page content.
+   Client-Side Role: Encapsulates navigation, main content, and scripts for the success page.
+   Logic: Uses lang="en" to support screen readers and ensure proper text directionality.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling.
+       Functionality: Defines character encoding, responsive viewport, title, and links to CSS and fonts.
+       Client-Side Role: Controls visual presentation and resource loading for the success page.
+       Logic: Loads styles1.css, Unicons, and register-interest-success.css for consistent styling.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Registered - Student Course Hub</title>
+    <!-- Purpose: Sets a static page title for the success page.
+       Functionality: Displays "Interest Registered - Student Course Hub" in the browser tab.
+       Client-Side Role: Identifies the success page for users.
+       Logic: Uses a static title to indicate successful interest registration.
+    -->
+    <link rel="stylesheet" href="{{ base_path() }}/css/styles1.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/register-interest-success.css">
+</head>
+<body>
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains all visible content for the Interest Registered success page.
+       Functionality: Structures navigation, success message, PIN display, and action button.
+       Client-Side Role: Renders a confirmation interface with interactive PIN copying.
+       Logic: Uses semantic HTML, dynamic PIN rendering, and JavaScript for copy functionality.
+    -->
+    <nav>
+        <!-- ==================================================
+           NAVIGATION SECTION
+           Purpose: Provides minimal navigation to return to the homepage.
+           Functionality: Includes a single link to the site root with the logo.
+           Client-Side Role: Allows users to navigate back to the main page.
+           Logic: Uses dynamic URL via base_path() for consistent routing.
+        -->
+        <div class="container nav_container">
+            <a href="{{ base_path() }}"><h4>Student Course Hub</h4></a>
+        </div>
+    </nav>
+    <main class="success-container">
+        <!-- ==================================================
+           MAIN SECTION
+           Purpose: Displays the success confirmation and PIN management interface.
+           Functionality: Shows a success message, access PIN, copy button, and navigation link.
+           Client-Side Role: Confirms successful registration and provides tools to manage the PIN.
+           Logic: Uses template variable for PIN and JavaScript for copy functionality.
+        -->
+        <div>
+            <!-- Purpose: Wraps the success content for styling and layout.
+               Functionality: Organizes success message, PIN box, and actions in a centered container.
+               Client-Side Role: Enhances readability and usability of the success interface.
+               Logic: Uses CSS classes for responsive, styled presentation.
+            -->
+            <h2 class="success-title"><i class="uil uil-check-circle"></i> Interest Registered!</h2>
+            <!-- Purpose: Displays the success confirmation title.
+               Functionality: Shows a checkmark icon and success message.
+               Client-Side Role: Visually confirms successful interest registration.
+               Logic: Uses an icon and static text for clear feedback.
+            -->
+            <p class="success-message">Your interest has been registered successfully.</p>
+            <!-- Purpose: Provides a brief success message.
+               Functionality: Informs users of successful registration.
+               Client-Side Role: Reinforces the confirmation of the action.
+               Logic: Uses a static paragraph for clear communication.
+            -->
+            <div class="pin-box">
+                <!-- Purpose: Displays and manages the access PIN.
+                   Functionality: Shows the PIN, a copy button, and usage instructions.
+                   Client-Side Role: Allows users to view and copy their PIN for future use.
+                   Logic: Uses template variable for PIN and JavaScript for copying.
+                -->
+                <h3 class="pin-title">Your Access PIN</h3>
+                <div id="pin-value">{{ pin }}</div>
+                <button id="copy-pin-btn" class="btn btn-info" onclick="copyPin()" type="button"><i class="uil uil-copy"></i> Copy PIN</button>
+                <div id="copy-feedback">PIN copied!</div>
+                <p class="pin-info">Please save this PIN. You will need it to view or remove your interests in the future.</p>
+            </div>
+            <div class="success-actions">
+                <!-- Purpose: Provides navigation to the My Interests page.
+                   Functionality: Includes a button to redirect users to their interests.
+                   Client-Side Role: Enables users to proceed to interest management.
+                   Logic: Uses a dynamic URL via base_path() for navigation.
+                -->
+                <a href="{{ base_path() }}/my-interests" class="btn btn-primary">Go to My Interests</a>
+            </div>
+        </div>
+    </main>
+    <script src="{{ base_path() }}/js/register-interest-success.js"></script>
+    <!-- ==================================================
+    // SCRIPT SECTION
+    // Purpose: Loads JavaScript for dynamic PIN copying functionality.
+    // Functionality: Enables the copy PIN button to copy the access PIN to the clipboard.
+    // Client-Side Role: Enhances user interaction by simplifying PIN storage.
+    // Logic: Loads register-interest-success.js to handle the copyPin() function and feedback display.
+    -->
+</body>
+</html>

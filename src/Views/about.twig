@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as HTML5 to ensure standardized rendering.
+   Functionality: Instructs browsers to use HTML5 standards, enabling modern web features and consistent parsing.
+   Client-Side Role: Ensures compatibility with modern browsers for proper page display.
+   Logic: Uses DOCTYPE declaration to prevent quirks mode and enforce HTML5 rendering.
+-->
+<html lang="en">
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Root container for the About page, specifying the document language.
+   Functionality: Sets English as the language for accessibility and contains all page content.
+   Client-Side Role: Encapsulates navigation, main content, and footer for the About page.
+   Logic: Uses lang="en" to support screen readers and ensure proper text directionality.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling.
+       Functionality: Defines character encoding, page title, and links to CSS and fonts, with inline styles for the about container.
+       Client-Side Role: Controls visual presentation and resource loading for the About page.
+       Logic: Loads styles1.css, Unicons, and Montserrat font, with inline CSS for specific about-container styling.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Student Course Hub</title>
+    <link rel="stylesheet" href="{{ base_path() }}/css/styles1.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <style>
+        .about-container { max-width: 800px; margin: 2rem auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); padding: 2.5rem 2rem; }
+        .about-container h1, .about-container h2 { color: #2574A9; }
+        .about-section { margin-bottom: 2rem; }
+        .about-list { margin: 0.5rem 0 0 1.5rem; }
+        .about-highlight { color: #195a7a; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains all visible content for the About page.
+       Functionality: Structures navigation, main content with about information, and footer.
+       Client-Side Role: Renders a static, informative interface for users to learn about the platform.
+       Logic: Uses semantic HTML for accessibility and responsive design with inline and external CSS.
+    -->
+    <nav>
+        <!-- ==================================================
+           NAVIGATION SECTION
+           Purpose: Provides navigation for accessing key site pages.
+           Functionality: Includes links to Home, My Interests, and Admin Login with a site logo.
+           Client-Side Role: Enables users to navigate the site easily.
+           Logic: Uses dynamic URLs via base_path() for My Interests and Admin Login, with static Home link.
+        -->
+        <div class="container nav_container">
+            <a href="/"><h4><i class="uil uil-graduation-cap"></i> Student Course Hub</h4></a>
+            <ul class="nav_menu">
+                <li><a href="/"><i class="uil uil-home"></i> Home</a></li>
+                <li><a href="{{ base_path() }}/my-interests"><i class="uil uil-heart"></i> My Interests</a></li>
+            </ul>
+            <a href="{{ base_path() }}/admin/login" class="login-link">
+                <i class="uil uil-user"></i>
+                <span>Login</span>
+            </a>
+        </div>
+    </nav>
+    <main>
+        <!-- ==================================================
+           MAIN SECTION
+           Purpose: Contains the core content describing the Student Course Hub platform.
+           Functionality: Displays sections for mission, features, target audience, benefits, and contact information.
+           Client-Side Role: Provides users with a clear understanding of the platform’s purpose and functionality.
+           Logic: Uses a styled container with semantic HTML for structured, accessible content presentation.
+        -->
+        <div class="about-container">
+            <!-- Purpose: Wraps the About page content for consistent styling.
+               Functionality: Centers content with a card-like appearance using inline CSS.
+               Client-Side Role: Enhances readability and visual appeal of the About page.
+               Logic: Applies max-width, padding, and box-shadow for a clean, modern layout.
+            -->
+            <h1>About <span class="about-highlight">Student Course Hub</span></h1>
+            <!-- Purpose: Displays the main title for the About page.
+               Functionality: Highlights the platform name with a styled span for emphasis.
+               Client-Side Role: Introduces the page’s focus to users.
+               Logic: Uses inline CSS class (about-highlight) for visual distinction.
+            -->
+            <p class="about-section">
+                <!-- Purpose: Provides a brief overview of the platform.
+                   Functionality: Describes the platform’s role in academic management.
+                   Client-Side Role: Sets the context for the About page content.
+                   Logic: Uses strong tag for emphasis and semantic paragraph structure.
+                -->
+                <strong>Student Course Hub</strong> is a modern platform designed to simplify the management of academic programmes, student interests, and staff activities in higher education institutions.
+            </p>
+            <div class="about-section">
+                <!-- Purpose: Describes the platform’s mission.
+                   Functionality: Outlines the goal of empowering students and staff.
+                   Client-Side Role: Communicates the platform’s purpose to users.
+                   Logic: Uses semantic HTML with heading and paragraph for clarity.
+                -->
+                <h2>Our Mission</h2>
+                <p>
+                    To empower students and staff with a user-friendly, secure, and efficient system for exploring, registering, and managing academic interests and programmes.
+                </p>
+            </div>
+            <div class="about-section">
+                <!-- Purpose: Lists the platform’s key features.
+                   Functionality: Highlights features like programme browsing and role-based access.
+                   Client-Side Role: Informs users about the platform’s capabilities.
+                   Logic: Uses an unordered list for clear, structured presentation.
+                -->
+                <h2>Key Features</h2>
+                <ul class="about-list">
+                    <li>Students can browse and register interest in a wide range of programmes.</li>
+                    <li>Staff and administrators can manage programmes, modules, and student interest lists.</li>
+                    <li>Role-based access control ensures data privacy and security.</li>
+                    <li>Modern, responsive interface for easy access on any device.</li>
+                    <li>Automated notifications and activity logs for transparency.</li>
+                </ul>
+            </div>
+            <div class="about-section">
+                <!-- Purpose: Identifies the platform’s target audience.
+                   Functionality: Specifies students, staff, and administrators as primary users.
+                   Client-Side Role: Clarifies who benefits from the platform.
+                   Logic: Uses an unordered list with strong tags for emphasis on user roles.
+                -->
+                <h2>Who is it for?</h2>
+                <ul class="about-list">
+                    <li><strong>Students</strong> seeking to discover and track academic opportunities.</li>
+                    <li><strong>Staff</strong> who manage modules, interests, and student engagement.</li>
+                    <li><strong>Administrators</strong> responsible for academic programme oversight and reporting.</li>
+                </ul>
+            </div>
+            <div class="about-section">
+                <!-- Purpose: Explains why users should choose the platform.
+                   Functionality: Highlights benefits like security and intuitive dashboards.
+                   Client-Side Role: Persuades users of the platform’s value.
+                   Logic: Uses an unordered list for structured presentation of benefits.
+                -->
+                <h2>Why Choose Student Course Hub?</h2>
+                <ul class="about-list">
+                    <li>Secure handling of personal data and user authentication.</li>
+                    <li>Intuitive dashboards for both staff and students.</li>
+                    <li>Customizable and scalable for different institutions.</li>
+                    <li>Comprehensive activity tracking and reporting.</li>
+                </ul>
+            </div>
+            <div class="about-section">
+                <!-- Purpose: Provides contact and support information.
+                   Functionality: Offers an email link for user inquiries and support.
+                   Client-Side Role: Enables users to reach out for assistance or feedback.
+                   Logic: Uses a mailto link for direct email communication.
+                -->
+                <h2>Contact & Support</h2>
+                <p>
+                    For support, partnership, or feedback, please contact our team:<br>
+                    <a href="mailto:info@university.ac.uk">info@university.ac.uk</a>
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer style="font-size:0.95rem; color:#aaa; margin-top:1.5rem; padding:0; background:none; height:4.5rem; display:flex; align-items:center; justify-content:center; text-align:center;">
+        <!-- ==================================================
+           FOOTER SECTION
+           Purpose: Displays copyright information for the Student Course Hub.
+           Functionality: Presents a static notice to assert ownership and legal rights.
+           Client-Side Role: Provides legal context at the page’s bottom.
+           Logic: Uses inline CSS for a minimalistic, centered footer with static 2025 copyright text.
+        -->
+        <p style="margin:0;">© 2025 Student Course Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>

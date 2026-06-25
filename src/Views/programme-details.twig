@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as HTML5 to ensure standardized rendering.
+   Functionality: Instructs browsers to use HTML5 standards, enabling modern web features and consistent parsing.
+   Client-Side Role: Ensures compatibility with modern browsers for proper page display.
+   Logic: Uses DOCTYPE declaration to prevent quirks mode and enforce HTML5 rendering.
+-->
+<html lang="en">
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Root container for the Programme Details page, specifying the document language.
+   Functionality: Sets English as the language for accessibility and contains all page content.
+   Client-Side Role: Encapsulates navigation, header, main content, footer, and scripts for programme details.
+   Logic: Uses lang="en" to support screen readers and ensure proper text directionality.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling.
+       Functionality: Defines character encoding, responsive viewport, dynamic title, and links to CSS and fonts.
+       Client-Side Role: Controls visual presentation and resource loading for the Programme Details page.
+       Logic: Loads styles1.css, programme-details.css, programme-details-enhanced.css, Unicons, and Montserrat font.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ programme.title }} - Student Course Hub</title>
+    <!-- Purpose: Sets a dynamic page title based on the programme.
+       Functionality: Displays the programme title in the browser tab.
+       Client-Side Role: Identifies the specific programme page for users.
+       Logic: Uses template variable for dynamic title rendering.
+    -->
+    <link rel="stylesheet" href="{{ base_path() }}/css/styles1.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/programme-details.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/programme-details-enhanced.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body data-base-path="{{ base_path() }}">
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains all visible content for the Programme Details page.
+       Functionality: Structures navigation, header, programme details, modules, sidebar, and footer.
+       Client-Side Role: Renders an interactive interface for users to explore programme details and modules.
+       Logic: Uses semantic HTML, dynamic data rendering, and JavaScript for collapsible sections and sidebar updates.
+    -->
+    <nav>
+        <!-- ==================================================
+           NAVIGATION SECTION
+           Purpose: Provides navigation for accessing key site pages.
+           Functionality: Includes links to Home, About, Contact, and a responsive menu toggle.
+           Client-Side Role: Enables users to navigate the site with a clear menu structure.
+           Logic: Uses dynamic URLs via base_path() and JavaScript for mobile menu toggling with aria-labels.
+        -->
+        <div class="container nav_container">
+            <a href="{{ base_path() }}"><h4>Student Course Hub</h4></a>
+            <ul class="nav_menu">
+                <li><a href="/"><i class="uil uil-home"></i> Home</a></li>
+                <li><a href="{{ base_path() }}/about"><i class="uil uil-info-circle"></i> About</a></li>
+                <li><a href="#footer"><i class="uil uil-envelope"></i> Contact</a></li>
+            </ul>
+            <button id="open-menu-btn" aria-label="Open navigation menu"><i class="uil uil-bars"></i></button>
+            <button id="close-menu-btn" aria-label="Close navigation menu"><i class="uil uil-multiply"></i></button>
+        </div>
+    </nav>
+
+    {% if error %}
+        <!-- ==================================================
+           ERROR SECTION
+           Purpose: Displays an error message if programme data is unavailable.
+           Functionality: Shows a hidden header and an error message with a suggestion to return to the homepage.
+           Client-Side Role: Informs users of issues accessing programme details.
+           Logic: Uses template logic to conditionally render error content.
+        -->
+        <header class="programme-header" style="display: none;"></header>
+        <section class="programme-details">
+            <div class="container programme-details_container">
+                <h2>{{ error }}</h2>
+                <p>Please check the URL or go back to the homepage.</p>
+            </div>
+        </section>
+    {% else %}
+        <header class="programme-header">
+            <!-- ==================================================
+               HEADER SECTION
+               Purpose: Introduces the programme with key details and an image.
+               Functionality: Displays the programme title, description, level, duration, and image.
+               Client-Side Role: Provides an overview of the programme to engage users.
+               Logic: Uses template variables and conditional image rendering with fallback.
+            -->
+            <div class="container programme-header_container">
+                <div class="programme-header_left">
+                    <h1 id="programme-title">{{ programme.title }}</h1>
+                    <p id="programme-description">{{ programme.description }}</p>
+                    <div class="programme-meta">
+                        <span id="programme-level"><i class="uil uil-graduation-cap"></i> {% if programme.level == 'UG' %}Undergraduate{% else %}Postgraduate{% endif %}</span>
+                        <span><i class="uil uil-clock"></i> {{ programme.duration_years }} Years</span>
+                    </div>
+                </div>
+                <div class="programme-header_right">
+                    <!-- Programme key highlights -->
+                    <div class="programme-highlights">
+                        <div class="highlight-item">
+                            <i class="uil uil-award"></i>
+                            <span>Accredited Programme</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="uil uil-users-alt"></i>
+                            <span>Expert Faculty</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="uil uil-briefcase-alt"></i>
+                            <span>Career Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================================================
+           PROGRAMME INFO CARDS SECTION
+           Purpose: Displays Entry Requirements, Career Prospects, and Quick Facts.
+           Functionality: Interactive cards with expandable content outside main details.
+           Client-Side Role: Provides key programme information in organized cards.
+        -->
+        <section class="programme-info-cards">
+            <div class="container programme-info-cards_container">
+                <!-- ==================================================
+                   SECTION TITLE
+                   Purpose: Introduces the programme information cards section.
+                   Functionality: Clear heading to guide users to key programme details.
+                   Client-Side Role: Helps users understand what information follows.
+                -->
+                <div class="section-header">
+                    <h2 class="section-title">Programme Overview</h2>
+                    <p class="section-subtitle">Everything you need to know about this programme</p>
+                </div>
+                
+                <div class="info-cards-wrapper">
+                    <!-- ==================================================
+                       ENTRY REQUIREMENTS CARD
+                       Purpose: Displays admission requirements for the programme.
+                       Functionality: Shows requirements in a compact card format.
+                       Client-Side Role: Informs prospective students about entry criteria.
+                    -->
+                    <div class="info-card entry-requirements-card">
+                        <div class="info-card-header">
+                            <i class="uil uil-clipboard-notes"></i>
+                            <h3>Entry Requirements</h3>
+                            <i class="uil uil-angle-down toggle-icon"></i>
+                        </div>
+                        <div class="info-card-content">
+                            <div class="card-summary">
+                                <p class="summary-text">A-levels BBB, GCSE Math & English, Portfolio...</p>
+                            </div>
+                            <div class="card-details" style="display: none;">
+                                {% if programme.entry_requirements %}
+                                    <p>{{ programme.entry_requirements }}</p>
+                                {% else %}
+                                    <div class="requirements-grid">
+                                        <div class="requirement-item">
+                                            <i class="uil uil-graduation-cap"></i>
+                                            <div>
+                                                <strong>A-levels</strong>
+                                                <span>BBB or equivalent (300+ UCAS points)</span>
+                                            </div>
+                                        </div>
+                                        <div class="requirement-item">
+                                            <i class="uil uil-book-alt"></i>
+                                            <div>
+                                                <strong>GCSE</strong>
+                                                <span>Mathematics and English (Grade C/4 or above)</span>
+                                            </div>
+                                        </div>
+                                        <div class="requirement-item">
+                                            <i class="uil uil-folder-open"></i>
+                                            <div>
+                                                <strong>Portfolio</strong>
+                                                <span>Creative work samples (if applicable)</span>
+                                            </div>
+                                        </div>
+                                        <div class="requirement-item">
+                                            <i class="uil uil-edit"></i>
+                                            <div>
+                                                <strong>Personal Statement</strong>
+                                                <span>500-word motivation letter</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================================================
+                       CAREER PROSPECTS CARD
+                       Purpose: Displays potential career paths after graduation.
+                       Functionality: Shows career opportunities in a compact card format.
+                       Client-Side Role: Motivates students by showing career potential.
+                    -->
+                    <div class="info-card career-prospects-card">
+                        <div class="info-card-header">
+                            <i class="uil uil-briefcase-alt"></i>
+                            <h3>Career Prospects</h3>
+                            <i class="uil uil-angle-down toggle-icon"></i>
+                        </div>
+                        <div class="info-card-content">
+                            <div class="card-summary">
+                                <p class="summary-text">Software Developer, Systems Analyst, Project Manager...</p>
+                            </div>
+                            <div class="card-details" style="display: none;">
+                                {% if programme.career_prospects %}
+                                    <p>{{ programme.career_prospects }}</p>
+                                {% else %}
+                                    <div class="careers-grid">
+                                        <div class="career-item">
+                                            <i class="uil uil-laptop-cloud"></i>
+                                            <div>
+                                                <strong>Software Developer</strong>
+                                                <span>£25k - £60k+ per year</span>
+                                            </div>
+                                        </div>
+                                        <div class="career-item">
+                                            <i class="uil uil-chart-line"></i>
+                                            <div>
+                                                <strong>Systems Analyst</strong>
+                                                <span>£30k - £55k per year</span>
+                                            </div>
+                                        </div>
+                                        <div class="career-item">
+                                            <i class="uil uil-users-alt"></i>
+                                            <div>
+                                                <strong>Project Manager</strong>
+                                                <span>£35k - £70k per year</span>
+                                            </div>
+                                        </div>
+                                        <div class="career-item">
+                                            <i class="uil uil-database"></i>
+                                            <div>
+                                                <strong>Database Administrator</strong>
+                                                <span>£28k - £50k per year</span>
+                                            </div>
+                                        </div>
+                                        <div class="career-item">
+                                            <i class="uil uil-lightbulb-alt"></i>
+                                            <div>
+                                                <strong>IT Consultant</strong>
+                                                <span>£40k - £80k+ per year</span>
+                                            </div>
+                                        </div>
+                                        <div class="career-item">
+                                            <i class="uil uil-shield-check"></i>
+                                            <div>
+                                                <strong>Cybersecurity Specialist</strong>
+                                                <span>£35k - £75k per year</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================================================
+                       QUICK FACTS CARD
+                       Purpose: Displays key programme statistics and facts.
+                       Functionality: Shows duration, credits, and key features.
+                       Client-Side Role: Provides quick overview information.
+                    -->
+                    <div class="info-card quick-facts-card">
+                        <div class="info-card-header">
+                            <i class="uil uil-chart-pie"></i>
+                            <h3>Programme Facts</h3>
+                            <i class="uil uil-angle-down toggle-icon"></i>
+                        </div>
+                        <div class="info-card-content">
+                            <div class="card-summary">
+                                <p class="summary-text">Full-time, On-campus, September 2025...</p>
+                            </div>
+                            <div class="card-details" style="display: none;">
+                                <div class="facts-simple-list">
+                                    <div class="fact-row">
+                                        <i class="uil uil-schedule"></i>
+                                        <span class="fact-label">Study Mode:</span>
+                                        <span class="fact-value">Full-time</span>
+                                    </div>
+                                    <div class="fact-row">
+                                        <i class="uil uil-calendar-alt"></i>
+                                        <span class="fact-label">Start Date:</span>
+                                        <span class="fact-value">September 2025</span>
+                                    </div>
+                                    <div class="fact-row">
+                                        <i class="uil uil-award"></i>
+                                        <span class="fact-label">Credits:</span>
+                                        <span class="fact-value">{{ programme.duration_years * 120 }} ECTS</span>
+                                    </div>
+                                    <div class="fact-row">
+                                        <i class="uil uil-map-marker"></i>
+                                        <span class="fact-label">Location:</span>
+                                        <span class="fact-value">On-campus</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="programme-details">
+            <!-- ==================================================
+               PROGRAMME DETAILS SECTION
+               Purpose: Displays detailed programme information, including modules and sidebar.
+               Functionality: Shows module lists by year, collapsible sections, and a sidebar with leader info and registration.
+               Client-Side Role: Enables users to explore programme modules and register interest.
+               Logic: Uses template logic for dynamic module rendering and JavaScript for collapsible sections.
+            -->
+            <div class="container programme-details_container">
+                <div class="programme-main">
+                    <!-- Purpose: Contains the main module listings organized by year.
+                       Functionality: Displays modules with collapsible course and professor info.
+                       Client-Side Role: Allows users to explore module details interactively.
+                       Logic: Uses template logic to group modules by year and handle empty states.
+                    -->
+                    <h2 style="margin-bottom:0.5rem;">Modules</h2>
+                    <p style="margin-top:0.5rem; margin-bottom:1rem;">
+                        <span style="color:#2574A9; font-size:1.1em; margin-right:0.4em; vertical-align:middle; opacity:0.85;">➡️</span>
+                        Click a year to see its module details.
+                    </p>
+                    
+                    {# Gera lista de anos únicos #}
+                    {% set anos_disponiveis = [] %}
+                    {% for module in modules %}
+                        {% if module.year not in anos_disponiveis %}
+                            {% set anos_disponiveis = anos_disponiveis|merge([module.year]) %}
+                        {% endif %}
+                    {% endfor %}
+                    {% set anos_disponiveis = anos_disponiveis|sort %}
+
+                    {% if anos_disponiveis|length == 1 %}
+                        <!-- Purpose: Displays modules for a single available year.
+                           Functionality: Shows modules for the specific year with a fallback for no modules.
+                           Client-Side Role: Presents module details in a simplified format for single-year programmes.
+                           Logic: Uses template logic to render modules for the single year.
+                        -->
+                        {% set year = anos_disponiveis[0] %}
+                        <div class="year-modules">
+                            <h3>Year {{ year }}</h3>
+                            <div class="modules-content modules-list" id="year-{{ year }}-modules">
+                                {% set has_module = false %}
+                                {% for module in modules %}
+                                    {% if module.year == year %}
+                                        {% set has_module = true %}
+                                        <article class="module"
+                                            data-leader-photo="{{ module.leader_photo_url|e('html_attr') }}"
+                                            data-leader-name="{{ module.leader_name|e('html_attr') }}"
+                                            data-leader-title="{{ module.leader_title|e('html_attr') }}"
+                                            data-leader-department="{{ module.leader_department|e('html_attr') }}"
+                                            data-leader-specialization="{{ module.leader_specialization|e('html_attr') }}"
+                                            data-leader-email="{{ module.leader_email|e('html_attr') }}"
+                                            data-leader-phone="{{ module.leader_phone|default('')|e('html_attr') }}"
+                                            data-leader-office="{{ module.leader_office|default('')|e('html_attr') }}"
+                                            data-module-title="{{ module.title|e('html_attr') }}"
+                                            data-module-year="{{ module.year|e('html_attr') }}"
+                                            data-module-credits="{{ module.credits|default('20')|e('html_attr') }}"
+                                            data-professors="{{ module.professors|json_encode|e('html_attr') }}">
+                                            <h4>{{ module.title }}</h4>
+                                            <p>{{ module.description }}</p>
+                                            
+                                            {% if module.other_programmes is defined and module.other_programmes|length > 0 %}
+                                                <div class="other-programmes">
+                                                    <strong>Also part of:</strong>
+                                                    <ul>
+                                                        {% for prog in module.other_programmes %}
+                                                            <li>
+                                                                <a href="{{ base_path() }}/programme/{{ prog.id }}">{{ prog.title }}</a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                            
+                                            <div class="module-course-info collapsible">
+                                                <h5 class="collapsible-header">Course Information</h5>
+                                                <div class="collapsible-content" style="display:none;">
+                                                    <div class="course-details">
+                                                        <div class="info-row">
+                                                            <span class="info-label">Year:</span>
+                                                            <span class="info-value">{{ module.year }}</span>
+                                                        </div>
+                                                        <div class="info-row">
+                                                            <span class="info-label">Credits:</span>
+                                                            <span class="info-value">{{ module.credits|default('20') }} credits</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="module-professors-info collapsible">
+                                                <h5 class="collapsible-header">Teaching Staff</h5>
+                                                <div class="collapsible-content" style="display:none;">
+                                                    <div class="professors-list" id="professors-{{ module.id }}">
+                                                        <!-- Professores serão inseridos via JavaScript -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if not has_module %}
+                                    <div class="no-modules-message" style="padding:2rem; text-align:center; color:#ff1744; font-weight:bold; background: #fff0f0; border: 1px solid #ff1744; border-radius: 8px; margin: 1.5rem 0; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                                        <span style="font-size:2rem;">⚠</span>
+                                        <span>No modules are available for this year at the moment.</span>
+                                        <span style="font-weight:normal; color:#b71c1c; font-size:0.95rem;">Please check back later or contact the course coordinator for more information.</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <!-- Purpose: Displays modules for multiple years.
+                           Functionality: Organizes modules by year with collapsible sections and a fallback for no modules.
+                           Client-Side Role: Allows users to explore modules across multiple years interactively.
+                           Logic: Uses template loop to render modules for years 1–3 with dynamic data attributes.
+                        -->
+                        {% for year in 1..3 %}
+                            <div class="year-modules">
+                                <h3>Year {{ year }}</h3>
+                                <div class="modules-content modules-list" id="year-{{ year }}-modules">
+                                    {% set has_module = false %}
+                                    {% for module in modules %}
+                                        {% if module.year == year %}
+                                            {% set has_module = true %}
+                                            <article class="module"
+                                                data-leader-photo="{{ module.leader_photo_url|e('html_attr') }}"
+                                                data-leader-name="{{ module.leader_name|e('html_attr') }}"
+                                                data-leader-title="{{ module.leader_title|e('html_attr') }}"
+                                                data-leader-department="{{ module.leader_department|e('html_attr') }}"
+                                                data-leader-specialization="{{ module.leader_specialization|e('html_attr') }}"
+                                                data-leader-email="{{ module.leader_email|e('html_attr') }}"
+                                                data-leader-phone="{{ module.leader_phone|default('')|e('html_attr') }}"
+                                                data-leader-office="{{ module.leader_office|default('')|e('html_attr') }}"
+                                                data-module-title="{{ module.title|e('html_attr') }}"
+                                                data-module-year="{{ module.year|e('html_attr') }}"
+                                                data-module-credits="{{ module.credits|default('20')|e('html_attr') }}"
+                                                data-professors="{{ module.professors|json_encode|e('html_attr') }}">
+                                                <h4>{{ module.title }}</h4>
+                                                <p>{{ module.description }}</p>
+                                                
+                                                {% if module.other_programmes is defined and module.other_programmes|length > 0 %}
+                                                    <div class="other-programmes">
+                                                        <strong>Also part of:</strong>
+                                                        <ul>
+                                                            {% for prog in module.other_programmes %}
+                                                                <li>
+                                                                    <a href="{{ base_path() }}/programme/{{ prog.id }}">{{ prog.title }}</a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                <div class="module-course-info collapsible">
+                                                    <h5 class="collapsible-header">Course Information</h5>
+                                                    <div class="collapsible-content" style="display:none;">
+                                                        <div class="course-details">
+                                                            <div class="info-row">
+                                                                <span class="info-label">Year:</span>
+                                                                <span class="info-value">{{ module.year }}</span>
+                                                            </div>
+                                                            <div class="info-row">
+                                                                <span class="info-label">Credits:</span>
+                                                                <span class="info-value">{{ module.credits|default('20') }} credits</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="module-professors-info collapsible">
+                                                    <h5 class="collapsible-header">Teaching Staff</h5>
+                                                    <div class="collapsible-content" style="display:none;">
+                                                        <div class="professors-list" id="professors-{{ module.id }}">
+                                                            <!-- Professores serão inseridos via JavaScript -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if not has_module %}
+                                        <div class="no-modules-message" style="padding:2rem; text-align:center; color:#ff1744; font-weight:bold; background: #fff0f0; border: 1px solid #ff1744; border-radius: 8px; margin: 1.5rem 0; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                                            <span style="font-size:2rem;">⚠</span>
+                                            <span>No modules are available for this year at the moment.</span>
+                                            <span style="font-weight:normal; color:#b71c1c; font-size:0.95rem;">Please check back later or contact the course coordinator for more information.</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <aside class="programme-sidebar">
+                    <!-- Purpose: Displays additional programme information and actions.
+                       Functionality: Shows module leader details and a register interest button.
+                       Client-Side Role: Provides quick access to leader info and registration.
+                       Logic: Uses JavaScript to dynamically update leader info; includes a static registration link.
+                    -->
+                    <div class="sidebar-widget">
+                        <h3>Module Leader</h3>
+                        <div id="module-leader-info" class="leader-info-container">
+                            <div id="no-leader-message" class="no-leader-message" style="display:block; padding:2rem; text-align:center; color:#ff1744; font-weight:bold; background: #fff0f0; border: 1px solid #ff1744; border-radius: 8px; margin: 1.5rem 0;">
+                                <span style=" Rolls-Royce;">👨‍🏫</span>
+                                <span>Click on a year to see the module leader.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>Register Interest</h3>
+                        <p>Like what you see? Register your interest to receive updates.</p>
+                        <a href="{{ base_path() }}/register-interest" class="btn btn-primary">Register Now</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    {% endif %}
+
+    <footer class="footer" id="footer">
+        <!-- ==================================================
+           FOOTER SECTION
+           Purpose: Provides contact information, links, and copyright notice.
+           Functionality: Includes site logo, navigation links, contact details, and a copyright notice.
+           Client-Side Role: Offers users additional navigation and contact options.
+           Logic: Uses semantic HTML with dynamic URLs via base_path() for consistency.
+        -->
+        <div class="container footer_container">
+            <div class="footer_1">
+                <a href="{{ base_path() }}" class="footer_logo"><h4>Student Course Hub</h4></a>
+                <p>Explore your future with our diverse range of programmes.</p>
+            </div>
+            <div class="footer_2">
+                <h4>Know More</h4>
+                <ul>
+                    <li><a href="{{ base_path() }}">Home</a></li>
+                    <li><a href="{{ base_path() }}/about">About</a></li>
+                    <li><a href="{{ base_path() }}/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer_3">
+                <h4>Privacy</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Condition</a></li>
+                </ul>
+            </div>
+            <div class="footer_4">
+                <h4>Contact Us</h4>
+                <div>
+                    <p>+44 123 456 7890</p>
+                    <p>info@university.ac.uk</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer_copyright">
+            <small>Copyright © Student Course Hub 2025</small>
+        </div>
+    </footer>
+
+    <script src="{{ base_path() }}/js/main.js"></script>
+    <script src="{{ base_path() }}/js/programme-details.js"></script>
+    
+</body>
+</html>

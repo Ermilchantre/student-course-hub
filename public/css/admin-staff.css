@@ -1,0 +1,550 @@
+/* ==================================================
+   STAFF REGISTER FORM CUSTOM STYLES
+   --------------------------------------------------
+   Description: CSS styles for the staff registration form, including form layout, input validation, photo upload, checkboxes, and alert messages.
+   Organization: Each block or class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   STAFF FORM
+   --------------------------------------------------
+   Purpose: Styles the staff registration form with a light background, padding, rounded corners, and a subtle shadow for a clean appearance.
+*/
+.staff-form {
+    background: var(--color-bg1, #f8f9fa);
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: var(--border-radius, 8px);
+    box-shadow: var(--shadow, 0 2px 10px rgba(0,0,0,0.08));
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   FORM GROUP
+   --------------------------------------------------
+   Purpose: Styles individual form groups with a vertical flex layout for labels and inputs.
+*/
+.staff-form .form-group {
+    margin-bottom: 1.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================================================
+   FORM LABEL
+   --------------------------------------------------
+   Purpose: Styles form labels with bold text and primary color for visibility.
+*/
+.staff-form label {
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: var(--color-primary, #2c3e50);
+}
+
+/* ==================================================
+   FORM INPUTS
+   --------------------------------------------------
+   Purpose: Styles input, select, and textarea elements with consistent borders, padding, and transitions for a polished look.
+*/
+.staff-form input,
+.staff-form select,
+.staff-form textarea {
+    border: 1px solid var(--color-gray, #95a5a6) !important;
+    border-radius: 8px;
+    font-size: 1rem;
+    height: 48px;
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+    color: var(--color-dark, #2c3e50);
+    transition: border 0.2s;
+    width: 100%;
+    background: var(--color-white, #fff);
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* ==================================================
+   FORM INPUTS FOCUS
+   --------------------------------------------------
+   Purpose: Highlights focused inputs with a secondary color border and outline for accessibility.
+*/
+.staff-form input:focus,
+.staff-form select:focus,
+.staff-form textarea:focus {
+    border-color: #2574A9 !important;
+    outline: 1px solid #2574A9 !important;
+}
+
+/* ==================================================
+   FORM INPUTS VALID
+   --------------------------------------------------
+   Purpose: Styles valid inputs with a success color border and outline when filled correctly.
+*/
+.staff-form input:not(:placeholder-shown):valid,
+.staff-form select:valid,
+.staff-form textarea:not(:placeholder-shown):valid {
+    border-color: #27ae60 !important;
+    outline: 1px solid #27ae60 !important;
+}
+
+/* ==================================================
+   FORM INPUTS INVALID (VALIDATED)
+   --------------------------------------------------
+   Purpose: Styles invalid inputs in a validated form with an accent color border and outline.
+*/
+.staff-form.was-validated input:invalid,
+.staff-form.was-validated select:invalid,
+.staff-form.was-validated textarea:invalid {
+    border-color: #e74c3c !important;
+    outline: 1px solid #e74c3c !important;
+}
+
+/* ==================================================
+   FORM INPUTS INVALID (NOT VALIDATED)
+   --------------------------------------------------
+   Purpose: Ensures invalid inputs in an unvalidated form retain default styling.
+*/
+.staff-form:not(.was-validated) input:invalid,
+.staff-form:not(.was-validated) select:invalid,
+.staff-form:not(.was-validated) textarea:invalid {
+    border-color: var(--color-gray, #95a5a6) !important;
+    outline: none !important;
+}
+
+/* ==================================================
+   FILE INPUT
+   --------------------------------------------------
+   Purpose: Hides the native file input for custom photo upload styling.
+*/
+.staff-form input[type="file"] {
+    display: none;
+}
+
+/* ==================================================
+   PHOTO UPLOAD LABEL - BASE
+   --------------------------------------------------
+   Purpose: Styles the base photo upload button with a secondary color, rounded corners, and hover effects.
+*/
+.photo-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 10px 18px;
+    background: #2574A9;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    margin-bottom: 8px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(37,116,169,0.08);
+    letter-spacing: 0.02em;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+/* ==================================================
+   PHOTO UPLOAD LABEL ICON
+   --------------------------------------------------
+   Purpose: Styles the icon within the photo upload button for consistent sizing.
+*/
+.photo-upload-label i {
+    font-size: 1.3em;
+    margin-right: 0.5em;
+}
+
+/* ==================================================
+   PHOTO UPLOAD LABEL HOVER
+   --------------------------------------------------
+   Purpose: Changes the photo upload buttonÃ¢â‚¬â„¢s appearance on hover with a darker background and shadow.
+*/
+.photo-upload-label:hover {
+    background: #1a5a85;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(37,116,169,0.15);
+}
+
+/* ==================================================
+   PHOTO UPLOAD LABEL - STAFF FORM
+   --------------------------------------------------
+   Purpose: Overrides the base photo upload button styles for the staff form with a more compact design.
+*/
+.staff-form .photo-upload-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: var(--color-secondary, #2574A9);
+    color: #fff;
+    padding: 0.6em 1.3em;
+    border-radius: 24px;
+    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    margin-bottom: 0.7em;
+}
+
+/* ==================================================
+   PHOTO UPLOAD LABEL HOVER - STAFF FORM
+   --------------------------------------------------
+   Purpose: Changes the staff formÃ¢â‚¬â„¢s photo upload button appearance on hover.
+*/
+.staff-form .photo-upload-label:hover {
+    background: var(--color-dark, #2c3e50);
+    color: var(--color-secondary, #2574A9);
+}
+
+/* ==================================================
+   PHOTO PREVIEW - STAFF FORM
+   --------------------------------------------------
+   Purpose: Styles the photo preview area for staff images with a flex layout and spacing.
+*/
+.staff-form .photo-preview {
+    margin-top: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+/* ==================================================
+   PHOTO PREVIEW IMAGE - STAFF FORM
+   --------------------------------------------------
+   Purpose: Styles preview images as circular with a secondary color border and shadow.
+*/
+.staff-form .photo-preview img {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--color-secondary, #2574A9);
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+}
+
+/* ==================================================
+   REMOVE PHOTO BUTTON - STAFF FORM
+   --------------------------------------------------
+   Purpose: Styles the button to remove uploaded photos with an accent color and hover effect.
+*/
+.staff-form .remove-photo-btn {
+    background: var(--color-accent, #e74c3c);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 0.5rem;
+    transition: background 0.2s;
+}
+
+/* ==================================================
+   REMOVE PHOTO BUTTON HOVER - STAFF FORM
+   --------------------------------------------------
+   Purpose: Changes the remove photo buttonÃ¢â‚¬â„¢s appearance on hover.
+*/
+.staff-form .remove-photo-btn:hover {
+    background: var(--color-dark, #2c3e50);
+    color: var(--color-accent, #e74c3c);
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts form padding for screens up to 600px for better mobile usability.
+*/
+@media (max-width: 600px) {
+    .staff-form {
+        padding: 1.2rem 0.5rem;
+    }
+}
+
+/* ==================================================
+   CUSTOM CHECKBOX
+   --------------------------------------------------
+   Purpose: Styles checkboxes in the staff form with a secondary color accent and consistent sizing.
+*/
+.staff-form .form-group input[type="checkbox"] {
+    accent-color: var(--color-secondary, #2574A9);
+    width: 1.1em;
+    height: 1.1em;
+    border-radius: 4px;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(44,62,80,0.08);
+    transition: accent-color 0.2s, box-shadow 0.2s;
+}
+
+/* ==================================================
+   CHECKBOX FOCUS
+   --------------------------------------------------
+   Purpose: Highlights focused checkboxes with a secondary color outline.
+*/
+.staff-form .form-group input[type="checkbox"]:focus {
+    outline: 2px solid var(--color-secondary, #2574A9);
+    outline-offset: 2px;
+}
+
+/* ==================================================
+   CHECKBOX LABEL
+   --------------------------------------------------
+   Purpose: Styles checkbox labels with a flex layout for alignment with checkboxes.
+*/
+.staff-form .form-group label[for="active"],
+.staff-form .form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* ==================================================
+   CUSTOM DATALIST DROPDOWN
+   --------------------------------------------------
+   Purpose: Styles inputs with a datalist to include a custom dropdown arrow using an SVG.
+*/
+.staff-form input[list] {
+    background: var(--color-white, #fff) url('data:image/svg+xml;utf8,<svg fill="%232574A9" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.9em center/1.2em 1.2em;
+}
+
+/* ==================================================
+   DATALIST INPUT FOCUS
+   --------------------------------------------------
+   Purpose: Highlights focused datalist inputs with a secondary color border.
+*/
+.staff-form input[list]:focus {
+    border-color: var(--color-secondary, #2574A9);
+    outline: none;
+}
+
+/* ==================================================
+   DATALIST INPUT PLACEHOLDER
+   --------------------------------------------------
+   Purpose: Styles placeholders in datalist inputs with a gray color.
+*/
+.staff-form input[list]::-webkit-input-placeholder {
+    color: var(--color-gray, #95a5a6);
+}
+
+.staff-form input[list]::placeholder {
+    color: var(--color-gray, #95a5a6);
+}
+
+/* ==================================================
+   DATALIST NATIVE INDICATOR
+   --------------------------------------------------
+   Purpose: Removes the native datalist dropdown icon in WebKit browsers for consistent styling.
+*/
+.staff-form input[list]::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+/* ==================================================
+   FORM HELP TEXT
+   --------------------------------------------------
+   Purpose: Styles help text below form fields with a smaller, italicized gray font.
+*/
+.staff-form .form-help {
+    font-size: 0.85rem;
+    color: var(--color-gray, #95a5a6);
+    margin-top: 0.3rem;
+    font-style: italic;
+}
+
+/* ==================================================
+   PASSWORD INPUT ERROR
+   --------------------------------------------------
+   Purpose: Styles password inputs with errors using an accent color border and shadow.
+*/
+.staff-form input[type="password"].error {
+    border-color: var(--color-accent, #e74c3c);
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+}
+
+/* ==================================================
+   PASSWORD INPUT VALID
+   --------------------------------------------------
+   Purpose: Styles valid password inputs with a success color border and shadow.
+*/
+.staff-form input[type="password"].valid {
+    border-color: #27ae60;
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.1);
+}
+
+/* ==================================================
+   FORM HELP TEXT (PASSWORD ERROR)
+   --------------------------------------------------
+   Purpose: Styles help text for password errors with an accent color.
+*/
+.staff-form input[type="password"].error + .form-help {
+    color: var(--color-accent, #e74c3c);
+}
+
+/* ==================================================
+   FORM HELP TEXT (PASSWORD VALID)
+   --------------------------------------------------
+   Purpose: Styles help text for valid passwords with a success color.
+*/
+.staff-form input[type="password"].valid + .form-help {
+    color: #27ae60;
+}
+
+/* ==================================================
+   ALERT MESSAGES
+   --------------------------------------------------
+   Purpose: Styles alert messages for form feedback with a flex layout and consistent padding.
+*/
+.alert {
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius, 8px);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+/* ==================================================
+   ALERT ERROR
+   --------------------------------------------------
+   Purpose: Styles error alerts with an accent color border and light background.
+*/
+.alert-error {
+    background-color: rgba(231, 76, 60, 0.1);
+    border: 1px solid var(--color-accent, #e74c3c);
+    color: var(--color-accent, #e74c3c);
+}
+
+/* ==================================================
+   ALERT SUCCESS
+   --------------------------------------------------
+   Purpose: Styles success alerts with a success color border and light background.
+*/
+.alert-success {
+    background-color: rgba(39, 174, 96, 0.1);
+    border: 1px solid #27ae60;
+    color: #27ae60;
+}
+
+/* ==================================================
+   ALERT ICON
+   --------------------------------------------------
+   Purpose: Styles icons within alert messages for consistent sizing.
+*/
+.alert i {
+    font-size: 1.1rem;
+}
+
+/* ==================================================
+   TEXTAREA BIO
+   --------------------------------------------------
+   Purpose: Styles the bio textarea with flexible height and vertical resizing.
+*/
+.staff-form textarea#bio {
+    padding: 0.7rem 1rem;
+    height: auto;
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* ==================================================
+   SELECT INPUT
+   --------------------------------------------------
+   Purpose: Ensures select inputs have consistent border styling.
+*/
+.staff-form select {
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: var(--color-gray, #95a5a6) !important;
+    border-radius: 8px !important;
+    box-sizing: border-box;
+}
+
+/* ==================================================
+   FORM INPUTS VALID (GENERAL)
+   --------------------------------------------------
+   Purpose: Styles all valid inputs with a success color border and outline.
+*/
+.staff-form input:valid,
+.staff-form select:valid,
+.staff-form textarea:valid {
+    border-color: #27ae60 !important;
+    outline: 1px solid #27ae60 !important;
+}
+
+/* ==================================================
+   ERROR MESSAGE
+   --------------------------------------------------
+   Purpose: Styles error messages with an accent color border, light background, and shake animation.
+*/
+.error-message {
+    color: #e74c3c;
+    font-size: 0.95em;
+    margin-top: 4px;
+    background: #fff6f6;
+    border-left: 4px solid #e74c3c;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(231,76,60,0.05);
+    animation: shake 0.2s 1;
+}
+
+/* ==================================================
+   SHAKE ANIMATION
+   --------------------------------------------------
+   Purpose: Defines a shake animation for error messages to draw attention.
+*/
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+/* ==================================================
+   INPUT ERROR STYLES
+   --------------------------------------------------
+   Purpose: Styles inputs, selects, and textareas with errors using an accent color and light background.
+*/
+input.error, select.error, textarea.error {
+    border-color: #e74c3c !important;
+    background: #fff6f6;
+}
+
+/* ==================================================
+   SUCCESS MESSAGE
+   --------------------------------------------------
+   Purpose: Styles success messages with a green border, light background, and fade-in animation.
+*/
+.staff-form-success-message {
+    color: #155724;
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 12px 18px;
+    border-radius: 4px;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-bottom: 18px;
+    margin-top: 18px;
+    box-shadow: 0 1px 2px rgba(40,167,69,0.07);
+    animation: fadeIn 0.5s;
+}
+
+/* ==================================================
+   FADE-IN ANIMATION
+   --------------------------------------------------
+   Purpose: Defines a fade-in animation for success messages.
+*/
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

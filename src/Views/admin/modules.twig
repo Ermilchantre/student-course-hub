@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as an HTML5 document to ensure standardized rendering.
+   Functionality: Instructs browsers to parse the page using HTML5 standards, supporting modern web features.
+   Client-Side Role: Ensures compatibility across modern browsers for consistent page display.
+   Logic: Uses the DOCTYPE declaration to prevent quirks mode and enable HTML5 feature support.
+-->
+<html lang="en">
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Serves as the root container for the Manage Modules page and specifies the document language.
+   Functionality: Sets English as the language, enhancing accessibility for screen readers and multilingual users.
+   Client-Side Role: Encapsulates all page content, including navigation, header, main content, and footer.
+   Logic: Uses lang="en" to ensure proper text directionality and accessibility for English-speaking users.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling and functionality.
+       Functionality: Defines character encoding, responsive viewport, page title, and links to CSS and fonts.
+       Client-Side Role: Controls the visual presentation and resource loading for the module management page.
+       Logic: Loads local stylesheets (admin-nav.css, admin-modules.css), Unicons, and Montserrat font for consistent design.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Modules - Student Course Hub</title>
+    <link rel="stylesheet" href="{{ base_path() }}/css/admin-nav.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/admin-modules.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains all visible content for managing program modules.
+       Functionality: Structures navigation, header, form for creating/editing modules, and a table for viewing modules.
+       Client-Side Role: Renders an interactive interface for admins to create, edit, and manage modules efficiently.
+       Logic: Uses semantic HTML and CSS classes for a responsive, organized layout with JavaScript-driven interactivity.
+    -->
+    <nav>
+        <!-- ==================================================
+           NAVIGATION SECTION
+           Purpose: Provides navigation for accessing dashboard features and user actions.
+           Functionality: Includes a home link, admin dropdown menu with management options, and responsive menu toggles.
+           Client-Side Role: Enables admins to navigate between dashboard sections and perform logout actions.
+           Logic: Uses dynamic URLs via base_path() and JavaScript for mobile menu toggling with accessibility support.
+        -->
+        <div class="container nav_container">
+            <a href="{{ base_path() }}"><h4><i class="uil uil-graduation-cap"></i> Student Course Hub</h4></a>
+            <div class="nav_right">
+                <ul class="nav_menu">
+                    <li class="dropdown">
+                        <a href="#" class="active"><i class="uil uil-user"></i> Admin <i class="uil uil-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ base_path() }}/admin/dashboard"><i class="uil uil-home"></i> Dashboard</a></li>
+                            <li><a href="{{ base_path() }}/admin/programmes"><i class="uil uil-notebooks"></i> Programs</a></li>
+                            <li><a href="{{ base_path() }}/admin/interests"><i class="uil uil-clipboard-notes"></i> Interests</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button id="open-menu-btn" aria-label="Open navigation menu"><i class="uil uil-bars"></i></button>
+                <button id="close-menu-btn" aria-label="Close navigation menu"><i class="uil uil-multiply"></i></button>
+                <a href="{{ base_path() }}/admin/logout" class="logout-btn" aria-label="Logout"><i class="uil uil-signout"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="admin-header">
+        <!-- ==================================================
+           HEADER SECTION
+           Purpose: Introduces the module management page with key statistics.
+           Functionality: Displays a title, description, and static stats for modules, programs, and updates.
+           Client-Side Role: Provides admins with an overview of module-related metrics and page purpose.
+           Logic: Uses static data for stats (e.g., "24 Modules") with a two-column layout for visual clarity.
+        -->
+        <div class="container header_container">
+            <div class="header_left">
+                <h1>Manage Modules</h1>
+                <p>Create, edit and organize program modules in a structured and efficient way.</p>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <i class="uil uil-notebooks"></i>
+                        <span>24 Modules</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="uil uil-book-open"></i>
+                        <span>7 Programs</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="uil uil-clock"></i>
+                        <span>Updated today</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header_right">
+                <div class="header_image">
+                    <i class="uil uil-notebooks"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================================================
+           MAIN SECTION
+           Purpose: Contains the core functionality for managing program modules.
+           Functionality: Includes a form for creating/editing modules and a table for viewing registered modules.
+           Client-Side Role: Provides admins with tools to add, edit, search, and filter modules dynamically.
+           Logic: Uses semantic sections with JavaScript-driven form submission and table population.
+        -->
+        <div class="container">
+            <section class="module-form-section">
+                <!-- ==================================================
+                   MODULE FORM SECTION
+                   Purpose: Provides a form for creating or editing program modules.
+                   Functionality: Allows input for module title, program, description, year, credits, leader, and status.
+                   Client-Side Role: Enables admins to define or modify module details with validation and accessibility.
+                   Logic: Uses dynamic select options, conditional input display, and JavaScript for form handling.
+                -->
+                <div class="section-header">
+                    <!-- Purpose: Displays the title and instructions for the module form.
+                       Functionality: Shows a dynamic title (create/edit) and guidance text for form usage.
+                       Client-Side Role: Clarifies the form’s purpose to admins.
+                       Logic: Uses a span with id="form-title" for dynamic title updates via JavaScript.
+                    -->
+                    <h2><i class="uil uil-plus-circle"></i> <span id="form-title">Create New Module</span></h2>
+                    <p>Fill in the fields below to create a new module or edit an existing one</p>
+                </div>
+                
+                <div class="form-container">
+                    <!-- Purpose: Wraps the module form for layout and styling.
+                       Functionality: Groups form elements for a clean, organized presentation.
+                       Client-Side Role: Ensures form elements are visually structured for usability.
+                       Logic: Uses CSS classes for responsive grid-based layout.
+                    -->
+                    <form id="module-form" class="module-form" aria-label="Form to create or edit a module">
+                        <!-- Purpose: Defines the form for creating or editing a module.
+                           Functionality: Collects module data with required and optional fields, submitted via JavaScript.
+                           Client-Side Role: Facilitates user input for module creation or editing with accessibility.
+                           Logic: Uses aria-label for accessibility and JavaScript for form validation and submission.
+                        -->
+                        <div class="form-grid">
+                            <!-- Purpose: Groups module title and program selection fields in a grid layout.
+                               Functionality: Organizes related input fields for better usability.
+                               Client-Side Role: Enhances form layout for clarity and responsiveness.
+                               Logic: Uses CSS grid for structured field arrangement.
+                            -->
+                            <div class="form-group">
+                                <!-- Purpose: Collects the module title via dropdown or custom input.
+                                   Functionality: Offers predefined titles or a custom input field for new titles.
+                                   Client-Side Role: Allows flexible title selection with dynamic input display.
+                                   Logic: Toggles visibility of module_title_other input via JavaScript when "other" is selected.
+                                -->
+                                <label for="module_title_select">Module Title *</label>
+                                <select id="module_title_select" name="module_title_select" required>
+                                    <option value="">Select or type a module title</option>
+                                    <option value="Introduction to Programming">Introduction to Programming</option>
+                                    <option value="Data Structures and Algorithms">Data Structures and Algorithms</option>
+                                    <option value="Statistical Analysis">Statistical Analysis</option>
+                                    <option value="Business Strategy">Business Strategy</option>
+                                    <option value="Literary Theory">Literary Theory</option>
+                                    <option value="Creative Writing">Creative Writing</option>
+                                    <option value="Contemporary Literature">Contemporary Literature</option>
+                                    <option value="Network Security">Network Security</option>
+                                    <option value="Cryptography">Cryptography</option>
+                                    <option value="Ethical Hacking">Ethical Hacking</option>
+                                    <option value="Programme Tests">Programme Tests</option>
+                                    <option value="Database">Database</option>
+                                    <option value="Data Science">Data Science</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <input type="text" id="module_title_other" name="module_title_other" placeholder="Enter new module title" style="display:none; margin-top:8px;">
+                            </div>
+                            <div class="form-group">
+                                <!-- Purpose: Collects the associated program for the module.
+                                   Functionality: Provides a dropdown for selecting a program, populated dynamically.
+                                   Client-Side Role: Links the module to a program for organization.
+                                   Logic: Uses JavaScript to populate options and enforces selection with required attribute.
+                                -->
+                                <label for="programme_id" id="programme-label">Programme *</label>
+                                <select id="programme_id" name="programme_id" required aria-required="true" aria-labelledby="programme-label">
+                                    <option value="">Select programme</option>
+                                    <!-- Filled by JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <!-- Purpose: Collects a detailed description of the module.
+                               Functionality: Allows admins to input a multi-line description with guidance text.
+                               Client-Side Role: Captures module objectives and content for clarity.
+                               Logic: Uses textarea with accessibility attributes and required validation.
+                            -->
+                            <label for="description" id="description-label">Description *</label>
+                            <textarea id="description" name="description" rows="4" required aria-required="true" aria-labelledby="description-label" aria-describedby="description-help" placeholder="Describe the content, objectives and skills of the module..."></textarea>
+                            <div id="description-help" class="form-help">Describe the content and objectives of the module</div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <!-- Purpose: Groups year and credits fields in a grid layout.
+                               Functionality: Organizes related input fields for module year and credits.
+                               Client-Side Role: Enhances form usability with a structured layout.
+                               Logic: Uses CSS grid for responsive field arrangement.
+                            -->
+                            <div class="form-group">
+                                <!-- Purpose: Collects the academic year for the module.
+                                   Functionality: Provides a dropdown for selecting the program year.
+                                   Client-Side Role: Specifies the module’s academic level.
+                                   Logic: Enforces selection with required attribute and accessibility labels.
+                                -->
+                                <label for="year" id="year-label">Year *</label>
+                                <select id="year" name="year" required aria-required="true" aria-labelledby="year-label">
+                                    <option value="">Select year</option>
+                                    <option value="1">Year 1</option>
+                                    <option value="2">Year 2</option>
+                                    <option value="3">Year 3</option>
+                                    <option value="4">Year 4</option>
+                                    <option value="5">Year 5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <!-- Purpose: Collects the credit value for the module.
+                                   Functionality: Allows input of a numeric value with a default of 20 credits.
+                                   Client-Side Role: Defines the module’s academic weight.
+                                   Logic: Uses number input with min/max constraints and accessibility attributes.
+                                -->
+                                <label for="credits" id="credits-label">Credits</label>
+                                <input type="number" id="credits" name="credits" value="20" min="1" max="60" aria-labelledby="credits-label" aria-describedby="credits-help">
+                                <div id="credits-help" class="form-help">Number of module credits (default: 20)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <!-- Purpose: Groups the module leader selection field.
+                               Functionality: Organizes the module leader dropdown in a grid layout.
+                               Client-Side Role: Enhances form usability for assigning module responsibilities.
+                               Logic: Uses CSS grid for structured layout.
+                            -->
+                            <div class="form-group">
+                                <!-- Purpose: Assigns a module leader (optional).
+                                   Functionality: Provides a dropdown for selecting a staff member as the module leader.
+                                   Client-Side Role: Links a responsible staff member to the module.
+                                   Logic: Populates options via JavaScript with optional selection.
+                                -->
+                                <label for="module_leader_id" id="leader-label">Module Leader</label>
+                                <select id="module_leader_id" name="module_leader_id" aria-labelledby="leader-label" aria-describedby="leader-help">
+                                    <option value="">Select leader (optional)</option>
+                                    <!-- Filled by JavaScript -->
+                                </select>
+                                <div id="leader-help" class="form-help">Select the staff member responsible for the module</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <!-- Purpose: Groups the selection of additional professors.
+                               Functionality: Organizes the multiple-select field for professors in a grid layout.
+                               Client-Side Role: Enhances form usability for assigning multiple staff members.
+                               Logic: Uses CSS grid for structured layout.
+                            -->
+                            <div class="form-group">
+                                <!-- Purpose: Assigns additional professors to the module.
+                                   Functionality: Allows multiple staff selections via a multi-select dropdown.
+                                   Client-Side Role: Supports assigning multiple professors for module delivery.
+                                   Logic: Uses multiple attribute and JavaScript to populate options.
+                                -->
+                                <label for="module_staff_ids" id="staff-label">Other Professors</label>
+                                <select id="module_staff_ids" name="module_staff_ids[]" multiple aria-labelledby="staff-label" aria-describedby="staff-help">
+                                    <!-- Filled by JavaScript -->
+                                </select>
+                                <div id="staff-help" class="form-help">Hold Ctrl (Windows) or Cmd (Mac) to select multiple professors for this module</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <!-- Purpose: Specifies if the module is core (required).
+                               Functionality: Provides a checkbox to mark the module as core, defaulting to checked.
+                               Client-Side Role: Indicates the module’s requirement status for the program.
+                               Logic: Uses a checkbox with default checked state for user convenience.
+                            -->
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="is_core" name="is_core" checked>
+                                <span class="checkmark"></span>
+                                Core Module (Required)
+                            </label>
+                            <div class="form-help">Core modules are required to complete the programme</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <!-- Purpose: Specifies if the module is active for enrollment.
+                               Functionality: Provides a checkbox to mark the module as active, defaulting to checked.
+                               Client-Side Role: Controls the module’s availability for student enrollment.
+                               Logic: Uses a checkbox with default checked state for user convenience.
+                            -->
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="is_active" name="is_active" checked>
+                                <span class="checkmark"></span>
+                                Active Module
+                            </label>
+                            <div class="form-help">Active modules are available for enrollment</div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <!-- Purpose: Groups form submission and cancellation buttons.
+                               Functionality: Provides buttons to submit the form or cancel editing.
+                               Client-Side Role: Enables form submission or cancellation with clear actions.
+                               Logic: Hides cancel button by default, shown via JavaScript during edit mode.
+                            -->
+                            <button type="submit" class="btn btn-primary">
+                                <!-- Purpose: Submits the module form.
+                                   Functionality: Triggers form submission to create or update a module.
+                                   Client-Side Role: Initiates module creation or editing process.
+                                   Logic: Uses JavaScript to handle form submission and validation.
+                                -->
+                                <i class="uil uil-plus"></i>
+                                <span id="submit-text">Create Module</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="cancel-btn" style="display: none;">
+                                <!-- Purpose: Cancels the editing of an existing module.
+                                   Functionality: Resets the form to create mode or cancels changes.
+                                   Client-Side Role: Allows admins to abort editing without saving.
+                                   Logic: Hidden by default, shown via JavaScript in edit mode.
+                                -->
+                                <i class="uil uil-times"></i>
+                                <span>Cancel</span>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="form-message" class="form-message" style="display: none;">
+                        <!-- Purpose: Displays feedback messages for form actions.
+                           Functionality: Shows success or error messages after form submission.
+                           Client-Side Role: Informs admins of form submission outcomes.
+                           Logic: Hidden by default, populated and shown via JavaScript.
+                        -->
+                    </div>
+                </div>
+            </section>
+            
+            <section class="modules-list-section">
+                <!-- ==================================================
+                   MODULES LIST SECTION
+                   Purpose: Displays a table of registered modules with search and filter options.
+                   Functionality: Shows a dynamic table with module details and actions for editing or deleting.
+                   Client-Side Role: Enables admins to view, search, and filter modules efficiently.
+                   Logic: Uses JavaScript to populate table data and handle search/filter functionality.
+                -->
+                <div class="section-header">
+                    <h2><i class="uil uil-list-ul"></i> Registered Modules</h2>
+                    <div class="section-actions">
+                        <div class="search-box">
+                            <i class="uil uil-search"></i>
+                            <input type="text" id="module-search" placeholder="Search modules...">
+                        </div>
+                        <select id="filter-programme" class="filter-select">
+                            <option value="">All programmes</option>
+                            <!-- Filled by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="modules-table-container">
+                    <table class="modules-table" role="table" aria-label="Module list">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Programme</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Leader</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data filled via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <!-- ==================================================
+           FOOTER SECTION
+           Purpose: Displays copyright information for the Student Course Hub.
+           Functionality: Presents a static notice to assert ownership and legal rights.
+           Client-Side Role: Provides legal context at the page’s bottom.
+           Logic: Uses a small tag for minimalistic presentation of static 2025 copyright text.
+        -->
+        <div class="footer_copyright">
+            <small>© 2025 Student Course Hub. All rights reserved.</small>
+        </div>
+    </footer>
+
+    <script>window.basePath = '{{ base_path() }}';</script>
+    <!-- ==================================================
+       SCRIPT SECTION
+       Purpose: Loads JavaScript for dynamic and interactive module management features.
+       Functionality: Enables form submission, table population, search, and filter functionality.
+       Client-Side Role: Enhances user interaction with dynamic data handling and form validation.
+       Logic: Sets basePath globally for routing and loads admin-modules.js for client-side logic.
+    -->
+    <script src="{{ base_path() }}/js/admin-modules.js"></script>
+</body>
+</html>

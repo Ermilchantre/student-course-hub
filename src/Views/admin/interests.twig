@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as an HTML5 document to ensure standardized rendering.
+   Functionality: Instructs browsers to use HTML5 standards, enabling modern web features and consistent parsing.
+   Client-Side Role: Establishes compatibility across modern browsers for proper page display.
+   Logic: Uses the DOCTYPE declaration to prevent quirks mode and ensure HTML5 feature support.
+-->
+<html lang="en">
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Serves as the root container for the Manage Interests page and specifies the document language.
+   Functionality: Sets English as the language for accessibility, encapsulating all page content.
+   Client-Side Role: Contains navigation, header, main content, and footer for the interest management interface.
+   Logic: Uses lang="en" to support screen readers and multilingual accessibility for English-speaking users.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling and functionality.
+       Functionality: Defines character encoding, responsive viewport, page title, and links to CSS and fonts.
+       Client-Side Role: Controls the visual presentation and resource loading for the interest management page.
+       Logic: Loads local stylesheets (interest-manage.css, admin-nav.css), Unicons, and Montserrat font for consistent design.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Interests - Student Course Hub</title>
+    <link rel="stylesheet" href="{{ base_path() }}/css/interest-manage.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/admin-nav.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="admin-interests-page">
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains all visible content for managing student interests.
+       Functionality: Structures navigation, header, main content with stats, filters, table, and footer.
+       Client-Side Role: Renders an interactive interface for admins to view, filter, and manage student interests.
+       Logic: Uses a dedicated class (admin-interests-page) and semantic HTML for a responsive, organized layout.
+    -->
+    <nav>
+        <!-- ==================================================
+           NAVIGATION SECTION
+           Purpose: Provides navigation for admins to access dashboard features and logout.
+           Functionality: Includes a home link, admin dropdown menu with management options, and responsive menu toggles.
+           Client-Side Role: Enables seamless navigation across admin pages and user logout.
+           Logic: Uses dynamic URLs via base_path() and JavaScript for mobile menu toggling with accessibility labels.
+        -->
+        <div class="container nav_container">
+            <a href="{{ base_path() }}/admin/dashboard"><h4>Student Course Hub</h4></a>
+            <div class="nav_right">
+                <ul class="nav_menu">
+                    <li class="dropdown">
+                        <a href="#" class="active"><i class="uil uil-user"></i> Admin <i class="uil uil-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ base_path() }}/admin/dashboard"><i class="uil uil-home"></i> Dashboard</a></li>
+                            <li><a href="{{ base_path() }}/admin/programmes"><i class="uil uil-notebooks"></i> Programs</a></li>
+                            <li><a href="{{ base_path() }}/admin/modules"><i class="uil uil-book-open"></i> Modules</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button id="open-menu-btn" aria-label="Open navigation menu"><i class="uil uil-bars"></i></button>
+                <button id="close-menu-btn" aria-label="Close navigation menu"><i class="uil uil-multiply"></i></button>
+                <a href="{{ base_path() }}/admin/logout" class="logout-btn" aria-label="Logout"><i class="uil uil-signout"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="manage-header">
+        <!-- ==================================================
+           HEADER SECTION
+           Purpose: Introduces the interest management page with a title and key features.
+           Functionality: Displays a title, description, and benefits (viewing/exporting interests) for context.
+           Client-Side Role: Provides an overview of the page’s purpose and capabilities for admins.
+           Logic: Uses a two-column layout with text and an icon for visual clarity and user guidance.
+        -->
+        <div class="container manage-header_container">
+            <div class="manage-header_left">
+                <h1>Manage Student Interests</h1>
+                <p>View, manage and export student interests in our programmes. Generate mailing lists for effective communication.</p>
+                <div class="manage-benefits">
+                    <div class="benefit">
+                        <i class="uil uil-eye"></i>
+                        <span>View all registered interests</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="uil uil-export"></i>
+                        <span>Export mailing lists to Excel</span>
+                    </div>
+                </div>
+            </div>
+            <div class="manage-header_right">
+                <div class="manage-image">
+                    <i class="uil uil-setting"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================================================
+           MAIN SECTION
+           Purpose: Contains the core functionality for managing student interests.
+           Functionality: Includes stats, filters, a dynamic table, pagination, and a confirmation modal.
+           Client-Side Role: Provides admins with tools to view, filter, search, and export interest data.
+           Logic: Uses semantic sections and JavaScript for dynamic table population and interactivity.
+        -->
+        <div class="container interest-manage-container">
+            <section class="stats-section">
+                <!-- ==================================================
+                   STATS SECTION
+                   Purpose: Displays key statistics about student interests.
+                   Functionality: Shows dynamic counts for total interests, programs, and monthly activity.
+                   Client-Side Role: Provides admins with a quick overview of interest-related metrics.
+                   Logic: Uses placeholders updated via JavaScript for real-time data display.
+                -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="uil uil-graduation-cap"></i>
+                        <div class="stat-content">
+                            <h3 id="total-interests-stat">0</h3>
+                            <p>Total Interests</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="uil uil-book-open"></i>
+                        <div class="stat-content">
+                            <h3 id="total-programmes-stat">0</h3>
+                            <p>Programmes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="uil uil-chart-line"></i>
+                        <div class="stat-content">
+                            <h3 id="this-month-stat">0</h3>
+                            <p>This Month</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="filters-section">
+                <!-- ==================================================
+                   FILTERS SECTION
+                   Purpose: Enables filtering and searching of student interest data.
+                   Functionality: Provides a program filter, search input, and export button for data manipulation.
+                   Client-Side Role: Allows admins to refine the displayed interest data dynamically.
+                   Logic: Uses JavaScript to populate the program filter and handle search/export functionality.
+                -->
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="programme-filter">Filter by Programme:</label>
+                        <select id="programme-filter" class="filter-select">
+                            <option value="">All Programmes</option>
+                            <!-- Preenchido via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="search-input">Search:</label>
+                        <input type="text" id="search-input" class="search-input" placeholder="Search by name, email or programme...">
+                    </div>
+                    <div class="actions-group">
+                        <button id="export-excel-btn" class="btn btn-success">
+                            <i class="uil uil-export"></i> Export Excel
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="interests-section">
+                <!-- ==================================================
+                   INTERESTS SECTION
+                   Purpose: Displays a table of student interests with management options.
+                   Functionality: Shows a dynamic table with selectable rows, delete actions, and pagination.
+                   Client-Side Role: Enables admins to view, select, and delete interests with accessibility support.
+                   Logic: Uses JavaScript to populate table data and handle interactions like selection and deletion.
+                -->
+                <div class="section-header">
+                    <h2><i class="uil uil-list-ul"></i> Student Interests</h2>
+                    <div class="table-actions">
+                        <button id="delete-selected-btn" class="btn btn-danger" style="display: none;">
+                            <i class="uil uil-trash-alt"></i> Delete Selected
+                        </button>
+                    </div>
+                </div>
+                <div class="interests-table-container">
+                    <table class="interests-table" role="table" aria-label="List of registered interests">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="checkbox-column">
+                                    <label class="select-all-label">
+                                        <input type="checkbox" id="select-all">
+                                        Select All
+                                    </label>
+                                </th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Programme</th>
+                                <th scope="col">Registration Date</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination" class="pagination-container"></div>
+            </section>
+
+            <div id="confirm-modal" class="modal" style="display: none;">
+                <!-- ==================================================
+                   CONFIRMATION MODAL
+                   Purpose: Confirms actions like deleting selected interests.
+                   Functionality: Displays a modal with a confirmation message and action buttons.
+                   Client-Side Role: Ensures admins confirm destructive actions for safety.
+                   Logic: Hidden by default, shown via JavaScript with dynamic content for confirmation.
+                -->
+                <div class="modal-content">
+                    <h3 id="confirm-title">Confirm Action</h3>
+                    <p id="confirm-message">Are you sure you want to proceed?</p>
+                    <div class="modal-actions">
+                        <button id="confirm-yes" class="btn btn-danger">Yes, Proceed</button>
+                        <button id="confirm-no" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- ==================================================
+           FOOTER SECTION
+           Purpose: Displays copyright information for the Student Course Hub.
+           Functionality: Presents a static notice to assert ownership and legal rights.
+           Client-Side Role: Provides legal context at the page’s bottom.
+           Logic: Uses a small tag for minimalistic presentation of static 2025 copyright text.
+        -->
+        <div class="footer_copyright">
+            <small>© 2025 Student Course Hub. All rights reserved.</small>
+        </div>
+    </footer>
+
+    <script>window.basePath = '{{ base_path() }}';</script>
+    <!-- ==================================================
+       SCRIPT SECTION
+       Purpose: Loads JavaScript for dynamic and interactive features.
+       Functionality: Enables table population, filtering, searching, exporting, and modal interactions.
+       Client-Side Role: Enhances the page with dynamic data handling and user-friendly interactions.
+       Logic: Sets basePath globally and loads interest-manage.js for client-side logic.
+    -->
+    <script src="{{ base_path() }}/js/interest-manage.js"></script>
+</body>
+</html>

@@ -1,0 +1,2833 @@
+/* ==================================================
+   PROGRAMME DETAILS PAGE STYLESHEET
+   --------------------------------------------------
+   Description: CSS styles for the programme details page, providing professional styling for headers, containers, modules, sidebars, staff, and error messages.
+   Organization: Each block or class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   PROGRAMME DETAILS VARIABLES
+   --------------------------------------------------
+   Purpose: Defines reusable CSS variables with a --programme- prefix for colors, shadows, radii, and transitions, ensuring a cohesive professional design for the programme details page.
+*/
+:root {
+    --programme-primary: #2c3e50;
+    --programme-primary-variant: #34495e;
+    --programme-secondary: #2574A9;
+    --programme-accent: #e74c3c;
+    --programme-success: #27ae60;
+    --programme-warning: #f39c12;
+    --programme-error: #e74c3c;
+    --programme-gray-50: #f8f9fa;
+    --programme-gray-100: #ecf0f1;
+    --programme-gray-200: #e9ecef;
+    --programme-gray-300: #cbd5e1;
+    --programme-gray-400: #94a3b8;
+    --programme-gray-500: #64748b;
+    --programme-gray-600: #475569;
+    --programme-gray-700: #334155;
+    --programme-gray-800: #1e293b;
+    --programme-gray-900: #0f172a;
+    --programme-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --programme-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --programme-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --programme-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --programme-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --programme-radius: 0.5rem;
+    --programme-radius-lg: 0.75rem;
+    --programme-radius-xl: 1rem;
+    --programme-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================================================
+   CONTAINER
+   --------------------------------------------------
+   Purpose: Styles the main container with a maximum width and padding for consistent content alignment.
+*/
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+}
+
+/* ==================================================
+   PROGRAMME HEADER
+   --------------------------------------------------
+   Purpose: Styles the programme header with a gradient background and subtle grid pattern overlay.
+*/
+.programme-header {
+    background: linear-gradient(135deg, var(--programme-primary) 0%, var(--programme-primary-variant) 100%);
+    padding: 3rem 0 4rem 0;
+    margin-top: 0;
+    position: relative;
+    overflow: visible; /* Allows content to be visible even if it expands */
+    min-height: auto; /* Removes any minimum height restriction */
+}
+
+/* ==================================================
+   PROGRAMME HEADER OVERLAY
+   --------------------------------------------------
+   Purpose: Adds a subtle grid pattern overlay to the header for visual texture.
+*/
+.programme-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+/* ==================================================
+   PROGRAMME HEADER CONTAINER
+   --------------------------------------------------
+   Purpose: Arranges header content in a two-column grid with flexible height and centered alignment.
+*/
+.programme-header_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start; /* Allows content to grow downward */
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+    min-height: unset; /* Remove minimum height restriction */
+    height: auto;      /* Ensures automatic height */
+}
+
+/* ==================================================
+   PROGRAMME HEADER LEFT AND RIGHT
+   --------------------------------------------------
+   Purpose: Ensures header sections have automatic height and no overflow issues.
+*/
+.programme-header_left, .programme-header_right {
+    height: auto;
+    min-height: unset;
+    overflow: visible;
+}
+
+/* Garantir que o conteúdo da esquerda não seja cortado */
+.programme-header_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* ==================================================
+   PROGRAMME HEADER TITLE
+   --------------------------------------------------
+   Purpose: Styles the header title with a responsive font size, white color, and subtle shadow.
+*/
+.programme-header_left h1 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: white;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ensures the title has sufficient space */
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* ==================================================
+   PROGRAMME HEADER DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the header description with a light color and readable typography.
+*/
+.programme-header_left p {
+    margin: 0 0 1.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+    /* Ensures the description has sufficient space */
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* ==================================================
+   PROGRAMME META
+   --------------------------------------------------
+   Purpose: Styles metadata spans in a flexible row with a frosted glass effect and hover interactions.
+*/
+.programme-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    /* Força que os itens permaneçam visíveis */
+    position: relative;
+    z-index: 2;
+}
+
+/* ==================================================
+   PROGRAMME META SPAN
+   --------------------------------------------------
+   Purpose: Styles individual metadata spans with a transparent background and white text.
+*/
+.programme-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 0.625rem 1rem;
+    border-radius: var(--programme-radius);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   PROGRAMME META SPAN HOVER
+   --------------------------------------------------
+   Purpose: Enhances metadata spans on hover with a brighter background and lift effect.
+*/
+.programme-meta span:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+/* ==================================================
+   PROGRAMME META ICON
+   --------------------------------------------------
+   Purpose: Styles icons in metadata spans with a light opacity.
+*/
+.programme-meta i {
+    font-size: 0.9375rem;
+    opacity: 0.9;
+}
+
+/* ==================================================
+   PROGRAMME HEADER RIGHT
+   --------------------------------------------------
+   Purpose: Centers the right section of the header for image alignment.
+*/
+.programme-header_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==================================================
+   PROGRAMME DETAIL IMAGE WRAPPER
+   --------------------------------------------------
+   Purpose: Styles the image wrapper with a fixed aspect ratio and shadow.
+*/
+.programme-detail-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 16/10;
+    border-radius: var(--programme-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--programme-shadow-xl);
+}
+
+/* ==================================================
+   PROGRAMME DETAIL IMAGE
+   --------------------------------------------------
+   Purpose: Ensures the image covers the wrapper with a smooth transition.
+*/
+.programme-detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   PROGRAMME DETAIL IMAGE HOVER
+   --------------------------------------------------
+   Purpose: Scales the image slightly on hover for a dynamic effect.
+*/
+.programme-detail-image-wrapper:hover .programme-detail-image {
+    transform: scale(1.05);
+}
+
+/* ==================================================
+   PROGRAMME DETAILS SECTION
+   --------------------------------------------------
+   Purpose: Styles the main details section with a light background and padding.
+*/
+.programme-details {
+    padding: 5rem 0;
+    background: var(--programme-gray-50);
+}
+
+/* ==================================================
+   PROGRAMME DETAILS CONTAINER
+   --------------------------------------------------
+   Purpose: Arranges main content and sidebar in a two-column grid layout.
+*/
+.programme-details_container {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ==================================================
+   PROGRAMME MAIN TITLE
+   --------------------------------------------------
+   Purpose: Styles the main content title with a primary color and decorative underline.
+*/
+.programme-main h2 {
+    color: var(--programme-primary);
+    margin-bottom: 3rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: left;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+/* ==================================================
+   PROGRAMME MAIN TITLE UNDERLINE
+   --------------------------------------------------
+   Purpose: Adds a gradient underline to the main title for visual emphasis.
+*/
+.programme-main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--programme-primary), var(--programme-secondary));
+    border-radius: 2px;
+}
+
+/* ==================================================
+   YEAR MODULES
+   --------------------------------------------------
+   Purpose: Styles the year modules section with spacing for clarity.
+*/
+.year-modules {
+    margin-bottom: 1.2rem;
+}
+
+/* ==================================================
+   YEAR MODULES TITLE
+   --------------------------------------------------
+   Purpose: Styles year module titles with a gradient background matching the Register Interest button.
+*/
+.year-modules h3 {
+    background: linear-gradient(135deg, #2574a9 0%, #6dd5ed 100%); /* Exatamente igual ao botÃƒÂ£o Register Interest */
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: var(--programme-radius-lg);
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    box-shadow: var(--programme-shadow);
+    border-left: none;
+    position: relative;
+}
+
+/* ==================================================
+   MODULES LIST
+   --------------------------------------------------
+   Purpose: Arranges module cards in a grid layout with consistent spacing.
+*/
+.modules-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* ==================================================
+   MODULE CARD
+   --------------------------------------------------
+   Purpose: Styles individual module cards with a white background, border, and hover effects.
+*/
+.modules-list .module {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--programme-radius-lg);
+    border: 1px solid var(--programme-gray-200);
+    transition: var(--programme-transition);
+    box-shadow: var(--programme-shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================================================
+   MODULE CARD LEFT BAR
+   --------------------------------------------------
+   Purpose: Adds a colorful left bar to module cards that widens on hover.
+*/
+.modules-list .module::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--programme-secondary), var(--programme-accent));
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   MODULE CARD HOVER
+   --------------------------------------------------
+   Purpose: Enhances module cards on hover with a shadow, lift effect, and secondary color border.
+*/
+.modules-list .module:hover {
+    box-shadow: var(--programme-shadow-lg);
+    transform: translateY(-2px);
+    border-color: var(--programme-secondary);
+}
+
+/* ==================================================
+   MODULE CARD LEFT BAR HOVER
+   --------------------------------------------------
+   Purpose: Widens the left bar on module cards when hovered.
+*/
+.modules-list .module:hover::before {
+    width: 6px;
+}
+
+/* ==================================================
+   MODULE TITLE
+   --------------------------------------------------
+   Purpose: Styles module titles with a primary color and bold typography.
+*/
+.module h4 {
+    margin-bottom: 1rem;
+    color: var(--programme-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* ==================================================
+   MODULE LEADER BADGE
+   --------------------------------------------------
+   Purpose: Styles the leader badge in modules with a gray background and teacher icon.
+*/
+.module .leader {
+    font-size: 0.875rem;
+    color: var(--programme-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--programme-gray-50);
+    border-radius: var(--programme-radius);
+    width: fit-content;
+}
+
+/* ==================================================
+   MODULE LEADER BADGE ICON
+   --------------------------------------------------
+   Purpose: Adds a teacher emoji before the leader badge for visual distinction.
+*/
+.module .leader::before {
+    content: 'Ã°Å¸â€˜Â¨Ã¢â‚¬ÂÃ°Å¸ÂÂ«';
+    font-size: 0.875rem;
+}
+
+/* ==================================================
+   MODULE DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles module descriptions with a gray color and readable typography.
+*/
+.module p {
+    font-size: 0.875rem;
+    color: var(--programme-gray-600);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   MODULE LEADER INFO
+   --------------------------------------------------
+   Purpose: Styles the leader information section within modules with a gradient background and hover effects.
+*/
+.module-leader-info {
+    margin: 1.5rem 0;
+    padding: 1.75rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: var(--programme-radius-lg);
+    border: 1px solid var(--programme-gray-200);
+    position: relative;
+    overflow: hidden;
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   MODULE LEADER INFO TOP BAR
+   --------------------------------------------------
+   Purpose: Adds a colorful top bar to the leader info section for visual appeal.
+*/
+.module-leader-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--programme-secondary), var(--programme-accent));
+}
+
+/* ==================================================
+   MODULE LEADER INFO HOVER
+   --------------------------------------------------
+   Purpose: Enhances the leader info section on hover with a shadow and secondary color border.
+*/
+.module-leader-info:hover {
+    box-shadow: var(--programme-shadow-md);
+    border-color: var(--programme-secondary);
+}
+
+/* ==================================================
+   MODULE LEADER INFO TITLE
+   --------------------------------------------------
+   Purpose: Styles the leader info title with a primary color and centered alignment.
+*/
+.module-leader-info h5 {
+    color: var(--programme-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    border-bottom: 2px solid var(--programme-secondary);
+    padding-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+}
+
+/* ==================================================
+   LEADER DETAILS
+   --------------------------------------------------
+   Purpose: Arranges leader details in a flex layout with a photo and text.
+*/
+.leader-details {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+/* ==================================================
+   LEADER PHOTO
+   --------------------------------------------------
+   Purpose: Styles the leaderÃ¢â‚¬â„¢s photo with a circular shape, border, and shadow.
+*/
+.leader-photo img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--programme-secondary);
+    box-shadow: var(--programme-shadow-md);
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   LEADER PHOTO HOVER
+   --------------------------------------------------
+   Purpose: Changes the leader photo border color and scales it on hover.
+*/
+.module-leader-info:hover .leader-photo img {
+    border-color: var(--programme-accent);
+    transform: scale(1.05);
+}
+
+/* ==================================================
+   LEADER TEXT
+   --------------------------------------------------
+   Purpose: Styles leader text with a gray color and compact spacing.
+*/
+.leader-text p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--programme-gray-700);
+    line-height: 1.4;
+    padding: 0.25rem 0;
+}
+
+/* ==================================================
+   LEADER TEXT STRONG
+   --------------------------------------------------
+   Purpose: Styles strong text in leader details with a primary color and bold weight.
+*/
+.leader-text p strong {
+    color: var(--programme-primary);
+    font-weight: 600;
+}
+
+/* ==================================================
+   MODULE COURSE INFO
+   --------------------------------------------------
+   Purpose: Styles the course information section within modules with a gray background.
+*/
+.module-course-info {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--programme-gray-50);
+    border-radius: var(--programme-radius);
+    border: 1px solid var(--programme-gray-200);
+}
+
+/* ==================================================
+   MODULE COURSE INFO TITLE
+   --------------------------------------------------
+   Purpose: Styles the course info title with a primary color and centered alignment.
+*/
+.module-course-info h5 {
+    color: var(--programme-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 2px solid var(--programme-secondary);
+    padding-bottom: 0.5rem;
+}
+
+/* ==================================================
+   COURSE DETAILS
+   --------------------------------------------------
+   Purpose: Arranges course details in a grid layout with consistent spacing.
+*/
+.course-details {
+    display: grid;
+    gap: 0.75rem;
+}
+
+/* ==================================================
+   INFO ROW
+   --------------------------------------------------
+   Purpose: Styles course info rows with a flex layout for label and value alignment.
+*/
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: white;
+    border-radius: var(--programme-radius);
+    border: 1px solid var(--programme-gray-200);
+}
+
+/* ==================================================
+   INFO LABEL
+   --------------------------------------------------
+   Purpose: Styles course info labels with a gray color and bold weight.
+*/
+.info-label {
+    font-weight: 600;
+    color: var(--programme-gray-700);
+    font-size: 0.875rem;
+}
+
+/* ==================================================
+   INFO VALUE
+   --------------------------------------------------
+   Purpose: Styles course info values with a primary color and medium weight.
+*/
+.info-value {
+    color: var(--programme-primary);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+/* ==================================================
+   MODULE CONTACT INFO
+   --------------------------------------------------
+   Purpose: Styles the contact information section within modules with a gray background.
+*/
+.module-contact-info {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--programme-gray-50);
+    border-radius: var(--programme-radius);
+    border: 1px solid var(--programme-gray-200);
+}
+
+/* ==================================================
+   MODULE CONTACT INFO TITLE
+   --------------------------------------------------
+   Purpose: Styles the contact info title with a primary color and centered alignment.
+*/
+.module-contact-info h5 {
+    color: var(--programme-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 2px solid var(--programme-secondary);
+    padding-bottom: 0.5rem;
+}
+
+/* ==================================================
+   CONTACT DETAILS
+   --------------------------------------------------
+   Purpose: Arranges contact details in a grid layout with consistent spacing.
+*/
+.contact-details {
+    display: grid;
+    gap: 0.75rem;
+}
+
+/* ==================================================
+   CONTACT ITEM
+   --------------------------------------------------
+   Purpose: Styles contact items with a flex layout, icon, and hover effects.
+*/
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: var(--programme-radius);
+    border: 1px solid var(--programme-gray-200);
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   CONTACT ITEM HOVER
+   --------------------------------------------------
+   Purpose: Enhances contact items on hover with a secondary color border and shadow.
+*/
+.contact-item:hover {
+    border-color: var(--programme-secondary);
+    box-shadow: var(--programme-shadow-sm);
+}
+
+/* ==================================================
+   CONTACT ITEM ICON
+   --------------------------------------------------
+   Purpose: Styles contact item icons with a secondary color and fixed width.
+*/
+.contact-item i {
+    color: var(--programme-secondary);
+    font-size: 1.125rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* ==================================================
+   CONTACT ITEM TEXT
+   --------------------------------------------------
+   Purpose: Styles contact item text with a gray color and medium weight.
+*/
+.contact-item span {
+    color: var(--programme-gray-700);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* ==================================================
+   LEADER INFO CONTAINER
+   --------------------------------------------------
+   Purpose: Styles the leader info container in the sidebar with a vertical flex layout.
+*/
+.leader-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR INFO
+   --------------------------------------------------
+   Purpose: Styles the leader info card in the sidebar with a white background and blue border.
+*/
+.module-leader-sidebar-info {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(60, 80, 120, 0.08);
+    padding: 1.1rem 1.5rem;
+    margin-top: 1rem;
+    gap: 1.2rem;
+    border-left: 5px solid #2574A9;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR PHOTO
+   --------------------------------------------------
+   Purpose: Styles the leaderÃ¢â‚¬â„¢s photo in the sidebar with a circular shape and shadow.
+*/
+.module-leader-sidebar-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e7ef;
+    box-shadow: 0 1px 4px rgba(60, 80, 120, 0.10);
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR DETAILS
+   --------------------------------------------------
+   Purpose: Arranges leader details in a vertical flex layout for the sidebar.
+*/
+.module-leader-sidebar-info .leader-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR STRONG
+   --------------------------------------------------
+   Purpose: Styles strong text in the sidebar leader details with a dark blue color.
+*/
+.module-leader-sidebar-info strong {
+    color: #1a355e;
+    font-weight: 700;
+    font-size: 1.08em;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR TEXT
+   --------------------------------------------------
+   Purpose: Styles text in the sidebar leader details with a dark color and medium weight.
+*/
+.module-leader-sidebar-info .leader-details span {
+    font-weight: 500;
+    color: #22314a;
+    font-size: 1em;
+}
+
+/* ==================================================
+   MODULE PROFESSORS INFO
+   --------------------------------------------------
+   Purpose: Styles the professors information section within modules with a gray background.
+*/
+.module-professors-info {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--programme-gray-50);
+    border-radius: var(--programme-radius);
+    border: 1px solid var(--programme-gray-200);
+}
+
+/* ==================================================
+   MODULE PROFESSORS INFO TITLE
+   --------------------------------------------------
+   Purpose: Styles the professors info title with a primary color and centered alignment.
+*/
+.module-professors-info h5 {
+    color: var(--programme-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 2px solid var(--programme-secondary);
+    padding-bottom: 0.5rem;
+}
+
+/* ==================================================
+   PROFESSORS LIST
+   --------------------------------------------------
+   Purpose: Arranges professor items in a grid layout with consistent spacing.
+*/
+.professors-list {
+    display: grid;
+    gap: 1rem;
+}
+
+/* ==================================================
+   PROFESSOR ITEM
+   --------------------------------------------------
+   Purpose: Styles professor items with a flex layout, photo, and hover effects.
+*/
+.professor-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--programme-radius);
+    border: 1px solid var(--programme-gray-200);
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   PROFESSOR ITEM HOVER
+   --------------------------------------------------
+   Purpose: Enhances professor items on hover with a secondary color border and shadow.
+*/
+.professor-item:hover {
+    border-color: var(--programme-secondary);
+    box-shadow: var(--programme-shadow-sm);
+}
+
+/* ==================================================
+   PROFESSOR PHOTO
+   --------------------------------------------------
+   Purpose: Styles professor photos with a circular shape and gray border.
+*/
+.professor-photo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--programme-gray-300);
+}
+
+/* ==================================================
+   PROFESSOR DETAILS
+   --------------------------------------------------
+   Purpose: Styles professor details with compact text and gray color.
+*/
+.professor-details p {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--programme-gray-700);
+}
+
+/* ==================================================
+   PROFESSOR DETAILS STRONG
+   --------------------------------------------------
+   Purpose: Styles strong text in professor details with a primary color and bold weight.
+*/
+.professor-details p strong {
+    color: var(--programme-primary);
+    font-weight: 600;
+}
+
+/* ==================================================
+   PROFESSOR DETAILS ICON
+   --------------------------------------------------
+   Purpose: Styles icons in professor details with a secondary color.
+*/
+.professor-details p i {
+    color: var(--programme-secondary);
+    margin-right: 0.25rem;
+}
+
+/* ==================================================
+   OTHER PROGRAMMES
+   --------------------------------------------------
+   Purpose: Styles the other programmes section with a light blue background and blue border.
+*/
+.other-programmes {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+    border-radius: var(--programme-radius);
+    border: 1px solid #d1e7ff;
+    border-left: 4px solid var(--programme-secondary);
+}
+
+/* ==================================================
+   OTHER PROGRAMMES LIST
+   --------------------------------------------------
+   Purpose: Styles the list of other programmes with no default styling.
+*/
+.other-programmes ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+/* ==================================================
+   OTHER PROGRAMMES ITEM
+   --------------------------------------------------
+   Purpose: Styles individual programme items with a white background and hover effects.
+*/
+.other-programmes li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: white;
+    border-radius: var(--programme-radius);
+    border: 1px solid var(--programme-gray-200);
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   OTHER PROGRAMMES ITEM HOVER
+   --------------------------------------------------
+   Purpose: Enhances programme items on hover with a secondary color border and shadow.
+*/
+.other-programmes li:hover {
+    border-color: var(--programme-secondary);
+    box-shadow: var(--programme-shadow-sm);
+}
+
+/* ==================================================
+   OTHER PROGRAMMES LINK
+   --------------------------------------------------
+   Purpose: Styles links in the other programmes section with a secondary color.
+*/
+.other-programmes a {
+    color: var(--programme-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--programme-transition);
+    display: block;
+}
+
+/* ==================================================
+   OTHER PROGRAMMES LINK HOVER
+   --------------------------------------------------
+   Purpose: Changes link color on hover to a primary color.
+*/
+.other-programmes a:hover {
+    color: var(--programme-primary);
+    text-decoration: none;
+}
+
+/* ==================================================
+   PROGRAMME SIDEBAR
+   --------------------------------------------------
+   Purpose: Styles the sidebar with a sticky position and flexible width for additional content.
+*/
+.programme-sidebar {
+    max-width: 320px;
+    min-width: 240px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+}
+
+/* ==================================================
+   SIDEBAR WIDGET
+   --------------------------------------------------
+   Purpose: Styles sidebar widgets with a white background, shadow, and hover effects.
+*/
+.sidebar-widget {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--programme-radius-lg);
+    box-shadow: var(--programme-shadow-md);
+    border: 1px solid var(--programme-gray-200);
+    transition: var(--programme-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TOP BAR
+   --------------------------------------------------
+   Purpose: Adds a colorful top bar to sidebar widgets that appears on hover.
+*/
+.sidebar-widget::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--programme-primary), var(--programme-secondary));
+    opacity: 0;
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   SIDEBAR WIDGET HOVER
+   --------------------------------------------------
+   Purpose: Enhances sidebar widgets on hover with a shadow and lift effect.
+*/
+.sidebar-widget:hover {
+    box-shadow: var(--programme-shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TOP BAR HOVER
+   --------------------------------------------------
+   Purpose: Makes the top bar visible on hover for sidebar widgets.
+*/
+.sidebar-widget:hover::before {
+    opacity: 1;
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TITLE
+   --------------------------------------------------
+   Purpose: Styles sidebar widget titles with a primary color and decorative underline.
+*/
+.sidebar-widget h3 {
+    color: var(--programme-primary);
+    margin-bottom: 1.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+    letter-spacing: -0.025em;
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TITLE UNDERLINE
+   --------------------------------------------------
+   Purpose: Adds a gradient underline to sidebar widget titles that widens on hover.
+*/
+.sidebar-widget h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--programme-secondary), var(--programme-accent));
+    border-radius: 2px;
+    transition: var(--programme-transition);
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TITLE UNDERLINE HOVER
+   --------------------------------------------------
+   Purpose: Widens the underline on hover for sidebar widget titles.
+*/
+.sidebar-widget:hover h3::after {
+    width: 60px;
+}
+
+/* ==================================================
+   STAFF LIST
+   --------------------------------------------------
+   Purpose: Arranges staff members in a vertical flex layout within the sidebar.
+*/
+.staff-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ==================================================
+   STAFF MEMBER
+   --------------------------------------------------
+   Purpose: Styles staff member cards in the sidebar with a gray background and hover effects.
+*/
+.staff-member {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--programme-radius);
+    background: var(--programme-gray-50);
+    transition: var(--programme-transition);
+    border: 1px solid transparent;
+}
+
+/* ==================================================
+   STAFF MEMBER HOVER
+   --------------------------------------------------
+   Purpose: Enhances staff member cards on hover with a white background and shadow.
+*/
+.staff-member:hover {
+    background: white;
+    border-color: var(--programme-gray-200);
+    box-shadow: var(--programme-shadow);
+}
+
+/* ==================================================
+   STAFF MEMBER PHOTO
+   --------------------------------------------------
+   Purpose: Styles staff member photos with a circular shape and gray border.
+*/
+.staff-member img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--programme-gray-200);
+}
+
+/* ==================================================
+   STAFF INFO TITLE
+   --------------------------------------------------
+   Purpose: Styles staff member titles with a primary color and bold weight.
+*/
+.staff-info h5 {
+    color: var(--programme-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+/* ==================================================
+   STAFF INFO DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles staff member descriptions with a gray color and small font.
+*/
+.staff-info p {
+    color: var(--programme-gray-500);
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+/* ==================================================
+   SIDEBAR BUTTON
+   --------------------------------------------------
+   Purpose: Styles sidebar buttons with a gradient background, white text, and hover effects.
+*/
+.sidebar-widget .btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--programme-primary) 0%, var(--programme-primary-variant) 100%);
+    color: white;
+    padding: 1.25rem 1.5rem;
+    border: none;
+    border-radius: var(--programme-radius);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: var(--programme-transition);
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* ==================================================
+   SIDEBAR BUTTON SHINE EFFECT
+   --------------------------------------------------
+   Purpose: Adds a shine effect to sidebar buttons on hover.
+*/
+.sidebar-widget .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+/* ==================================================
+   SIDEBAR BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Enhances sidebar buttons on hover with a gradient change and lift effect.
+*/
+.sidebar-widget .btn:hover {
+    background: linear-gradient(135deg, var(--programme-secondary) 0%, var(--programme-primary) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--programme-shadow-lg);
+}
+
+/* ==================================================
+   SIDEBAR BUTTON SHINE EFFECT HOVER
+   --------------------------------------------------
+   Purpose: Animates the shine effect across the button on hover.
+*/
+.sidebar-widget .btn:hover::before {
+    left: 100%;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR INFO (REDEFINED)
+   --------------------------------------------------
+   Purpose: Styles the leader info card in the sidebar with a white background and blue border.
+*/
+.module-leader-sidebar-info {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(60, 80, 120, 0.08);
+    padding: 1.1rem 1.5rem;
+    margin-top: 1rem;
+    gap: 1.2rem;
+    border-left: 5px solid #2574A9;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR PHOTO (REDEFINED)
+   --------------------------------------------------
+   Purpose: Styles the leaderÃ¢â‚¬â„¢s photo in the sidebar with a circular shape and shadow.
+*/
+.module-leader-sidebar-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e7ef;
+    box-shadow: 0 1px 4px rgba(60, 80, 120, 0.10);
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR DETAILS (REDEFINED)
+   --------------------------------------------------
+   Purpose: Arranges leader details in a vertical flex layout for the sidebar.
+*/
+.module-leader-sidebar-info .leader-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR STRONG (REDEFINED)
+   --------------------------------------------------
+   Purpose: Styles strong text in the sidebar leader details with a dark blue color.
+*/
+.module-leader-sidebar-info strong {
+    color: #1a355e;
+    font-weight: 700;
+    font-size: 1.08em;
+}
+
+/* ==================================================
+   MODULE LEADER SIDEBAR TEXT (REDEFINED)
+   --------------------------------------------------
+   Purpose: Styles text in the sidebar leader details with a dark color and medium weight.
+*/
+.module-leader-sidebar-info .leader-details span {
+    font-weight: 500;
+    color: #22314a;
+    font-size: 1em;
+}
+
+/* ==================================================
+   ERROR MESSAGES
+   --------------------------------------------------
+   Purpose: Styles no-modules and no-staff messages with a red background and centered content.
+*/
+.no-modules-message,
+.no-staff-message {
+    padding: 2rem;
+    text-align: center;
+    color: var(--programme-error);
+    font-weight: 500;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--programme-radius);
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* ==================================================
+   ERROR MESSAGES ICON
+   --------------------------------------------------
+   Purpose: Enlarges the first span (icon) in error messages for visibility.
+*/
+.no-modules-message span:first-child,
+.no-staff-message span:first-child {
+    font-size: 1.5rem;
+}
+
+/* ==================================================
+   ERROR MESSAGES TEXT
+   --------------------------------------------------
+   Purpose: Styles the text in error messages with a gray color and lighter weight.
+*/
+.no-modules-message span:last-child,
+.no-staff-message span:last-child {
+    font-weight: 400;
+    color: var(--programme-gray-600);
+    font-size: 0.875rem;
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (TABLETS)
+   --------------------------------------------------
+   Purpose: Adjusts layouts, padding, and alignment for screens up to 1024px.
+*/
+@media screen and (max-width: 1024px) {
+    /* ==================================================
+       PROGRAMME HEADER CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Stacks header content vertically and centers text on tablets.
+    */
+    .programme-header_container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        /* Ensures automatic height on tablets */
+        min-height: auto;
+        height: auto;
+    }
+
+    /* Ensures the header is flexible on tablets */
+    .programme-header {
+        min-height: auto;
+        height: auto;
+        overflow: visible;
+    }
+
+    /* ==================================================
+       CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Reduces container padding for tablets.
+    */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* ==================================================
+       PROGRAMME HEADER LEFT (TABLET)
+       -----------------------------------------------
+       Purpose: Reorders the left section for tablet layout.
+    */
+    .programme-header_left {
+        order: 1;
+    }
+
+    /* ==================================================
+       PROGRAMME HEADER RIGHT (TABLET)
+       -----------------------------------------------
+       Purpose: Reorders the right section for tablet layout.
+    */
+    .programme-header_right {
+        order: 2;
+    }
+
+    /* ==================================================
+       PROGRAMME DETAILS CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Stacks main content and sidebar vertically on tablets.
+    */
+    .programme-details_container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    /* ==================================================
+       PROGRAMME MAIN TITLE (TABLET)
+       -----------------------------------------------
+       Purpose: Centers the main title on tablets.
+    */
+    .programme-main h2 {
+        text-align: center;
+    }
+
+    /* ==================================================
+       PROGRAMME MAIN TITLE UNDERLINE (TABLET)
+       -----------------------------------------------
+       Purpose: Centers the title underline on tablets.
+    */
+    .programme-main h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* ==================================================
+       MODULE LEADER CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts the leader container to be non-sticky and full-width on tablets.
+    */
+    .module-leader-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        max-width: 100%;
+        margin: 2rem 0;
+        order: -1;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (SMALL TABLETS)
+   --------------------------------------------------
+   Purpose: Adjusts padding, font sizes, and layouts for screens up to 768px.
+*/
+@media screen and (max-width: 768px) {
+    /* ==================================================
+       PROGRAMME HEADER (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts header padding for smaller tablets.
+    */
+    .programme-header {
+        padding: 4rem 0 3rem 0;
+    }
+
+    /* ==================================================
+       PROGRAMME HEADER TITLE (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces header title font size for smaller tablets.
+    */
+    .programme-header_left h1 {
+        font-size: 2rem;
+    }
+
+    /* ==================================================
+       PROGRAMME META (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Centers metadata spans for smaller tablets.
+    */
+    .programme-meta {
+        justify-content: center;
+        /* Ensures items are always visible */
+        position: relative;
+        z-index: 10;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* ==================================================
+       PROGRAMME META SPAN (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces metadata span size for smaller tablets.
+    */
+    .programme-meta span {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* ==================================================
+       PROGRAMME DETAILS (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces details section padding for smaller tablets.
+    */
+    .programme-details {
+        padding: 3rem 0;
+    }
+
+    /* ==================================================
+       PROGRAMME DETAILS CONTAINER (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces container padding for smaller tablets.
+    */
+    .programme-details_container {
+        padding: 0 1rem;
+    }
+
+    /* ==================================================
+       YEAR MODULES TITLE (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces year module title size and padding for smaller tablets.
+    */
+    .year-modules h3 {
+        font-size: 1.125rem;
+        padding: 1.25rem 1.5rem;
+    }
+
+    /* ==================================================
+       MODULE CARD (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces module card padding for smaller tablets.
+    */
+    .modules-list .module {
+        padding: 1.5rem;
+    }
+
+    /* ==================================================
+       MODULE TITLE (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces module title font size for smaller tablets.
+    */
+    .module h4 {
+        font-size: 1rem;
+    }
+
+    /* ==================================================
+       SIDEBAR WIDGET (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces sidebar widget padding for smaller tablets.
+    */
+    .sidebar-widget {
+        padding: 1.5rem;
+    }
+
+    /* ==================================================
+       MODULE LEADER CONTAINER (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts the leader container for smaller tablets.
+    */
+    .module-leader-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        max-width: 100%;
+        margin: 1rem 0;
+        z-index: auto;
+    }
+
+    /* ==================================================
+       MODULE LEADER CARD (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces leader card padding for smaller tablets.
+    */
+    .module-leader-card {
+        padding: 1rem;
+    }
+
+    /* ==================================================
+       LEADER PHOTO (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces leader photo size for smaller tablets.
+    */
+    .leader-photo {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ==================================================
+       LEADER DETAILS TITLE (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces leader details title font size for smaller tablets.
+    */
+    .leader-details h5 {
+        font-size: 0.9rem;
+    }
+
+    /* ==================================================
+       LEADER DETAILS TEXT (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces leader details text font size for smaller tablets.
+    */
+    .leader-details p {
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       COURSE AND CONTACT INFO (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts course and contact info sections for smaller tablets.
+    */
+    .course-info, .contact-info {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    /* ==================================================
+       COURSE AND CONTACT INFO TITLE (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces title font size for course and contact info on smaller tablets.
+    */
+    .course-info h5, .contact-info h5 {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* ==================================================
+       INFO AND CONTACT ITEMS (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces padding and font size for info and contact items on smaller tablets.
+    */
+    .info-item, .contact-item {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       CONTACT ITEM ICON (SMALL TABLET)
+       -----------------------------------------------
+       Purpose: Reduces contact item icon size for smaller tablets.
+    */
+    .contact-item i {
+        font-size: 1rem;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts padding for screens up to 600px.
+*/
+@media screen and (max-width: 600px) {
+    /* ==================================================
+       PROGRAMME HEADER CONTAINER (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header container padding for mobile screens.
+    */
+    .programme-header_container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    /* ==================================================
+       CONTAINER (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces container padding for mobile screens.
+    */
+    .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (SMALL MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts font sizes, layouts, and padding for screens up to 480px.
+*/
+@media screen and (max-width: 480px) {
+    /* ==================================================
+       PROGRAMME HEADER TITLE (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header title font size for small mobile screens.
+    */
+    .programme-header_left h1 {
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+        margin-bottom: 0.875rem !important;
+    }
+
+    /* ==================================================
+       PROGRAMME HEADER DESCRIPTION (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header description font size for small mobile screens.
+    */
+    .programme-header_left p {
+        font-size: 0.875rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* ==================================================
+       PROGRAMME META (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks metadata spans vertically and centers them on small mobile screens.
+    */
+    .programme-meta {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+    }
+
+    /* ==================================================
+       PROGRAMME META SPAN (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Makes metadata spans full-width on small mobile screens.
+    */
+    .programme-meta span {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0.5rem 0.875rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    .programme-meta i {
+        font-size: 0.875rem !important;
+    }
+
+    .highlight-item {
+        padding: 0.375rem !important;
+    }
+
+    .highlight-item i {
+        font-size: 0.8125rem !important;
+        width: 14px !important;
+    }
+
+    .highlight-item span {
+        font-size: 0.6875rem !important;
+    }
+
+    /* ==================================================
+       YEAR MODULES TITLE (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces year module title size and padding for small mobile screens.
+    */
+    .year-modules h3 {
+        font-size: 1rem;
+        padding: 1rem 1.25rem;
+    }
+
+    /* ==================================================
+       MODULE CARD (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces module card padding for small mobile screens.
+    */
+    .modules-list .module {
+        padding: 1.25rem;
+    }
+
+    /* ==================================================
+       MODULE TITLE (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces module title font size for small mobile screens.
+    */
+    .module h4 {
+        font-size: 0.95rem;
+    }
+
+    /* ==================================================
+       MODULE DESCRIPTION (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces module description font size for small mobile screens.
+    */
+    .module p {
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       SIDEBAR WIDGET (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces sidebar widget padding for small mobile screens.
+    */
+    .sidebar-widget {
+        padding: 1.25rem;
+    }
+
+    /* ==================================================
+       MODULE SECTIONS (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces margin and padding for module sections on small mobile screens.
+    */
+    .module-leader-info,
+    .module-course-info,
+    .module-contact-info,
+    .module-professors-info {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    /* ==================================================
+       MODULE SECTIONS TITLE (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces title font size for module sections on small mobile screens.
+    */
+    .module-leader-info h5,
+    .module-course-info h5,
+    .module-contact-info h5,
+    .module-professors-info h5 {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* ==================================================
+       LEADER DETAILS (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks leader details vertically and centers text on small mobile screens.
+    */
+    .leader-details {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    /* ==================================================
+       LEADER PHOTO (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces leader photo size for small mobile screens.
+    */
+    .leader-photo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* ==================================================
+       LEADER TEXT (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces leader text font size for small mobile screens.
+    */
+    .leader-text p {
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       INFO AND CONTACT ITEMS (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces padding and font size for info and contact items on small mobile screens.
+    */
+    .info-row,
+    .contact-item {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       CONTACT ITEM ICON (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces contact item icon size for small mobile screens.
+    */
+    .contact-item i {
+        font-size: 1rem;
+    }
+
+    /* ==================================================
+       LEADER INFO CARD (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces leader info card padding for small mobile screens.
+    */
+    .leader-info-card {
+        padding: 1rem;
+    }
+
+    /* ==================================================
+       LEADER INFO CARD PHOTO (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces leader photo size in the info card for small mobile screens.
+    */
+    .leader-info-card .leader-photo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ==================================================
+       LEADER INFO CARD TITLE (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces leader info card title font size for small mobile screens.
+    */
+    .leader-info-card .leader-details h4 {
+        font-size: 1rem;
+    }
+
+    /* ==================================================
+       LEADER INFO CARD TEXT (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces leader info card text font size for small mobile screens.
+    */
+    .leader-info-card .leader-details p {
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       PROFESSOR ITEM (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces professor item padding and spacing for small mobile screens.
+    */
+    .professor-item {
+        padding: 0.75rem;
+        gap: 0.75rem;
+    }
+
+    /* ==================================================
+       PROFESSOR PHOTO (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces professor photo size for small mobile screens.
+    */
+    .professor-photo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* ==================================================
+       PROFESSOR DETAILS (SMALL MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces professor details text font size for small mobile screens.
+    */
+    .professor-details p {
+        font-size: 0.8rem;
+    }
+}
+
+/* ==================================================
+   FADE-IN ANIMATION
+   --------------------------------------------------
+   Purpose: Defines a fade-in animation for module cards to enhance page load visuals.
+*/
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================================
+   MODULE CARDS ANIMATION
+   --------------------------------------------------
+   Purpose: Applies the fade-in animation to module cards with staggered delays.
+*/
+.modules-list .module {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ==================================================
+   MODULE CARDS ANIMATION DELAYS
+   --------------------------------------------------
+   Purpose: Staggers animation delays for module cards to create a sequential reveal.
+*/
+.modules-list .module:nth-child(1) { animation-delay: 0.1s; }
+.modules-list .module:nth-child(2) { animation-delay: 0.2s; }
+.modules-list .module:nth-child(3) { animation-delay: 0.3s; }
+.modules-list .module:nth-child(4) { animation-delay: 0.4s; }
+.modules-list .module:nth-child(5) { animation-delay: 0.5s; }
+.modules-list .module:nth-child(6) { animation-delay: 0.6s; }
+
+/* ==================================================
+   ACCESSIBILITY IMPROVEMENTS
+   --------------------------------------------------
+   Purpose: Reduces motion for users who prefer minimal animations to improve accessibility.
+*/
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==================================================
+   CONTAINER EXPANSION FIX - FLEXIBLE VERSION
+   --------------------------------------------------
+   Purpose: Makes containers fully flexible to adapt to any content size
+*/
+
+/* Main header - fully flexible height */
+.programme-header {
+    padding: 2.5rem 0 !important;
+    min-height: unset !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Main container - flexible layout */
+.programme-header_container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 2.5rem !important;
+    align-items: flex-start !important;
+    min-height: unset !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+}
+
+/* Left side - fully flexible */
+.programme-header_left {
+    flex: 1 !important;
+    min-height: unset !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+}
+
+/* Right side - simplified for highlights */
+.programme-header_right {
+    flex: 0 0 250px !important;
+    min-height: unset !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    gap: 0.875rem !important;
+}
+
+/* Programme Highlights Styling */
+.programme-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--programme-radius-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--programme-radius);
+    transition: all 0.2s ease;
+}
+
+.highlight-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.highlight-item i {
+    font-size: 0.9375rem;
+    color: var(--programme-secondary);
+    width: 18px;
+    text-align: center;
+}
+
+.highlight-item span {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+/* Meta information - always visible */
+.programme-meta {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Ensure long text doesn't break layout */
+.programme-header_left h1,
+.programme-header_left p {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Ensure parent container is also flexible */
+.programme-header_left > * {
+    flex-shrink: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Responsive - stack vertically on smaller screens */
+@media (max-width: 768px) {
+    .programme-header_container {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        padding: 0 1rem !important;
+    }
+
+    .programme-header_right {
+        flex: 1 !important;
+        width: 100% !important;
+    }
+
+    .programme-header_left h1 {
+        font-size: clamp(1.5rem, 3vw, 2rem) !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .programme-header_left p {
+        font-size: 0.9375rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.25rem !important;
+    }
+
+    .highlight-item i {
+        font-size: 0.875rem !important;
+        width: 16px !important;
+    }
+
+    .highlight-item span {
+        font-size: 0.75rem !important;
+    }
+}
+
+/* ==================================================
+   INFO CARDS STYLING - ENHANCED INTERACTIVE VERSION
+   --------------------------------------------------
+   Purpose: Styles the Entry Requirements and Career Prospects cards with interactivity
+*/
+
+.info-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--programme-radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--programme-shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.info-card.expanded {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--programme-shadow-xl);
+}
+
+.info-card.expanded {
+    transform: translateY(0);
+}
+
+.info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--programme-secondary);
+    position: relative;
+}
+
+.info-card-header i:first-child {
+    font-size: 1.5rem;
+    color: var(--programme-secondary);
+}
+
+.info-card-header h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--programme-primary);
+    flex: 1;
+}
+
+.toggle-icon {
+    font-size: 1.25rem !important;
+    color: var(--programme-gray-500) !important;
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.info-card.expanded .toggle-icon {
+    transform: rotate(180deg) !important;
+}
+
+.toggle-icon:hover {
+    color: var(--programme-secondary) !important;
+}
+
+.info-card-content {
+    color: var(--programme-gray-700);
+    line-height: 1.6;
+}
+
+.card-summary .summary-text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--programme-gray-600);
+    font-style: italic;
+}
+
+.card-details {
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.card-details.show {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 1000px;
+    display: block !important;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Grid layouts for detailed content */
+.requirements-grid,
+.careers-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.requirement-item,
+.career-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--programme-radius);
+    border-left: 3px solid var(--programme-secondary);
+    transition: var(--programme-transition);
+}
+
+.requirement-item:hover,
+.career-item:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+}
+
+.requirement-item i,
+.career-item i {
+    font-size: 1.25rem;
+    color: var(--programme-secondary);
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.requirement-item div,
+.career-item div {
+    flex: 1;
+}
+
+.requirement-item strong,
+.career-item strong {
+    display: block;
+    font-weight: 600;
+    color: var(--programme-primary);
+    margin-bottom: 0.25rem;
+}
+
+.requirement-item span,
+.career-item span {
+    font-size: 0.875rem;
+    color: var(--programme-gray-600);
+}
+
+/* Entry Requirements Card Specific Styling */
+.entry-requirements-card {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.entry-requirements-card .info-card-header {
+    border-bottom-color: var(--programme-success);
+}
+
+.entry-requirements-card .info-card-header i {
+    color: var(--programme-success);
+}
+
+/* Career Prospects Card Specific Styling */
+.career-prospects-card {
+    background: linear-gradient(135deg, rgba(37, 116, 169, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.career-prospects-card .info-card-header {
+    border-bottom-color: var(--programme-secondary);
+}
+
+.career-prospects-card .info-card-header i {
+    color: var(--programme-secondary);
+}
+
+/* Quick Facts Card Specific Styling */
+.quick-facts-card {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.quick-facts-card .info-card-header {
+    border-bottom-color: #9b59b6;
+}
+
+.quick-facts-card .info-card-header i {
+    color: #9b59b6;
+}
+
+/* Simple Facts Grid - Professional Design */
+.simple-facts .info-card-header {
+    border-bottom-color: var(--programme-gray-300) !important;
+    margin-bottom: 1.5rem;
+}
+
+.simple-facts .info-card-header i {
+    color: var(--programme-gray-500) !important;
+}
+
+.simple-facts .info-card-header h3 {
+    color: var(--programme-gray-700);
+}
+
+.facts-simple-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 0;
+}
+
+.fact-simple-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 0;
+}
+
+.fact-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--programme-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.fact-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--programme-primary);
+    line-height: 1.2;
+}
+
+/* Remove expansion functionality for simple facts */
+.simple-facts {
+    cursor: default !important;
+}
+
+.simple-facts .toggle-icon {
+    display: none !important;
+}
+
+/* Simple Facts List */
+.facts-simple-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+
+.fact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--programme-radius);
+    transition: all 0.2s ease;
+}
+
+.fact-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.fact-row i {
+    font-size: 1.25rem;
+    color: var(--programme-secondary);
+    width: 24px;
+    text-align: center;
+}
+
+.fact-row .fact-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--programme-gray-400);
+    min-width: 100px;
+}
+
+.fact-row .fact-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--programme-primary);
+    margin-left: auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .fact-row {
+        padding: 0.625rem;
+    }
+
+    .fact-row .fact-label {
+        min-width: 80px;
+    }
+
+    .fact-row i {
+        font-size: 1.125rem;
+        width: 20px;
+    }
+}
+
+/* Individual fact item colors */
+.duration-item {
+    border-color: #3498db;
+}
+.duration-item .fact-icon {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+.duration-item:hover {
+    border-color: #3498db;
+    background: rgba(52, 152, 219, 0.02);
+}
+
+.level-item {
+    border-color: #e74c3c;
+}
+.level-item .fact-icon {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+.level-item:hover {
+    border-color: #e74c3c;
+    background: rgba(231, 76, 60, 0.02);
+}
+
+.mode-item {
+    border-color: #f39c12;
+}
+.mode-item .fact-icon {
+    background: linear-gradient(135deg, #f39c12, #d68910);
+}
+.mode-item:hover {
+    border-color: #f39c12;
+    background: rgba(243, 156, 18, 0.02);
+}
+
+.date-item {
+    border-color: #27ae60;
+}
+.date-item .fact-icon {
+    background: linear-gradient(135deg, #27ae60, #229954);
+}
+.date-item:hover {
+    border-color: #27ae60;
+    background: rgba(39, 174, 96, 0.02);
+}
+
+.credits-item {
+    border-color: #9b59b6;
+}
+.credits-item .fact-icon {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+.credits-item:hover {
+    border-color: #9b59b6;
+    background: rgba(155, 89, 182, 0.02);
+}
+
+.location-item {
+    border-color: #1abc9c;
+}
+.location-item .fact-icon {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+}
+.location-item:hover {
+    border-color: #1abc9c;
+    background: rgba(26, 188, 156, 0.02);
+}
+
+/* Old facts grid styling (keeping for other cards if needed) */
+.facts-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.fact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--programme-radius);
+    border-left: 3px solid var(--programme-warning);
+    transition: var(--programme-transition);
+}
+
+.fact-item:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+}
+
+.fact-item i {
+    font-size: 1.25rem;
+    color: var(--programme-warning);
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.fact-item div {
+    flex: 1;
+}
+
+.fact-item strong {
+    display: block;
+    font-weight: 600;
+    color: var(--programme-primary);
+    margin-bottom: 0.25rem;
+}
+
+.fact-item span {
+    font-size: 0.875rem;
+    color: var(--programme-gray-600);
+}
+
+/* Ripple effect for interactive cards */
+.info-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ==================================================
+   PROGRAMME INFO CARDS SECTION
+   --------------------------------------------------
+   Purpose: Styles the dedicated section for info cards outside header
+*/
+
+.programme-info-cards {
+    background: var(--programme-gray-50);
+    padding: 4rem 0;
+    margin: 0;
+}
+
+.programme-info-cards_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section Header Styling */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--programme-primary);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--programme-secondary), var(--programme-accent));
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--programme-gray-600);
+    margin: 0;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.info-cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Enhanced info cards for standalone section */
+.programme-info-cards .info-card {
+    background: white;
+    border-radius: var(--programme-radius-xl);
+    padding: 2rem;
+    margin-bottom: 0;
+    box-shadow: var(--programme-shadow-md);
+    border: 1px solid var(--programme-gray-200);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: fit-content;
+}
+
+.programme-info-cards .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--programme-shadow-xl);
+    border-color: var(--programme-secondary);
+}
+
+.programme-info-cards .info-card.expanded {
+    padding: 2rem;
+    margin-bottom: 0;
+}
+
+/* Responsive adjustments for info cards */
+@media (max-width: 768px) {
+    .programme-info-cards {
+        padding: 3rem 0;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .info-cards-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .programme-info-cards .info-card {
+        padding: 1.5rem;
+    }
+
+    .info-card-header h3 {
+        font-size: 1rem;
+    }
+
+    .info-card-header i {
+        font-size: 1.25rem;
+    }
+
+    .requirements-grid,
+    .careers-grid,
+    .facts-grid {
+        gap: 0.75rem;
+    }
+
+    .requirement-item,
+    .career-item,
+    .fact-item {
+        padding: 0.5rem;
+    }
+
+    /* Simple facts responsive */
+    .facts-simple-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .fact-simple-item {
+        text-align: center;
+        padding: 0.75rem;
+        background: var(--programme-gray-50);
+        border-radius: var(--programme-radius);
+    }
+
+    /* Colorful facts responsive */
+    .facts-colorful-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .fact-colorful-item {
+        flex-direction: row;
+        text-align: left;
+        padding: 0.75rem;
+        gap: 0.75rem;
+    }
+
+    .fact-content {
+        align-items: flex-start;
+    }
+
+    .fact-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .fact-icon i {
+        font-size: 1.25rem;
+    }
+
+    .fact-colorful-item .fact-value {
+        font-size: 1rem;
+    }
+
+    /* Header responsive */
+    .programme-header_container {
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+
+    .programme-header_right {
+        flex: 1 !important;
+        width: 100% !important;
+    }
+
+    .programme-highlights {
+        padding: 1rem;
+    }
+
+    .highlight-item {
+        padding: 0.625rem;
+    }
+}
+
+/* ==================================================
+   FOCUS STATES
+   --------------------------------------------------
+   Purpose: Enhances focus states for buttons, modules, and staff cards with a secondary color outline.
+*/
+.btn:focus,
+.module:focus,
+.staff-member:focus {
+    outline: 2px solid var(--programme-secondary);
+    outline-offset: 2px;
+}
+
+/* ==================================================
+   PRINT STYLES
+   --------------------------------------------------
+   Purpose: Optimizes styles for printing with simplified backgrounds and colors.
+*/
+@media print {
+    .programme-header {
+        background: white !important;
+        color: black !important;
+    }
+
+    .programme-meta span {
+        background: var(--programme-gray-100) !important;
+        color: black !important;
+    }
+
+    .sidebar-widget {
+        break-inside: avoid;
+    }
+
+    .modules-list .module {
+        break-inside: avoid;
+    }
+}
+
+/* ==================================================
+   COLLAPSIBLE HEADER
+   --------------------------------------------------
+   Purpose: Styles collapsible headers with smooth transitions for color and shadow.
+*/
+.collapsible-header {
+    transition: color 0.2s, text-shadow 0.2s, text-decoration 0.2s;
+}
+
+/* ==================================================
+   COLLAPSIBLE HEADER HOVER
+   --------------------------------------------------
+   Purpose: Enhances collapsible headers on hover with a secondary color and shadow.
+*/
+.collapsible-header:hover {
+    color: var(--programme-secondary);
+    text-shadow: 0 2px 8px rgba(37, 116, 169, 0.10);
+    cursor: pointer;
+}

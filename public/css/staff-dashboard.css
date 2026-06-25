@@ -1,0 +1,741 @@
+/* ==================================================
+   STAFF DASHBOARD STYLESHEET
+   --------------------------------------------------
+   Description: CSS styles for the staff dashboard, providing a professional design for the navbar, sidebar, main content, stats cards, module cards, programme items, buttons, and empty states.
+   Organization: Each block or class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 23, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   STAFF DASHBOARD VARIABLES
+   --------------------------------------------------
+   Purpose: Defines reusable CSS variables with a --staff- prefix for colors, shadows, radii, and transitions, ensuring a cohesive design for the staff dashboard.
+*/
+:root {
+    --staff-primary: #2574A9;
+    --staff-secondary: #6dd5ed;
+    --staff-success: #27ae60;
+    --staff-warning: #f39c12;
+    --staff-danger: #e74c3c;
+    --staff-dark: #2c3e50;
+    --staff-light: #ecf0f1;
+    --staff-gray-50: #f8f9fa;
+    --staff-gray-100: #ecf0f1;
+    --staff-gray-200: #e9ecef;
+    --staff-gray-300: #cbd5e1;
+    --staff-gray-400: #94a3b8;
+    --staff-gray-500: #64748b;
+    --staff-gray-600: #475569;
+    --staff-gray-700: #334155;
+    --staff-gray-800: #1e293b;
+    --staff-gray-900: #0f172a;
+    --staff-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --staff-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --staff-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --staff-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --staff-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --staff-radius: 0.5rem;
+    --staff-radius-lg: 0.75rem;
+    --staff-radius-xl: 1rem;
+    --staff-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================================================
+   STAFF NAVBAR
+   --------------------------------------------------
+   Purpose: Styles the navigation bar with a gradient background and shadow for a prominent header.
+*/
+.staff-navbar {
+    background: linear-gradient(135deg, var(--staff-primary) 0%, var(--staff-secondary) 100%);
+    box-shadow: var(--staff-shadow-md);
+    padding: 1rem 0;
+}
+
+/* ==================================================
+   STAFF NAVBAR BRAND
+   --------------------------------------------------
+   Purpose: Styles the navbar brand with a bold font for brand visibility.
+*/
+.staff-navbar .navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+/* ==================================================
+   STAFF NAVBAR TEXT
+   --------------------------------------------------
+   Purpose: Styles navbar text with a light color and medium weight for clarity.
+*/
+.staff-navbar .navbar-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+/* ==================================================
+   STAFF NAVBAR LINK
+   --------------------------------------------------
+   Purpose: Styles navigation links with a light color, rounded corners, and hover effects.
+*/
+.staff-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    transition: var(--staff-transition);
+    border-radius: var(--staff-radius);
+    padding: 0.5rem 1rem;
+}
+
+/* ==================================================
+   STAFF NAVBAR LINK HOVER
+   --------------------------------------------------
+   Purpose: Enhances navbar links on hover with a white color and subtle background.
+*/
+.staff-navbar .nav-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==================================================
+   STAFF SIDEBAR
+   --------------------------------------------------
+   Purpose: Styles the sidebar with a white background, full height, and shadow for a clean layout.
+*/
+.staff-sidebar {
+    background: white;
+    min-height: 100vh;
+    box-shadow: var(--staff-shadow-lg);
+    border-right: 1px solid var(--staff-gray-200);
+}
+
+/* ==================================================
+   STAFF SIDEBAR PROFILE SECTION
+   --------------------------------------------------
+   Purpose: Styles the profile section in the sidebar with centered content and a bottom border.
+*/
+.staff-sidebar .profile-section {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--staff-gray-200);
+}
+
+/* ==================================================
+   STAFF SIDEBAR PROFILE PHOTO
+   --------------------------------------------------
+   Purpose: Styles the profile photo with a circular shape, primary color border, and shadow.
+*/
+.staff-sidebar .profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--staff-primary);
+    box-shadow: var(--staff-shadow-md);
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   STAFF SIDEBAR NAV LINK
+   --------------------------------------------------
+   Purpose: Styles sidebar navigation links with a gray color, rounded corners, and flex layout.
+*/
+.staff-sidebar .nav-link {
+    color: var(--staff-gray-700);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--staff-radius);
+    margin: 0.25rem 1rem;
+    transition: var(--staff-transition);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* ==================================================
+   STAFF SIDEBAR NAV LINK HOVER AND ACTIVE
+   --------------------------------------------------
+   Purpose: Enhances sidebar links on hover and active states with a gradient background, white text, and shadow.
+*/
+.staff-sidebar .nav-link:hover,
+.staff-sidebar .nav-link.active {
+    background: linear-gradient(135deg, var(--staff-primary) 0%, var(--staff-secondary) 100%);
+    color: white;
+    transform: translateX(5px);
+    box-shadow: var(--staff-shadow-md);
+}
+
+/* ==================================================
+   STAFF SIDEBAR NAV LINK ICON
+   --------------------------------------------------
+   Purpose: Styles icons in sidebar navigation links with a fixed width and centered alignment.
+*/
+.staff-sidebar .nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+/* ==================================================
+   STAFF MAIN CONTENT
+   --------------------------------------------------
+   Purpose: Styles the main content area with a light background and full-height layout.
+*/
+.staff-main-content {
+    background: var(--staff-gray-50);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* ==================================================
+   STAFF WELCOME SECTION
+   --------------------------------------------------
+   Purpose: Styles the welcome section with spacing for introductory content.
+*/
+.staff-welcome-section {
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   STAFF WELCOME SECTION TITLE
+   --------------------------------------------------
+   Purpose: Styles the welcome section title with a dark color and bold weight.
+*/
+.staff-welcome-section h2 {
+    color: var(--staff-dark);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   STAFF WELCOME SECTION DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the welcome section description with a gray color and readable font size.
+*/
+.staff-welcome-section p {
+    color: var(--staff-gray-600);
+    font-size: 1.1rem;
+}
+
+/* ==================================================
+   STATS CARD
+   --------------------------------------------------
+   Purpose: Styles stats cards with a gradient background, white text, and hover effects for key metrics.
+*/
+.stats-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: var(--staff-radius-lg);
+    box-shadow: var(--staff-shadow-lg);
+    transition: var(--staff-transition);
+    overflow: hidden;
+    position: relative;
+}
+
+/* ==================================================
+   STATS CARD SHINE EFFECT
+   --------------------------------------------------
+   Purpose: Adds a dynamic shine effect to stats cards that animates on hover.
+*/
+.stats-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+/* ==================================================
+   STATS CARD SHINE EFFECT HOVER
+   --------------------------------------------------
+   Purpose: Animates the shine effect across the stats card on hover.
+*/
+.stats-card:hover::before {
+    transform: translateX(100%);
+}
+
+/* ==================================================
+   STATS CARD HOVER
+   --------------------------------------------------
+   Purpose: Lifts the stats card and enhances the shadow on hover for interaction feedback.
+*/
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--staff-shadow-xl);
+}
+
+/* ==================================================
+   STATS CARD BODY
+   --------------------------------------------------
+   Purpose: Styles the stats card body with centered content and padding.
+*/
+.stats-card .card-body {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* ==================================================
+   STATS CARD ICON
+   --------------------------------------------------
+   Purpose: Styles the icon in stats cards with a large size and slight opacity.
+*/
+.stats-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+/* ==================================================
+   STATS CARD TITLE
+   --------------------------------------------------
+   Purpose: Styles the stats card title with a large font and bold weight.
+*/
+.stats-card h4 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   STATS CARD DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the stats card description with a medium weight and slight opacity.
+*/
+.stats-card p {
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* ==================================================
+   MODULE CARD
+   --------------------------------------------------
+   Purpose: Styles module cards with a white background, rounded corners, and hover effects.
+*/
+.module-card {
+    background: white;
+    border: none;
+    border-radius: var(--staff-radius-lg);
+    box-shadow: var(--staff-shadow);
+    transition: var(--staff-transition);
+    overflow: hidden;
+}
+
+/* ==================================================
+   MODULE CARD HOVER
+   --------------------------------------------------
+   Purpose: Lifts the module card and enhances the shadow on hover for interaction feedback.
+*/
+.module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--staff-shadow-lg);
+}
+
+/* ==================================================
+   MODULE CARD HEADER
+   --------------------------------------------------
+   Purpose: Styles the module card header with a gradient background and white text.
+*/
+.module-card .card-header {
+    background: linear-gradient(135deg, var(--staff-primary) 0%, var(--staff-secondary) 100%);
+    color: white;
+    border: none;
+    padding: 1.5rem;
+}
+
+/* ==================================================
+   MODULE CARD HEADER TITLE
+   --------------------------------------------------
+   Purpose: Styles the module card header title with a medium weight.
+*/
+.module-card .card-header h5 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* ==================================================
+   MODULE ITEM
+   --------------------------------------------------
+   Purpose: Styles module items with a white background, primary color left border, and hover effects.
+*/
+.module-item {
+    background: white;
+    border-radius: var(--staff-radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--staff-primary);
+    transition: var(--staff-transition);
+    box-shadow: var(--staff-shadow-sm);
+}
+
+/* ==================================================
+   MODULE ITEM HOVER
+   --------------------------------------------------
+   Purpose: Enhances module items on hover with a wider border, shadow, and translation.
+*/
+.module-item:hover {
+    box-shadow: var(--staff-shadow-md);
+    transform: translateX(5px);
+    border-left-width: 6px;
+}
+
+/* ==================================================
+   MODULE ITEM TITLE
+   --------------------------------------------------
+   Purpose: Styles module item titles with a dark color and bold weight.
+*/
+.module-item h6 {
+    color: var(--staff-dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   MODULE ITEM TEXT MUTED
+   --------------------------------------------------
+   Purpose: Styles muted text in module items with a smaller font size.
+*/
+.module-item .text-muted {
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   MODULE ITEM BADGE
+   --------------------------------------------------
+   Purpose: Styles badges in module items with a small size and padding.
+*/
+.module-item .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* ==================================================
+   PROGRAMME ITEM
+   --------------------------------------------------
+   Purpose: Styles programme items with a white background, gray border, and hover effects.
+*/
+.programme-item {
+    background: white;
+    border-radius: var(--staff-radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--staff-gray-200);
+    transition: var(--staff-transition);
+    box-shadow: var(--staff-shadow-sm);
+}
+
+/* ==================================================
+   PROGRAMME ITEM HOVER
+   --------------------------------------------------
+   Purpose: Enhances programme items on hover with a primary color border, shadow, and lift.
+*/
+.programme-item:hover {
+    box-shadow: var(--staff-shadow-md);
+    border-color: var(--staff-primary);
+    transform: translateY(-2px);
+}
+
+/* ==================================================
+   PROGRAMME ITEM TITLE
+   --------------------------------------------------
+   Purpose: Styles programme item titles with a dark color and bold weight.
+*/
+.programme-item h6 {
+    color: var(--staff-dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   PROGRAMME ITEM TEXT MUTED
+   --------------------------------------------------
+   Purpose: Styles muted text in programme items with a smaller font size.
+*/
+.programme-item .text-muted {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* ==================================================
+   PROGRAMME ITEM BADGE
+   --------------------------------------------------
+   Purpose: Styles badges in programme items with a small size and padding.
+*/
+.programme-item .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* ==================================================
+   STAFF BUTTON
+   --------------------------------------------------
+   Purpose: Styles buttons with a gradient background, white text, and hover effects.
+*/
+.btn-staff {
+    background: linear-gradient(135deg, var(--staff-primary) 0%, var(--staff-secondary) 100%);
+    border: none;
+    border-radius: var(--staff-radius);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: var(--staff-transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==================================================
+   STAFF BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Enhances buttons on hover with a lift effect and shadow.
+*/
+.btn-staff:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--staff-shadow-lg);
+    color: white;
+    text-decoration: none;
+}
+
+/* ==================================================
+   STAFF BUTTON SMALL
+   --------------------------------------------------
+   Purpose: Styles small buttons with reduced padding and font size.
+*/
+.btn-staff.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* ==================================================
+   EMPTY STATE
+   --------------------------------------------------
+   Purpose: Styles empty state messages with centered content for when no data is available.
+*/
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+/* ==================================================
+   EMPTY STATE ICON
+   --------------------------------------------------
+   Purpose: Styles the empty state icon with a large size and gray color.
+*/
+.empty-state i {
+    font-size: 3rem;
+    color: var(--staff-gray-400);
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   EMPTY STATE TITLE
+   --------------------------------------------------
+   Purpose: Styles the empty state title with a gray color.
+*/
+.empty-state h5 {
+    color: var(--staff-gray-600);
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   EMPTY STATE DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the empty state description with a lighter gray color.
+*/
+.empty-state p {
+    color: var(--staff-gray-500);
+    margin: 0;
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (TABLETS)
+   --------------------------------------------------
+   Purpose: Adjusts layout and padding for screens up to 768px.
+*/
+@media screen and (max-width: 768px) {
+    /* ==================================================
+       STAFF MAIN CONTENT (TABLET)
+       -----------------------------------------------
+       Purpose: Reduces padding in the main content area for tablets.
+    */
+    .staff-main-content {
+        padding: 1rem;
+    }
+
+    /* ==================================================
+       STAFF SIDEBAR (TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts sidebar to a horizontal layout with a bottom border for tablets.
+    */
+    .staff-sidebar {
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--staff-gray-200);
+    }
+
+    /* ==================================================
+       STAFF SIDEBAR NAV (TABLET)
+       -----------------------------------------------
+       Purpose: Makes sidebar navigation horizontal and scrollable for tablets.
+    */
+    .staff-sidebar .nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 1rem;
+    }
+
+    /* ==================================================
+       STAFF SIDEBAR NAV LINK (TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts sidebar navigation links to prevent wrapping on tablets.
+    */
+    .staff-sidebar .nav-link {
+        white-space: nowrap;
+        margin: 0 0.5rem;
+    }
+
+    /* ==================================================
+       STATS CARD BODY (TABLET)
+       -----------------------------------------------
+       Purpose: Reduces padding in stats card bodies for tablets.
+    */
+    .stats-card .card-body {
+        padding: 1.5rem;
+    }
+
+    /* ==================================================
+       STATS CARD TITLE (TABLET)
+       -----------------------------------------------
+       Purpose: Reduces stats card title font size for tablets.
+    */
+    .stats-card h4 {
+        font-size: 1.5rem;
+    }
+
+    /* ==================================================
+       MODULE AND PROGRAMME ITEMS (TABLET)
+       -----------------------------------------------
+       Purpose: Reduces padding for module and programme items on tablets.
+    */
+    .module-item,
+    .programme-item {
+        padding: 1rem;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts font sizes and padding for screens up to 576px.
+*/
+@media screen and (max-width: 576px) {
+    /* ==================================================
+       STAFF WELCOME SECTION TITLE (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces welcome section title font size for mobile screens.
+    */
+    .staff-welcome-section h2 {
+        font-size: 1.5rem;
+    }
+
+    /* ==================================================
+       STATS CARD ICON (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces stats card icon size for mobile screens.
+    */
+    .stats-card i {
+        font-size: 2rem;
+    }
+
+    /* ==================================================
+       STATS CARD TITLE (MOBILE)
+       -----------------------------------------------
+       Purpose: Further reduces stats card title font size for mobile screens.
+    */
+    .stats-card h4 {
+        font-size: 1.25rem;
+    }
+
+    /* ==================================================
+       MODULE AND PROGRAMME CARD HEADER (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces padding in module and programme card headers for mobile screens.
+    */
+    .module-card .card-header,
+    .programme-card .card-header {
+        padding: 1rem;
+    }
+}
+
+/* ==================================================
+   FADE-IN ANIMATION
+   --------------------------------------------------
+   Purpose: Defines a fade-in animation for module and programme items on page load.
+*/
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================================
+   MODULE AND PROGRAMME ITEMS ANIMATION
+   --------------------------------------------------
+   Purpose: Applies the fade-in animation to module and programme items.
+*/
+.module-item,
+.programme-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ==================================================
+   MODULE ITEM ANIMATION DELAYS
+   --------------------------------------------------
+   Purpose: Staggers animation delays for module items to create a sequential reveal.
+*/
+.module-item:nth-child(1) { animation-delay: 0.1s; }
+.module-item:nth-child(2) { animation-delay: 0.2s; }
+.module-item:nth-child(3) { animation-delay: 0.3s; }
+.module-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* ==================================================
+   PROGRAMME ITEM ANIMATION DELAYS
+   --------------------------------------------------
+   Purpose: Staggers animation delays for programme items to create a sequential reveal.
+*/
+.programme-item:nth-child(1) { animation-delay: 0.1s; }
+.programme-item:nth-child(2) { animation-delay: 0.2s; }
+.programme-item:nth-child(3) { animation-delay: 0.3s; }
+.programme-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* ==================================================
+   ACCESSIBILITY
+   --------------------------------------------------
+   Purpose: Reduces motion for users who prefer minimal animations to improve accessibility.
+*/
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==================================================
+   FOCUS STATES
+   --------------------------------------------------
+   Purpose: Enhances focus states for buttons, module items, and programme items with a primary color outline.
+*/
+.btn-staff:focus,
+.module-item:focus,
+.programme-item:focus {
+    outline: 2px solid var(--staff-primary);
+    outline-offset: 2px;
+}

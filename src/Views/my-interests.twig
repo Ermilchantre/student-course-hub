@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as HTML5 to ensure standardized rendering.
+   Functionality: Instructs browsers to use HTML5 standards, enabling modern web features and consistent parsing.
+   Client-Side Role: Ensures compatibility with modern browsers for proper page display.
+   Logic: Uses DOCTYPE declaration to prevent quirks mode and enforce HTML5 rendering.
+-->
+<html lang="en">
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Root container for the My Interests page, specifying the document language.
+   Functionality: Sets English as the language for accessibility and contains all page content.
+   Client-Side Role: Encapsulates navigation, header, main content, footer, and scripts for interest management.
+   Logic: Uses lang="en" to support screen readers and ensure proper text directionality.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling.
+       Functionality: Defines character encoding, responsive viewport, title, and links to CSS and fonts.
+       Client-Side Role: Controls visual presentation and resource loading for the My Interests page.
+       Logic: Loads interest-manage.css, styles1.css, Unicons, and Montserrat font for consistent styling.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interests - Student Course Hub</title>
+    <link rel="stylesheet" href="{{ base_path() }}/css/interest-manage.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/styles1.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains all visible content for managing registered interests.
+       Functionality: Structures navigation, header, search form, interest table, modal, and footer.
+       Client-Side Role: Renders an interactive interface for users to view and manage programme interests.
+       Logic: Uses semantic HTML, dynamic data rendering, and JavaScript for form submission and modal interactions.
+    -->
+    <nav>
+        <!-- ==================================================
+           NAVIGATION SECTION
+           Purpose: Provides navigation for accessing key site pages.
+           Functionality: Includes links to Home and Register Interest with a site logo.
+           Client-Side Role: Enables users to navigate to related pages easily.
+           Logic: Uses dynamic URLs via base_path() for consistent routing.
+        -->
+        <div class="container nav_container">
+            <a href="{{ base_path() }}"><h4>Student Course Hub</h4></a>
+            <ul class="nav_menu">
+                <li><a href="{{ base_path() }}/"><i class="uil uil-home"></i> Home</a></li>
+                <li><a href="{{ base_path() }}/register-interest"><i class="uil uil-plus-circle"></i> Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="manage-header">
+        <!-- ==================================================
+           HEADER SECTION
+           Purpose: Introduces the My Interests page with key benefits.
+           Functionality: Displays a title, description, and benefits of managing interests.
+           Client-Side Role: Provides an overview of the page’s purpose and capabilities.
+           Logic: Uses a two-column layout with text and an icon for visual clarity.
+        -->
+        <div class="container manage-header_container">
+            <div class="manage-header_left">
+                <h1>My Registered Interests</h1>
+                <p>View and manage your registered interests in our programmes. Stay updated with the latest information and easily remove interests you no longer wish to pursue.</p>
+                <div class="manage-benefits">
+                    <div class="benefit">
+                        <i class="uil uil-eye"></i>
+                        <span>View all your registered interests</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="uil uil-trash-alt"></i>
+                        <span>Remove interests you no longer want</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="uil uil-bell"></i>
+                        <span>Stay updated with programme changes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="manage-header_right">
+                <div class="manage-image">
+                    <i class="uil uil-heart"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================================================
+           MAIN SECTION
+           Purpose: Contains the core functionality for viewing and managing programme interests.
+           Functionality: Includes a search form, interest table, modal for leader info, and summary.
+           Client-Side Role: Enables users to search, view, and remove registered interests interactively.
+           Logic: Uses template logic for dynamic rendering and JavaScript for form and modal interactions.
+        -->
+        <div class="container interest-manage-container">
+            <!-- Purpose: Wraps the main content for styling and layout.
+               Functionality: Organizes the search form, results, and summary in a centered container.
+               Client-Side Role: Enhances readability and usability of the interest management interface.
+               Logic: Uses CSS classes for responsive, styled presentation of content.
+            -->
+            <div class="search-section styled-search-section">
+                <!-- Purpose: Provides a form to search for registered interests.
+                   Functionality: Collects email and security code to retrieve user-specific interests.
+                   Client-Side Role: Enables users to access their interest data securely.
+                   Logic: Uses a GET form with validation and accessibility attributes (aria-label, autocomplete).
+                -->
+                <div class="search-header">
+                    <i class="uil uil-search"></i>
+                    <h2>Search Your Interests</h2>
+                </div>
+                <form method="get" action="{{ base_path() }}/my-interests" class="styled-search-form" style="margin-bottom:2rem;">
+                    <div class="input-group-vertical">
+                        <label for="email" class="styled-label">Email:</label>
+                        <input type="email" name="email" id="email" required class="styled-input" placeholder="your@email.com" autocomplete="email" aria-label="Email">
+                    </div>
+                    <div class="input-group-vertical">
+                        <label for="interest_pin" class="styled-label">Security Code:</label>
+                        <input type="text" name="interest_password" id="interest_pin" required minlength="4" maxlength="20" class="styled-input" placeholder="Enter your security code" autocomplete="one-time-code" aria-label="Security Code">
+                    </div>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-primary styled-search-btn"><i class="uil uil-search"></i> View</button>
+                    </div>
+                </form>
+            </div>
+            {% if interests is defined and interests|length > 0 %}
+            <div class="search-results">
+                <!-- Purpose: Displays the results of the interest search.
+                   Functionality: Shows a table of interests with actions and a modal for leader details.
+                   Client-Side Role: Presents user-specific interest data with interactive options.
+                   Logic: Uses template logic to render interests and JavaScript for table interactions.
+                -->
+                <h2><i class="uil uil-list-ul"></i> Interests for: <span id="email-display">{{ email }}</span></h2>
+                <div class="interests-table-container">
+                    <!-- Purpose: Contains the table of registered interests.
+                       Functionality: Displays interest details with buttons for leader info and removal.
+                       Client-Side Role: Enables users to view and manage interests in a tabular format.
+                       Logic: Uses a semantic table with role="table" and aria-label for accessibility.
+                    -->
+                    <table class="interests-table" role="table" aria-label="List of registered interests">
+                        <thead>
+                            <tr>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Programme</th>
+                                <th scope="col">Leader Info</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for interest in interests %}
+                            <tr>
+                                <td>{{ interest.student_name }}</td>
+                                <td>{{ interest.email }}</td>
+                                <td>{{ interest.programme_title }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-info leader-btn" onclick="showLeaderModal({{ loop.index0 }})" aria-label="View leader info for {{ interest.programme_title }}">
+                                        <i class="uil uil-user"></i> <span class="btn-label">Leader Info</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <form method="post" action="{{ base_path() }}/my-interests/remove" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger remove-btn" aria-label="Remove interest in {{ interest.programme_title }}">
+                                            <i class="uil uil-trash-alt"></i> <span class="btn-label">Remove</span>
+                                        </button>
+                                        <input type="hidden" name="interest_id" value="{{ interest.id }}">
+                                        <input type="hidden" name="email" value="{{ email }}">
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <!-- Purpose: Displays a modal with programme leader details.
+                       Functionality: Shows leader information when triggered by a button click.
+                       Client-Side Role: Provides additional context about programme leaders.
+                       Logic: Uses CSS for styling and JavaScript for modal display; lacks aria-modal attribute.
+                    -->
+                    <div id="leader-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:9999;">
+                        <div class="modal-content leader-modal-content">
+                            <button onclick="closeLeaderModal()" class="leader-modal-close" aria-label="Close leader info">×</button>
+                            <div class="leader-modal-icon">
+                                <i class="uil uil-user"></i>
+                            </div>
+                            <h3 class="leader-modal-title">Leader Information</h3>
+                            <p><i class="uil uil-user"></i><strong>Name:</strong> <span id="leader-name"></span></p>
+                            <p><i class="uil uil-envelope"></i><strong>Email:</strong> <span id="leader-email"></span></p>
+                            <p><i class="uil uil-building"></i><strong>Department:</strong> <span id="leader-department"></span></p>
+                            <p><i class="uil uil-location-point"></i><strong>Office Location:</strong> <span id="leader-office"></span></p>
+                        </div>
+                    </div>
+
+                    <!--// Purpose: Stores leader information for modal display.
+                    // Functionality: Creates an array of leader data for JavaScript-driven modal population.
+                    // Client-Side Role: Enables dynamic display of leader details in the modal.
+                    // Logic: Uses template loop to generate JSON-encoded data for client-side access.
+                    -->
+                    <script>
+                    window.myInterestsData = [
+                        {% for interest in interests %}
+                        {
+                            leader_name: {{ interest.leader_name|json_encode|e('js') }},
+                            leader_email: {{ interest.leader_email|json_encode|e('js') }},
+                            leader_department: {{ interest.leader_department|json_encode|e('js') }},
+                            leader_office_location: {{ interest.leader_office_location|json_encode|e('js') }}
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ];
+                    </script>
+                </div>
+                <div class="interests-summary">
+                    <!-- Purpose: Displays a summary of the total interests found.
+                       Functionality: Shows the count of registered interests for the searched email.
+                       Client-Side Role: Provides users with a quick overview of their interests.
+                       Logic: Uses template logic to display the count dynamically.
+                    -->
+                    <p><i class="uil uil-chart-bar"></i> Total interests found: <strong id="total-interests">{{ interests|length }}</strong></p>
+                </div>
+            </div>
+            {% elseif error %}
+            <div class="search-results">
+                <!-- Purpose: Displays error messages for failed searches.
+                   Functionality: Shows an error if no interests are found or credentials are invalid.
+                   Client-Side Role: Informs users of search issues for troubleshooting.
+                   Logic: Uses template logic to conditionally render error messages.
+                -->
+                <div class="search-error-message">{{ error }}</div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- ==================================================
+           FOOTER SECTION
+           Purpose: Provides contact information, links, and copyright notice.
+           Functionality: Includes site logo, navigation links, contact details, and a copyright notice.
+           Client-Side Role: Offers users additional navigation and contact options.
+           Logic: Uses semantic HTML with dynamic URLs via base_path() for consistency.
+        -->
+        <div class="container footer_container">
+            <div class="footer_1">
+                <a href="{{ base_path() }}" class="footer_logo"><h4>Student Course Hub</h4></a>
+                <p>Explore your future with our diverse range of programmes.</p>
+            </div>
+            <div class="footer_2">
+                <h4>Know More</h4>
+                <ul>
+                    <li><a href="{{ base_path() }}/">Home</a></li>
+                    <li><a href="{{ base_path() }}/about">About</a></li>
+                    <li><a href="{{ base_path() }}/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer_3">
+                <h4>Privacy</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Condition</a></li>
+                </ul>
+            </div>
+            <div class="footer_4">
+                <h4>Contact Us</h4>
+                <div>
+                    <p>+44 123 456 7890</p>
+                    <p>info@university.ac.uk</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer_copyright">
+            <small>Copyright © Student Course Hub 2025</small>
+        </div>
+    </footer>
+
+    <script src="{{ base_path() }}/js/my-interests.js"></script>
+    
+</body>
+</html>

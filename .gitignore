@@ -1,0 +1,22 @@
+.idea/
+.vscode/
+/coverage/
+/vendor/
+/logs/*
+!/logs/README.md
+.phpunit.result.cache
+node_modules/
+package-lock.json
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Ignore sensitive files
+config/app.php   # se tiver chaves aqui também
+
+# Common ignores
+/vendor/
+node_modules/
+*.log
+.DS_Store

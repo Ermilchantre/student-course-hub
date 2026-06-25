@@ -1,0 +1,721 @@
+/* ==================================================
+   REGISTER INTEREST PAGE STYLESHEET
+   --------------------------------------------------
+   Description: CSS styles for the Register Interest page, including header, form, success/error messages, and modal, with a professional and cohesive design.
+   Organization: Each block or class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   REGISTER HEADER
+   --------------------------------------------------
+   Purpose: Styles the header section with a background color, padding, and border for a prominent introduction.
+*/
+.register-header {
+    background: var(--color-bg1);
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--color-bg2);
+    min-height: 500px;
+}
+
+/* ==================================================
+   REGISTER HEADER CONTAINER
+   --------------------------------------------------
+   Purpose: Arranges header content in a two-column grid with centered alignment.
+*/
+.register-header_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* ==================================================
+   REGISTER HEADER LEFT TITLE
+   --------------------------------------------------
+   Purpose: Styles the header title with a large font size and dark color.
+*/
+.register-header_left h1 {
+    font-size: 2.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   REGISTER HEADER LEFT DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the header description with a readable font size and gray color.
+*/
+.register-header_left p {
+    font-size: 1.1rem;
+    color: var(--color-gray-700);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+/* ==================================================
+   REGISTER BENEFITS
+   --------------------------------------------------
+   Purpose: Styles the benefits section with a vertical flex layout for listing advantages.
+*/
+.register-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ==================================================
+   BENEFIT ITEM
+   --------------------------------------------------
+   Purpose: Styles individual benefit items with a flex layout and icon for visual clarity.
+*/
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-dark);
+}
+
+/* ==================================================
+   BENEFIT ICON
+   --------------------------------------------------
+   Purpose: Styles benefit icons with a primary color for emphasis.
+*/
+.benefit i {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+}
+
+/* ==================================================
+   REGISTER HEADER RIGHT
+   --------------------------------------------------
+   Purpose: Centers the right section of the header for image alignment.
+*/
+.register-header_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==================================================
+   REGISTER IMAGE
+   --------------------------------------------------
+   Purpose: Styles the header image with a circular shape, primary color background, and shadow.
+*/
+.register-image {
+    width: 200px;
+    height: 200px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+/* ==================================================
+   REGISTER IMAGE ICON
+   --------------------------------------------------
+   Purpose: Styles the icon within the header image with a large size and white color.
+*/
+.register-image i {
+    font-size: 4rem;
+    color: var(--color-white);
+}
+
+/* ==================================================
+   REGISTER FORM
+   --------------------------------------------------
+   Purpose: Styles the form section with a light background and padding for a clean layout.
+*/
+.register-form {
+    padding: 4rem 0;
+    background: rgba(37, 116, 169, 0.05);
+}
+
+/* ==================================================
+   REGISTER FORM CONTAINER
+   --------------------------------------------------
+   Purpose: Centers the form content with a maximum width for consistency.
+*/
+.register-form_container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ==================================================
+   REGISTER FORM CONTAINER OVERRIDE
+   --------------------------------------------------
+   Purpose: Overrides container styles to ensure full-width layout and no padding.
+*/
+.register-form_container.container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* ==================================================
+   FORM WRAPPER
+   --------------------------------------------------
+   Purpose: Styles the form wrapper with a white background, padding, and shadow for a card-like appearance.
+*/
+.form-wrapper {
+    background: var(--color-bg1);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    height: auto;
+}
+
+/* ==================================================
+   FORM WRAPPER TITLE
+   --------------------------------------------------
+   Purpose: Styles the form title with a dark color and centered alignment.
+*/
+.form-wrapper h2 {
+    color: var(--color-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* ==================================================
+   FORM GROUP
+   --------------------------------------------------
+   Purpose: Styles form groups with consistent spacing for input fields.
+*/
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   FORM GROUP LABEL
+   --------------------------------------------------
+   Purpose: Styles form labels with a dark color and medium weight.
+*/
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+    font-weight: 500;
+}
+
+/* ==================================================
+   FORM INPUTS
+   --------------------------------------------------
+   Purpose: Styles form inputs, selects, and textareas with consistent padding, borders, and transitions.
+*/
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--color-bg2);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    background: var(--color-white);
+}
+
+/* ==================================================
+   FORM INPUTS FOCUS AND INVALID
+   --------------------------------------------------
+   Purpose: Styles form inputs on focus and invalid states with a secondary color border and no shadow.
+*/
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input:focus:invalid,
+.form-group select:focus:invalid,
+.form-group textarea:focus:invalid {
+    border-color: var(--color-secondary);
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================================================
+   FORM INPUT PLACEHOLDERS
+   --------------------------------------------------
+   Purpose: Styles placeholders in form inputs and textareas with a gray color.
+*/
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--color-gray-500);
+}
+
+/* ==================================================
+   CHECKBOX GROUP
+   --------------------------------------------------
+   Purpose: Styles checkbox groups with a flex layout for alignment.
+*/
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* ==================================================
+   CHECKBOX LABEL
+   --------------------------------------------------
+   Purpose: Styles checkbox labels with a flex layout and clickable cursor.
+*/
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ==================================================
+   CHECKBOX INPUT
+   --------------------------------------------------
+   Purpose: Styles checkbox inputs to align naturally with the label.
+*/
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* ==================================================
+   CHECKBOX LABEL LINK
+   --------------------------------------------------
+   Purpose: Styles links within checkbox labels with a primary color and hover underline.
+*/
+.checkbox-label .link {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* ==================================================
+   CHECKBOX LABEL LINK HOVER
+   --------------------------------------------------
+   Purpose: Adds an underline to checkbox label links on hover.
+*/
+.checkbox-label .link:hover {
+    text-decoration: underline;
+}
+
+/* ==================================================
+   FORM SUBMIT BUTTON
+   --------------------------------------------------
+   Purpose: Styles the form submit button with a full-width layout, centered content, and icon.
+*/
+.form-wrapper .btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+/* ==================================================
+   FORM SUBMIT BUTTON ICON
+   --------------------------------------------------
+   Purpose: Styles the icon within the submit button for visual enhancement.
+*/
+.form-wrapper .btn i {
+    font-size: 1.2rem;
+}
+
+/* ==================================================
+   FORM VALIDATION INVALID
+   --------------------------------------------------
+   Purpose: Styles invalid form inputs with a red border for error indication.
+*/
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+    border-color: #e74c3c;
+}
+
+/* ==================================================
+   FORM VALIDATION VALID
+   --------------------------------------------------
+   Purpose: Styles valid form inputs with a green border for success indication.
+*/
+.form-group input:valid,
+.form-group select:valid,
+.form-group textarea:valid {
+    border-color: #27ae60;
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (TABLETS)
+   --------------------------------------------------
+   Purpose: Adjusts header and form layouts for screens up to 1024px.
+*/
+@media screen and (max-width: 1024px) {
+    /* ==================================================
+       REGISTER HEADER CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Stacks header content vertically and centers text on tablets.
+    */
+    .register-header_container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* ==================================================
+       REGISTER HEADER LEFT (TABLET)
+       -----------------------------------------------
+       Purpose: Reorders the left section for tablet layout.
+    */
+    .register-header_left {
+        order: 2;
+    }
+
+    /* ==================================================
+       REGISTER BENEFITS (TABLET)
+       -----------------------------------------------
+       Purpose: Centers benefits for tablet layout.
+    */
+    .register-benefits {
+        align-items: center;
+    }
+
+    /* ==================================================
+       REGISTER FORM CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts form container width for tablets.
+    */
+    .register-form_container {
+        max-width: 98vw;
+    }
+
+    /* ==================================================
+       FORM WRAPPER (TABLET)
+       -----------------------------------------------
+       Purpose: Increases form wrapper padding for tablets.
+    */
+    .form-wrapper {
+        padding: 2.5rem;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts font sizes, image sizes, and padding for screens up to 600px.
+*/
+@media screen and (max-width: 600px) {
+    /* ==================================================
+       REGISTER HEADER TITLE (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header title font size for mobile screens.
+    */
+    .register-header_left h1 {
+        font-size: 2rem;
+    }
+
+    /* ==================================================
+       REGISTER IMAGE (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header image size for mobile screens.
+    */
+    .register-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* ==================================================
+       REGISTER IMAGE ICON (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces icon size within the header image for mobile screens.
+    */
+    .register-image i {
+        font-size: 3rem;
+    }
+
+    /* ==================================================
+       FORM WRAPPER (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces form wrapper padding for mobile screens.
+    */
+    .form-wrapper {
+        padding: 1.5rem;
+    }
+
+    /* ==================================================
+       FORM INPUTS (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces padding for form inputs, selects, and textareas on mobile screens.
+    */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.75rem;
+    }
+}
+
+/* ==================================================
+   SUCCESS MESSAGE
+   --------------------------------------------------
+   Purpose: Styles the success message with a green background and rounded corners.
+*/
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: var(--radius-default);
+    margin-bottom: 1rem;
+    border: 1px solid #c3e6cb;
+}
+
+/* ==================================================
+   ERROR MESSAGE
+   --------------------------------------------------
+   Purpose: Styles the error message with a red background and rounded corners.
+*/
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: var(--radius-default);
+    margin-bottom: 1rem;
+    border: 1px solid #f5c6cb;
+}
+
+/* ==================================================
+   FORM GRID
+   --------------------------------------------------
+   Purpose: Arranges form fields in a two-column grid layout for larger screens.
+*/
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==================================================
+   RESPONSIVE FORM GRID (SMALL TABLETS)
+   --------------------------------------------------
+   Purpose: Stacks form grid columns vertically for screens up to 900px.
+*/
+@media screen and (max-width: 900px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==================================================
+   FORM TOP ICON
+   --------------------------------------------------
+   Purpose: Styles the top icon container for centered alignment.
+*/
+.form-top-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   FORM TOP ICON STYLE
+   --------------------------------------------------
+   Purpose: Styles the top icon with a gradient background, white color, and hover effects.
+*/
+.form-top-icon i {
+    font-size: 3rem;
+    color: #fff;
+    background: linear-gradient(135deg, #2574a9 0%, #6dd5ed 100%);
+    border-radius: 50%;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 4px 24px rgba(37, 116, 169, 0.15);
+    border: 3px solid #6dd5ed;
+    transition: transform 0.2s;
+}
+
+/* ==================================================
+   FORM TOP ICON HOVER
+   --------------------------------------------------
+   Purpose: Applies a scale and rotation effect to the top icon on hover.
+*/
+.form-top-icon i:hover {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+/* ==================================================
+   PHONE INPUT GROUP
+   --------------------------------------------------
+   Purpose: Styles the phone input group with a flex layout for prefix and input alignment.
+*/
+.phone-input-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+/* ==================================================
+   PHONE PREFIX
+   --------------------------------------------------
+   Purpose: Styles the phone number prefix with a gray background and rounded corners.
+*/
+.phone-prefix {
+    padding: 0 1.1rem;
+    background: #f4f8fb;
+    border: 2px solid var(--color-bg2);
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    color: #444;
+    font-size: 1rem;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    min-width: 56px;
+    transition: border-color 0.2s;
+}
+
+/* ==================================================
+   PHONE INPUT
+   --------------------------------------------------
+   Purpose: Styles the phone input field with a border and rounded corners.
+*/
+.phone-input-group input[type="tel"] {
+    border: 2px solid var(--color-bg2);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* ==================================================
+   PHONE INPUT FOCUS
+   --------------------------------------------------
+   Purpose: Styles the phone input on focus with a secondary color border and shadow.
+*/
+.phone-input-group input[type="tel"]:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 116, 169, 0.08);
+}
+
+/* ==================================================
+   PHONE PREFIX FOCUS
+   --------------------------------------------------
+   Purpose: Matches the phone prefix border color to the input on focus.
+*/
+.phone-input-group:focus-within .phone-prefix {
+    border-color: var(--color-secondary);
+}
+
+/* ==================================================
+   RESPONSIVE PHONE INPUT GROUP (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts phone input group styling for screens up to 600px.
+*/
+@media (max-width: 600px) {
+    /* ==================================================
+       PHONE INPUT GROUP (MOBILE)
+       -----------------------------------------------
+       Purpose: Maintains flex layout for phone input group on mobile screens.
+    */
+    .phone-input-group {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    /* ==================================================
+       PHONE PREFIX (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces phone prefix size and padding for mobile screens.
+    */
+    .phone-prefix {
+        font-size: 0.95rem;
+        padding: 0 0.7rem;
+        min-width: 44px;
+    }
+
+    /* ==================================================
+       PHONE INPUT (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces phone input size and padding for mobile screens.
+    */
+    .phone-input-group input[type="tel"] {
+        font-size: 0.95rem;
+        padding: 0.7rem 0.8rem;
+    }
+}
+
+/* ==================================================
+   HEADER AND FORM TITLES
+   --------------------------------------------------
+   Purpose: Styles header and form titles with a secondary color for consistency.
+*/
+.register-header h1,
+.register-form h2 {
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   HEADER AND FORM TEXT
+   --------------------------------------------------
+   Purpose: Styles header and form text with a secondary color for visual cohesion.
+*/
+.register-header p,
+.register-header .benefit span,
+.register-form p {
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   HEADER AND FORM ICONS
+   --------------------------------------------------
+   Purpose: Styles icons in the header and form with a secondary color.
+*/
+.register-header .benefit i,
+.register-header .register-image i,
+.form-top-icon i {
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   PIN MODAL OVERLAY
+   --------------------------------------------------
+   Purpose: Styles the modal overlay with a dark background for focus on the modal content.
+*/
+.pin-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================================================
+   PIN MODAL CONTENT
+   --------------------------------------------------
+   Purpose: Styles the modal content with a white background, padding, and shadow.
+*/
+.pin-modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 90vw;
+}
+
+/* ==================================================
+   NAVIGATION OVERRIDE
+   --------------------------------------------------
+   Purpose: Overrides the navigation height for consistency with the page layout.
+*/
+nav {
+    height: 4.5rem !important;
+}

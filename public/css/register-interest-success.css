@@ -1,0 +1,121 @@
+/* ==================================================
+   SUCCESS MESSAGE STYLESHEET
+   --------------------------------------------------
+   Description: CSS styles for the success message section of the Register Interest feature, providing a professional and visually appealing confirmation UI.
+   Organization: Each class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   SUCCESS CONTAINER
+   --------------------------------------------------
+   Purpose: Styles the container for the success message with a light blue background, centered alignment, and rounded corners.
+*/
+.success-container {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/* ==================================================
+   SUCCESS TITLE
+   --------------------------------------------------
+   Purpose: Styles the title of the success message with a blue color and bottom margin.
+*/
+.success-title {
+    color: #1976d2;
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   SUCCESS MESSAGE
+   --------------------------------------------------
+   Purpose: Styles the main success message text with a slightly larger font and spacing.
+*/
+.success-message {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==================================================
+   PIN BOX
+   --------------------------------------------------
+   Purpose: Styles the container for the PIN code with a white background and dashed blue border.
+*/
+.pin-box {
+    background: #fff;
+    border: 1.5px dashed #1976d2;
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+/* ==================================================
+   PIN TITLE
+   --------------------------------------------------
+   Purpose: Styles the PIN title with a blue color and small bottom margin.
+*/
+.pin-title {
+    color: #1976d2;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   PIN VALUE
+   --------------------------------------------------
+   Purpose: Styles the PIN value with a large, bold font and letter spacing for emphasis.
+*/
+#pin-value {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    color: #1976d2;
+}
+
+/* ==================================================
+   COPY PIN BUTTON
+   --------------------------------------------------
+   Purpose: Adds top margin to the copy PIN button for spacing.
+*/
+#copy-pin-btn {
+    margin-top: 0.7rem;
+}
+
+/* ==================================================
+   COPY FEEDBACK
+   --------------------------------------------------
+   Purpose: Styles the feedback message for the copy action with a green color, initially hidden.
+*/
+#copy-feedback {
+    color: #388e3c;
+    margin-top: 0.5rem;
+    display: none;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ==================================================
+   PIN INFO
+   --------------------------------------------------
+   Purpose: Styles additional PIN information text with a dark color and top margin.
+*/
+.pin-info {
+    margin-top: 0.7rem;
+    color: #333;
+}
+
+/* ==================================================
+   SUCCESS ACTIONS
+   --------------------------------------------------
+   Purpose: Styles the container for success action buttons with top margin for spacing.
+*/
+.success-actions {
+    margin-top: 1rem;
+}

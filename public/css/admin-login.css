@@ -1,0 +1,560 @@
+/* ==================================================
+   ADMIN LOGIN PAGE STYLESHEET
+   --------------------------------------------------
+   Description: Clean, professional CSS for the admin login page.
+   Covers layout, form styling, buttons, messages, links, icons, responsiveness,
+   and accessibility. Each section is commented for clarity and maintainability.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* Ensures all elements use border-box for predictable sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Styles all input fields in the login form */
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form input[type="text"],
+body .login-form input[type="email"],
+body .login-form input[type="password"],
+body .login-form input[type="text"] {
+    border: 1.5px solid #e0e4ea !important;
+    background: #f7f8fa !important;
+    outline: none !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+    padding: 0.7rem 0.9rem !important;
+    padding-right: 38px !important;
+    border-radius: 8px !important;
+    transition: border 0.2s, box-shadow 0.2s, background 0.2s !important;
+    color: #222 !important;
+    box-sizing: border-box !important;
+}
+
+/* Highlights input fields on focus */
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus,
+.login-form input[type="text"]:focus {
+    border: 1.5px solid #2574A9 !important;
+    background: #fff !important;
+    box-shadow: 0 2px 8px rgba(37,116,169,0.08) !important;
+}
+
+/* Sets base font, background, and text color for the login page */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg1, #f8f9fa);
+    color: var(--color-dark, #2c3e50);
+    min-height: 100vh;
+}
+
+/* ==================================================
+   LOGIN WRAPPER
+   --------------------------------------------------
+   Purpose: Main container for centering the login card vertically and horizontally on the page. Uses flexbox for alignment and a subtle background color.
+*/
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 60px;
+    background: #f7f8fa;
+}
+
+/* ==================================================
+   LOGIN CARD
+   --------------------------------------------------
+   Purpose: Main login card with padding, shadow, and rounded corners. Uses flexbox for vertical alignment of content. Responsive max-width for all screens.
+*/
+.login-card {
+    max-width: 350px;
+    width: 100%;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ==================================================
+   LOGIN USER ICON
+   --------------------------------------------------
+   Purpose: User icon at the top of the login card for visual identity.
+*/
+.login-user-icon {
+    font-size: 3rem;
+    color: #2574A9;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   LOGIN CARD HEADERS
+   --------------------------------------------------
+   Purpose: Main and subtitle headers in the login card. Centered and bold for emphasis.
+*/
+.login-card h1, .login-card h2 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0 0.25rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* ==================================================
+   CARD DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the .login-subtitle element inside .login-card to provide supporting information below the main title. Makes the text smaller and lighter for visual hierarchy.
+*/
+.login-subtitle {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+/* ==================================================
+   LOGIN FORM
+   --------------------------------------------------
+   Purpose: Styles the login form layout and spacing. Uses flexbox for vertical stacking and gap between fields.
+*/
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ==================================================
+   FORM GROUP
+   --------------------------------------------------
+   Purpose: Styles each form group (label + input + icon). Adds background, border, and padding for a modern look.
+*/
+.form-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f2f4f8 !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 0.75rem !important;
+    border: 1px solid #e0e4ea !important;
+}
+
+/* ==================================================
+   FORM GROUP LABEL
+   --------------------------------------------------
+   Purpose: Label in each form group, bold and clear for accessibility.
+*/
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    font-size: 0.98rem;
+    color: #2c3e50;
+}
+
+/* ==================================================
+   FORM GROUP ICON
+   --------------------------------------------------
+   Purpose: Icon in each form group, colored for visual guidance.
+*/
+.input-icon {
+    margin-right: 0.5rem;
+    color: #2574A9;
+    font-size: 1.1rem;
+}
+
+/* ==================================================
+   FORM INPUTS
+   --------------------------------------------------
+   Purpose: Input fields in form groups, styled for clarity and accessibility.
+*/
+input[type="email"], input[type="password"], input[type="text"] {
+    border: 1.5px solid #e0e4ea !important;
+    background: #f7f8fa !important;
+    outline: none !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+    padding: 0.7rem 0.9rem !important;
+    padding-right: 38px !important;
+    border-radius: 8px !important;
+    transition: border 0.2s, box-shadow 0.2s, background 0.2s !important;
+    color: #222 !important;
+    box-sizing: border-box !important;
+}
+
+/* Highlights input fields in form groups on focus */
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
+    border: 1.5px solid #2574A9 !important;
+    background: #fff !important;
+    box-shadow: 0 2px 8px rgba(37,116,169,0.08) !important;
+}
+
+/* ==================================================
+   PLACEHOLDER TEXT
+   --------------------------------------------------
+   Purpose: Styles placeholder text in input fields for subtle guidance.
+*/
+input::placeholder {
+    color: #b0b8c9;
+    opacity: 1;
+    font-style: italic;
+}
+
+/* Highlights input in form group on focus */
+.form-group input:focus {
+    border-color: #2574A9;
+    box-shadow: 0 0 0 2px rgba(37,116,169,0.13);
+    background: #fff;
+    outline: none;
+}
+
+/* Styles placeholder in form group input */
+.form-group input::placeholder {
+    color: #b0b8c1;
+    opacity: 1;
+    font-size: 0.96em;
+    font-style: italic;
+    letter-spacing: 0.01em;
+}
+
+/* ==================================================
+   PRIMARY LOGIN BUTTON
+   --------------------------------------------------
+   Purpose: Main login button, styled for prominence and accessibility.
+*/
+.btn.btn-primary {
+    background: #2574A9;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+/* Darkens the primary button on hover */
+.btn.btn-primary:hover {
+    background: #195a7a;
+}
+
+/* Slightly shrinks button on click */
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Styles disabled buttons */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Prevents transform on disabled button hover */
+.btn:disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+}
+
+/* ==================================================
+   FORM MESSAGES
+   --------------------------------------------------
+   Purpose: Error and success messages in the form, color-coded for clarity.
+*/
+.form-message {
+    width: 100%;
+    margin: 0.2rem 0 0.5rem 0;
+    font-size: 0.97rem;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    display: none;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* Styles error messages */
+.form-message.error {
+    color: #e74c3c;
+    background: #fbeaea;
+    border: 1px solid #f5c6cb;
+}
+
+/* Styles success messages */
+.form-message.success {
+    color: #27ae60;
+    background: #e8f5e8;
+    border: 1px solid #c3e6c3;
+}
+
+/* Shows active form messages */
+.form-message.active {
+    display: block;
+}
+
+/* ==================================================
+   LOGIN FOOTER
+   --------------------------------------------------
+   Purpose: Footer area and links for password reset and navigation.
+*/
+.login-footer {
+    margin-top: 1.2rem;
+    width: 100%;
+    text-align: right;
+}
+
+/* Styles links in the login footer */
+.login-footer a {
+    color: #2574A9;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+/* Changes link color on hover in the footer */
+.login-footer a:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+}
+
+/* ==================================================
+   COPYRIGHT FOOTER
+   --------------------------------------------------
+   Purpose: Footer at the bottom of the page for copyright info.
+*/
+footer {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-top: 2rem;
+}
+
+/* ==================================================
+   BACK TO HOME FORM
+   --------------------------------------------------
+   Purpose: Section for back to home navigation below the login card.
+*/
+.back-to-home-form {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* Back link button */
+.back-link-form {
+    color: #2574A9;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Adds hover effect to the back link button */
+.back-link-form:hover {
+    background: rgba(37, 116, 169, 0.12);
+    border-color: rgba(37, 116, 169, 0.25);
+    transform: translateX(-2px);
+    box-shadow: 0 2px 6px rgba(37, 116, 169, 0.15);
+}
+
+/* Styles the icon in the back link button */
+.back-link-form i {
+    font-size: 1rem;
+}
+
+/* Styles the text in the back link button */
+.back-link-form span {
+    font-size: 0.85rem;
+}
+
+/* ==================================================
+   FORGOT PASSWORD LINK
+   --------------------------------------------------
+   Purpose: Container and link for password reset, styled for visibility.
+*/
+.forgot-password-link {
+    text-align: right;
+    margin-bottom: 0.5rem;
+}
+
+/* Styles the forgot password link */
+.forgot-password-link a {
+    color: #2574A9;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Changes forgot password link color on hover */
+.forgot-password-link a:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+}
+
+/* ==================================================
+   FORGOT PASSWORD ICON BUTTON
+   --------------------------------------------------
+   Purpose: Icon button for password reset, positioned inside input field.
+*/
+.forgot-password-icon {
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1.1rem;
+    z-index: 2;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Enlarges forgot password icon on hover */
+.forgot-password-icon:hover {
+    color: #c0392b;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Shows the forgot password icon when needed */
+.forgot-password-icon.show {
+    opacity: 1;
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-50%) scale(0.8); }
+    to { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+/* Tablet layout adjustments */
+@media (max-width: 600px) {
+    /* Center the forgot password link and add spacing below */
+    .forgot-password-link {
+        text-align: center;
+        margin-bottom: 0.8rem;
+    }
+
+    /* Reduce font size for forgot password link on small screens */
+    .forgot-password-link a {
+        font-size: 0.8rem;
+    }
+
+    /* Add extra margin above the back to home form */
+    .back-to-home-form {
+        margin-top: 0.8rem;
+    }
+
+    /* Adjust padding and font size for the back link button */
+    .back-link-form {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    /* Hide the text span in the back link for a cleaner mobile look */
+    .back-link-form span {
+        display: none;
+    }
+
+    /* Increase icon size in the back link for better touch usability */
+    .back-link-form i {
+        font-size: 1.1rem;
+    }
+
+    /* Reduce margin and padding for the login card on mobile */
+    .login-card {
+        margin: 1rem;
+        padding: 1.5rem 1rem 1rem 1rem;
+    }
+
+    /* Adjust logo size for mobile screens */
+    .login-logo {
+        font-size: 1.8rem;
+        width: 45px;
+        height: 45px;
+    }
+
+    /* Add more space below the user icon */
+    .login-user-icon {
+        margin-bottom: 1rem;
+    }
+
+    /* Increase user icon size for mobile */
+    .login-user-icon i {
+        font-size: 3rem;
+        width: 70px;
+        height: 70px;
+    }
+
+    /* Add margin below left-aligned icons */
+    .icon-left {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Adjust icon size for input icons on mobile */
+    .icon-left .input-icon {
+        font-size: 1rem;
+    }
+}
+
+/* Very small screen adjustments */
+@media (max-width: 500px) {
+    /* Reduce padding for the login card on very small screens */
+    .login-card {
+        padding: 1.2rem 0.5rem;
+    }
+    /* Reduce top padding for the login wrapper on very small screens */
+    .login-wrapper {
+        padding-top: 20px;
+    }
+}
+
+/* ==================================================
+   TOGGLE PASSWORD BUTTON
+   --------------------------------------------------
+   Purpose: Button to show/hide password input, positioned absolutely for easy access.
+*/
+.toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #2574A9;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 2;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, background 0.2s;
+    border-radius: 50%;
+}
+
+/* Highlights the toggle password button on hover/focus */
+.toggle-password-btn:hover, .toggle-password-btn:focus {
+    color: #fff;
+    background: #2574A9;
+    outline: none;
+}

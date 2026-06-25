@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as HTML5 to ensure standardized rendering.
+   Functionality: Instructs browsers to use HTML5 standards, enabling modern web features and consistent parsing.
+   Client-Side Role: Ensures compatibility with modern browsers for proper page display.
+   Logic: Uses DOCTYPE declaration to prevent quirks mode and enforce HTML5 rendering.
+-->
+<html lang="en">
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Root container for the homepage, specifying the document language.
+   Functionality: Sets English as the language for accessibility and contains all page content.
+   Client-Side Role: Encapsulates navigation, main content, footer, and scripts for the homepage.
+   Logic: Uses lang="en" to support screen readers and ensure proper text directionality.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling and functionality.
+       Functionality: Defines character encoding, responsive viewport, title, and links to CSS and fonts, including Swiper.
+       Client-Side Role: Controls visual presentation and resource loading for the homepage.
+       Logic: Loads styles1.css, Unicons, Montserrat font, and Swiper CSS for carousel functionality.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Course Hub</title>
+    <link rel="stylesheet" href="{{ base_path() }}/css/styles1.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body>
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains all visible content for the Student Course Hub homepage.
+       Functionality: Structures navigation, header, programme listings, FAQs, testimonials, and footer.
+       Client-Side Role: Renders an interactive interface for users to explore programmes and learn about the platform.
+       Logic: Uses semantic HTML, dynamic data rendering, and JavaScript for interactivity (e.g., search, filters, carousel).
+    -->
+    <nav>
+        <!-- ==================================================
+           NAVIGATION SECTION
+           Purpose: Provides navigation for accessing key site pages.
+           Functionality: Includes links to Home, My Interests, About, Contact, and Admin Login.
+           Client-Side Role: Enables users to navigate the site easily with a clear menu structure.
+           Logic: Uses dynamic URLs via base_path() and anchor links for Contact; supports accessibility with aria-label.
+        -->
+        <div class="container nav_container">
+            <a href="{{ base_path() }}/"><h4><i class="uil uil-graduation-cap"></i> Student Course Hub</h4></a>
+            <ul class="nav_menu">
+                <li><a href="{{ base_path() }}/my-interests"><i class="uil uil-heart"></i> My Interests</a></li>
+                <li><a href="{{ base_path() }}/about"><i class="uil uil-info-circle"></i> About</a></li>
+                <li><a href="#footer"><i class="uil uil-envelope"></i> Contact</a></li>
+            </ul>
+            <a href="{{ base_path() }}/admin/login" class="login-link">
+                <i class="uil uil-user"></i>
+                <span>Login</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ==================================================
+           MAIN SECTION
+           Purpose: Contains the core content for promoting and exploring academic programmes.
+           Functionality: Includes a header, programme listings with filters, FAQs, and testimonials.
+           Client-Side Role: Engages users with dynamic programme browsing and informational content.
+           Logic: Uses semantic HTML, template loops for dynamic data, and JavaScript for interactivity.
+        -->
+        <header class="header-bg">
+            <!-- Purpose: Introduces the homepage with a call-to-action.
+               Functionality: Displays a headline, description, and a button to register interest.
+               Client-Side Role: Encourages users to explore programmes and engage with the platform.
+               Logic: Uses a styled header with dynamic URL via base_path() and aria-label for accessibility.
+            -->
+            <div class="container header_container">
+                <div class="header_left">
+                    <h1>Explore Your Future with Our Programmes</h1>
+                    <p>Discover a wide range of undergraduate and postgraduate degrees designed to shape your career.</p>
+                    <a href="{{ base_path() }}/register-interest" class="btn btn-primary" aria-label="Get started with registering interest">Get Started</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="programmes" id="programmes">
+            <!-- Purpose: Displays a list of academic programmes with search and filter options.
+               Functionality: Allows users to browse, search, and filter programmes by level or title.
+               Client-Side Role: Enables users to find relevant programmes efficiently.
+               Logic: Uses template loops for dynamic data, JavaScript for search/filter, and pagination for navigation.
+            -->
+            <div class="container programmes_container">
+                <h2>Our Programmes</h2>
+                <p class="lead">Explore our diverse undergraduate and postgraduate programmes to find the perfect fit for your academic and career goals.</p>
+                
+                <div class="programmes_controls">
+                    <!-- Purpose: Provides tools for searching and filtering programmes.
+                       Functionality: Includes a search bar and filter buttons for programme levels.
+                       Client-Side Role: Enhances user interaction with dynamic programme filtering.
+                       Logic: Uses input for search and dynamic links with query parameters for filtering.
+                    -->
+                    <div class="search_bar">
+                        <label for="programme-search" class="visually-hidden">Search for programmes</label>
+                        <i class="uil uil-search"></i>
+                        <input type="search" id="programme-search" placeholder="Search for programmes (e.g., 'Cyber Security')">
+                    </div>
+                    <div class="programme_filters">
+                        <a href="{{ base_path() }}{% if level %}?{% endif %}#programmes" class="btn{% if not level %} active{% endif %}" data-filter="all">All</a>
+                        <a href="{{ base_path() }}?level=undergraduate#programmes" class="btn{% if level == 'undergraduate' %} active{% endif %}" data-filter="undergraduate">Undergraduate</a>
+                        <a href="{{ base_path() }}?level=postgraduate#programmes" class="btn{% if level == 'postgraduate' %} active{% endif %}" data-filter="postgraduate">Postgraduate</a>
+                    </div>
+                </div>
+
+                <div class="programmes_list">
+                    <!-- Purpose: Displays a list of programme cards dynamically.
+                       Functionality: Renders programme details with conditional image or icon display.
+                       Client-Side Role: Presents programme information in an accessible, interactive format.
+                       Logic: Uses template loop to render programme data with data attributes for filtering.
+                    -->
+                    {% for programme in programmes %}
+                        <article class="category" data-level="{% if programme.level == 'UG' %}undergraduate{% else %}postgraduate{% endif %}" data-title="{{ programme.title }}" data-keywords="{{ programme.title|lower }}">
+                            <h6 class="programme-level">{% if programme.level == 'UG' %}Undergraduate{% else %}Postgraduate{% endif %}</h6>
+                            <div class="category-header">
+                                <div class="category_icon">
+                                    {% if programme.image_url %}
+                                        <img src="{{ base_path() }}{{ programme.image_url }}" alt="{{ programme.title }} programme image" class="programme-image">
+                                    {% else %}
+                                        <i class="uil uil-book-open"></i>
+                                    {% endif %}
+                                </div>
+                                <h5>{{ programme.title }}</h5>
+                            </div>
+                            <p>{{ programme.description }}</p>
+                            <a href="{{ base_path() }}/programme/{{ programme.id }}" class="details-link">View Details <i class="uil uil-arrow-right"></i></a>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if total_pages > 1 %}
+            <div class="pagination">
+                <!-- Purpose: Provides navigation for multiple pages of programmes.
+                   Functionality: Displays previous/next buttons and page links with conditional rendering.
+                   Client-Side Role: Allows users to navigate through programme listings.
+                   Logic: Uses template logic for pagination with dynamic URLs and aria-labels for accessibility.
+                -->
+                {% if current_page > 1 %}
+                    <a href="{{ base_path() }}?page={{ current_page - 1 }}{% if level %}&level={{ level }}{% endif %}#programmes" class="btn" aria-label="Previous page">
+                        <i class="uil uil-arrow-left"></i>
+                    </a>
+                {% endif %}
+                
+                {% for p in 1..total_pages %}
+                    {% if p == 1 or p == total_pages or (p >= current_page - 1 and p <= current_page + 1) %}
+                        <a href="{{ base_path() }}?page={{ p }}{% if level %}&level={{ level }}{% endif %}#programmes" class="btn{% if p == current_page %} active{% endif %}" aria-label="Page {{ p }}">
+                            {{ p }}
+                        </a>
+                    {% elseif p == current_page - 2 or p == current_page + 2 %}
+                        <span class="pagination-ellipsis">...</span>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if current_page < total_pages %}
+                    <a href="{{ base_path() }}?page={{ current_page + 1 }}{% if level %}&level={{ level }}{% endif %}#programmes" class="btn" aria-label="Next page">
+                        <i class="uil uil-arrow-right"></i>
+                    </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="faqs">
+            <!-- Purpose: Provides answers to common user questions.
+               Functionality: Displays collapsible FAQ entries with questions and answers.
+               Client-Side Role: Helps users understand how to use the platform effectively.
+               Logic: Uses semantic HTML with potential JavaScript for toggling answers (not shown in code).
+            -->
+            <h2>Frequently Asked Questions</h2>
+            <div class="container faqs_container">
+                <article class="faq">
+                    <div class="faq_icon"><i class="uil uil-plus"></i></div>
+                    <div class="question_answer">
+                        <h4>How do I choose the right programme?</h4>
+                        <p>Explore our programme details to find the one that aligns with your interests and career goals.</p>
+                    </div>
+                </article>
+                <article class="faq">
+                    <div class="faq_icon"><i class="uil uil-plus"></i></div>
+                    <div class="question_answer">
+                        <h4>How do I register my interest?</h4>
+                        <p>Click on the 'Get Started' button and fill out the registration form to express your interest in a programme.</p>
+                    </div>
+                </article>
+                <article class="faq">
+                    <div class="faq_icon"><i class="uil uil-plus"></i></div>
+                    <div class="question_answer">
+                        <h4>Can I contact staff for more information?</h4>
+                        <p>Yes, you can use the contact page to reach out to our staff for any questions about our programmes.</p>
+                    </div>
+                </article>
+                <article class="faq">
+                    <div class="faq_icon"><i class="uil uil-plus"></i></div>
+                    <div class="question_answer">
+                        <h4>Where can I find details about modules?</h4>
+                        <p>Each programme page lists all modules and their descriptions. Visit the programme details for more information.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="container testimonials_container mySwiper" aria-label="Student testimonials">
+            <!-- Purpose: Displays student testimonials in a carousel.
+               Functionality: Shows dynamic testimonials with images and text using Swiper.js.
+               Client-Side Role: Engages users with authentic student feedback.
+               Logic: Uses template loop for testimonials and Swiper.js for carousel functionality.
+            -->
+            <h2>Student Testimonials</h2>
+            <div class="swiper-wrapper">
+                {% for testimonial in testimonial_data %}
+                <article class="testimonial swiper-slide">
+                    <div class="avatar">
+                        <img src="{{ base_path() }}{{ testimonial.image }}" alt="Testimonial">
+                    </div>
+                    <div class="testimonial_info">
+                        <h5>{{ testimonial.name }}</h5>
+                        <small>Student</small>
+                    </div>
+                    <div class="testimonial_body">
+                        <p>Your testimonial text here.</p>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <!-- ==================================================
+           FOOTER SECTION
+           Purpose: Provides contact information, links, and copyright notice.
+           Functionality: Includes site logo, navigation links, contact details, and social media icons.
+           Client-Side Role: Offers users additional navigation and contact options.
+           Logic: Uses semantic HTML with dynamic URLs and aria-labels for accessibility.
+        -->
+        <div class="container footer_container">
+            <div class="footer_1">
+                <a href="{{ base_path() }}" class="footer_logo"><h4>Student Course Hub</h4></a>
+                <p>Explore your future with our diverse range of programmes.</p>
+            </div>
+            <div class="footer_2">
+                <h4>Know More</h4>
+                <ul>
+                    <li><a href="{{ base_path() }}/about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer_3">
+                <h4>Privacy</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Condition</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer_4">
+                <h4>Contact Us</h4>
+                <div>
+                    <p>+44 123 456 7890</p>
+                    <p>info@university.ac.uk</p>
+                </div>
+                <ul class="footer_social">
+                    <li><a href="#" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="uil uil-instagram-alt"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="uil uil-twitter"></i></a></li>
+                    <li><a href="#" aria-label="LinkedIn"><i class="uil uil-linkedin-alt"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_copyright">
+            <small>Copyright © Student Course Hub 2025</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ base_path() }}/js/main.js"></script>
+    
+    <script>
+    // Purpose: Initializes the Swiper.js carousel for testimonials.
+    // Functionality: Configures a responsive carousel with autoplay, pagination, and breakpoints.
+    // Client-Side Role: Displays testimonials in an engaging, interactive format.
+    // Logic: Uses Swiper.js API to set slides, spacing, and responsive behavior.
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        speed: 3000,
+        effect: 'slide',
+        pagination: { el: ".swiper-pagination", clickable: true },
+        loop: true,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        breakpoints: { 600: { slidesPerView: 2 }, 768: { slidesPerView: 1 } }
+    });
+    </script>
+</body>
+</html>

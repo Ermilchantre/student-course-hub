@@ -1,0 +1,834 @@
+/* ==================================================
+   PROGRAMME DETAILS PAGE STYLESHEET
+   --------------------------------------------------
+   Description: CSS styles for the programme details page, enhancing headers, cards, badges, sidebars, staff cards, buttons, and error messages with professional design.
+   Organization: Each block or class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   PROGRAMME DETAILS VARIABLES
+   --------------------------------------------------
+   Purpose: Defines reusable CSS variables with a --pro- prefix for colors, shadows, radii, and transitions, ensuring a cohesive professional design for the programme details page.
+*/
+:root {
+    --pro-primary: #2c3e50;
+    --pro-primary-variant: #34495e;
+    --pro-secondary: #2574A9;
+    --pro-accent: #e74c3c;
+    --pro-success: #27ae60;
+    --pro-warning: #f39c12;
+    --pro-error: #e74c3c;
+    --pro-gray-50: #f8f9fa;
+    --pro-gray-100: #ecf0f1;
+    --pro-gray-200: #e9ecef;
+    --pro-gray-300: #cbd5e1;
+    --pro-gray-400: #94a3b8;
+    --pro-gray-500: #64748b;
+    --pro-gray-600: #475569;
+    --pro-gray-700: #334155;
+    --pro-gray-800: #1e293b;
+    --pro-gray-900: #0f172a;
+    --pro-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --pro-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --pro-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --pro-shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --pro-shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --pro-radius-sm: 0.375rem;
+    --pro-radius: 0.5rem;
+    --pro-radius-md: 0.75rem;
+    --pro-radius-lg: 1rem;
+    --pro-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================================================
+   PROGRAMME HEADER
+   --------------------------------------------------
+   Purpose: Styles the programme header with a gradient background and subtle pattern overlay, matching navbar and footer aesthetics.
+*/
+.programme-header {
+    background: linear-gradient(135deg, var(--pro-primary) 0%, var(--pro-primary-variant) 50%, var(--pro-secondary) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================================================
+   PROGRAMME HEADER OVERLAY
+   --------------------------------------------------
+   Purpose: Adds a subtle dotted pattern overlay to the header for visual texture.
+*/
+.programme-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    opacity: 0.3;
+}
+
+/* ==================================================
+   PROGRAMME HEADER CONTAINER
+   --------------------------------------------------
+   Purpose: Positions header content above the overlay for clear visibility.
+*/
+.programme-header_container {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==================================================
+   PROGRAMME HEADER TITLE
+   --------------------------------------------------
+   Purpose: Styles the header title with a gradient text effect for a modern look.
+*/
+.programme-header_left h1 {
+    background: linear-gradient(135deg, #ffffff 0%, #ecf0f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+/* ==================================================
+   PROGRAMME META
+   --------------------------------------------------
+   Purpose: Styles programme metadata spans with a frosted glass effect and hover interactions.
+*/
+.programme-meta span {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    color: white;
+}
+
+/* ==================================================
+   PROGRAMME META HOVER
+   --------------------------------------------------
+   Purpose: Enhances metadata spans on hover with a brighter background and shadow.
+*/
+.programme-meta span:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================================================
+   MODULE CARDS
+   --------------------------------------------------
+   Purpose: Styles module cards with a subtle gradient background, border, and hover effects for a professional appearance.
+*/
+.modules-list .module {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid var(--pro-gray-200);
+    box-shadow: var(--pro-shadow-sm);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+/* ==================================================
+   MODULE CARDS LAST CHILD
+   --------------------------------------------------
+   Purpose: Removes bottom margin for the last module card to prevent extra spacing.
+*/
+.modules-list .module:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================================================
+   MODULE CARDS PSEUDO-ELEMENTS
+   --------------------------------------------------
+   Purpose: Disables any pseudo-elements for module cards to maintain clean styling.
+*/
+.modules-list .module::after,
+.modules-list .module:hover::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* ==================================================
+   MODULE CARDS HOVER
+   --------------------------------------------------
+   Purpose: Adds a lift effect, enhanced shadow, and secondary color border on hover for module cards.
+*/
+.modules-list .module:hover {
+    box-shadow: var(--pro-shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--pro-secondary);
+}
+
+/* ==================================================
+   MODULE LEADER BADGE
+   --------------------------------------------------
+   Purpose: Styles leader badges in modules with a gradient background, white text, and an icon.
+*/
+.module .leader {
+    background: linear-gradient(135deg, var(--pro-secondary) 0%, var(--pro-primary) 100%);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: var(--pro-radius);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: var(--pro-shadow-sm);
+}
+
+/* ==================================================
+   MODULE LEADER BADGE ICON
+   --------------------------------------------------
+   Purpose: Adds a teacher emoji before the leader badge for visual distinction.
+*/
+.module .leader::before {
+    content: 'Ã°Å¸â€˜Â¨Ã¢â‚¬ÂÃ°Å¸ÂÂ«';
+    font-size: 0.875rem;
+}
+
+/* ==================================================
+   SIDEBAR WIDGET
+   --------------------------------------------------
+   Purpose: Styles sidebar widgets with a gradient background, border, and decorative top bar.
+*/
+.sidebar-widget {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid var(--pro-gray-200);
+    box-shadow: var(--pro-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TOP BAR
+   --------------------------------------------------
+   Purpose: Adds a colorful top bar to the sidebar widget for visual appeal.
+*/
+.sidebar-widget::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pro-primary), var(--pro-secondary), var(--pro-accent));
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TITLE
+   --------------------------------------------------
+   Purpose: Styles sidebar widget titles with a primary color and bottom border.
+*/
+.sidebar-widget h3 {
+    color: var(--pro-primary);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--pro-gray-200);
+}
+
+/* ==================================================
+   SIDEBAR WIDGET TITLE PSEUDO-ELEMENT
+   --------------------------------------------------
+   Purpose: Disables any pseudo-elements for sidebar widget titles.
+*/
+.sidebar-widget h3::after {
+    display: none;
+}
+
+/* ==================================================
+   STAFF MEMBER CARDS
+   --------------------------------------------------
+   Purpose: Styles staff member cards with a white background, border, and interactive left bar.
+*/
+.staff-member {
+    background: white;
+    border: 1px solid var(--pro-gray-200);
+    border-radius: var(--pro-radius);
+    padding: 1.25rem;
+    transition: var(--pro-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================================================
+   STAFF MEMBER LEFT BAR
+   --------------------------------------------------
+   Purpose: Adds a colorful left bar to staff member cards that widens on hover.
+*/
+.staff-member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--pro-secondary), var(--pro-accent));
+    transition: var(--pro-transition);
+}
+
+/* ==================================================
+   STAFF MEMBER HOVER
+   --------------------------------------------------
+   Purpose: Enhances staff member cards on hover with a shadow, lift effect, and secondary color border.
+*/
+.staff-member:hover {
+    box-shadow: var(--pro-shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--pro-secondary);
+}
+
+/* ==================================================
+   STAFF MEMBER LEFT BAR HOVER
+   --------------------------------------------------
+   Purpose: Widens the left bar on staff member cards when hovered.
+*/
+.staff-member:hover::before {
+    width: 6px;
+}
+
+/* ==================================================
+   STAFF MEMBER IMAGE
+   --------------------------------------------------
+   Purpose: Styles images in staff member cards with a gray border and transition.
+*/
+.staff-member img {
+    border: 3px solid var(--pro-gray-200);
+    transition: var(--pro-transition);
+}
+
+/* ==================================================
+   STAFF MEMBER IMAGE HOVER
+   --------------------------------------------------
+   Purpose: Changes the image border color and scales it slightly on hover.
+*/
+.staff-member:hover img {
+    border-color: var(--pro-secondary);
+    transform: scale(1.05);
+}
+
+/* ==================================================
+   SIDEBAR BUTTON
+   --------------------------------------------------
+   Purpose: Styles buttons in the sidebar widget with a gradient background and hover effects.
+*/
+.sidebar-widget .btn {
+    background: linear-gradient(135deg, var(--pro-primary) 0%, var(--pro-secondary) 100%);
+    color: white;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: var(--pro-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--pro-transition);
+    box-shadow: var(--pro-shadow);
+}
+
+/* ==================================================
+   SIDEBAR BUTTON SHINE EFFECT
+   --------------------------------------------------
+   Purpose: Adds a shine effect to sidebar buttons on hover.
+*/
+.sidebar-widget .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+/* ==================================================
+   SIDEBAR BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Enhances sidebar buttons on hover with a lift effect and stronger shadow.
+*/
+.sidebar-widget .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--pro-shadow-lg);
+}
+
+/* ==================================================
+   SIDEBAR BUTTON SHINE EFFECT HOVER
+   --------------------------------------------------
+   Purpose: Animates the shine effect across the button on hover.
+*/
+.sidebar-widget .btn:hover::before {
+    left: 100%;
+}
+
+/* ==================================================
+   PRIMARY BUTTON
+   --------------------------------------------------
+   Purpose: Adds top margin to primary buttons for spacing.
+*/
+.btn.btn-primary {
+    margin-top: 2rem;
+}
+
+/* ==================================================
+   YEAR MODULES TITLE
+   --------------------------------------------------
+   Purpose: Styles year module titles with a gradient background, white text, and a colored left border.
+*/
+.year-modules h3 {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2574A9 100%) !important;
+    color: white;
+    font-weight: 700;
+    padding: 1.5rem 2rem;
+    border-radius: var(--pro-radius-lg);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--pro-shadow);
+    border-left: 6px solid #2574A9 !important;
+}
+
+/* ==================================================
+   YEAR MODULES TITLE PSEUDO-ELEMENT
+   --------------------------------------------------
+   Purpose: Disables any pseudo-elements for year module titles.
+*/
+.year-modules h3::before {
+    display: none !important;
+}
+
+/* ==================================================
+   YEAR MODULES TITLE STATES
+   --------------------------------------------------
+   Purpose: Ensures consistent border styling for year module titles across all states.
+*/
+.year-modules h3,
+.year-modules h3:focus,
+.year-modules h3:active,
+.year-modules h3:hover {
+    border-left: 6px solid #2574A9 !important;
+}
+
+/* ==================================================
+   YEAR MODULES TITLE INTERACTION
+   --------------------------------------------------
+   Purpose: Enables smooth transitions for year module titles with cursor interaction.
+*/
+.year-modules h3 {
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+/* ==================================================
+   YEAR MODULES TITLE HOVER
+   --------------------------------------------------
+   Purpose: Enhances year module titles on hover with a different border color, background, and scaling.
+*/
+.year-modules h3:hover {
+    border-left: 6px solid #1abc9c !important;
+    background: rgba(37, 116, 169, 0.07);
+    box-shadow: var(--pro-shadow-lg);
+    transform: scale(1.02);
+}
+
+/* ==================================================
+   YEAR MODULES TITLE ACTIVE
+   --------------------------------------------------
+   Purpose: Styles year module titles when active with a darker border and inset shadow.
+*/
+.year-modules h3:active {
+    border-left: 6px solid #0e5a8a !important;
+    background: rgba(37, 116, 169, 0.18);
+    box-shadow: 0 1px 4px rgba(37,116,169,0.15) inset;
+    transform: scale(0.98);
+}
+
+/* ==================================================
+   ERROR MESSAGES
+   --------------------------------------------------
+   Purpose: Styles no-modules and no-staff messages with a red gradient background and top bar.
+*/
+.no-modules-message,
+.no-staff-message {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border: 1px solid #fecaca;
+    border-radius: var(--pro-radius-lg);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================================================
+   ERROR MESSAGES TOP BAR
+   --------------------------------------------------
+   Purpose: Adds a red top bar to error messages for visual emphasis.
+*/
+.no-modules-message::before,
+.no-staff-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pro-error), #f87171);
+}
+
+/* ==================================================
+   ERROR MESSAGES ICON
+   --------------------------------------------------
+   Purpose: Enlarges the first span (icon) in error messages for visibility.
+*/
+.no-modules-message span:first-child,
+.no-staff-message span:first-child {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   SLIDE-IN ANIMATION
+   --------------------------------------------------
+   Purpose: Defines a slide-in animation for module cards to enhance page load visuals.
+*/
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================================
+   MODULE CARDS ANIMATION
+   --------------------------------------------------
+   Purpose: Applies the slide-in animation to module cards with staggered delays for a smooth effect.
+*/
+.modules-list .module {
+    animation: slideInFromBottom 0.6s ease-out forwards;
+}
+
+/* ==================================================
+   MODULE CARDS ANIMATION DELAYS
+   --------------------------------------------------
+   Purpose: Staggers animation delays for module cards to create a sequential reveal.
+*/
+.modules-list .module:nth-child(1) { animation-delay: 0.1s; }
+.modules-list .module:nth-child(2) { animation-delay: 0.2s; }
+.modules-list .module:nth-child(3) { animation-delay: 0.3s; }
+.modules-list .module:nth-child(4) { animation-delay: 0.4s; }
+.modules-list .module:nth-child(5) { animation-delay: 0.5s; }
+.modules-list .module:nth-child(6) { animation-delay: 0.6s; }
+
+/* ==================================================
+   PROGRAMME DETAIL IMAGE HOVER
+   --------------------------------------------------
+   Purpose: Adds a scaling and shadow effect to the programme detail image wrapper on hover.
+*/
+.programme-detail-image-wrapper {
+    transition: var(--pro-transition);
+}
+
+/* ==================================================
+   PROGRAMME DETAIL IMAGE HOVER EFFECT
+   --------------------------------------------------
+   Purpose: Enhances the programme detail image wrapper on hover with scaling and a stronger shadow.
+*/
+.programme-detail-image-wrapper:hover {
+    transform: scale(1.02);
+    box-shadow: var(--pro-shadow-lg);
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (TABLETS)
+   --------------------------------------------------
+   Purpose: Adjusts padding and font sizes for screens up to 768px to ensure usability on tablets.
+*/
+@media screen and (max-width: 768px) {
+    .programme-header {
+        padding: 3rem 0 2rem 0;
+    }
+
+    .programme-meta span {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .modules-list .module {
+        padding: 1.5rem;
+    }
+
+    .sidebar-widget {
+        padding: 1.5rem;
+    }
+
+    .staff-member {
+        padding: 1rem;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts font sizes, padding, and layouts for screens up to 480px to ensure usability on mobile devices.
+*/
+@media screen and (max-width: 480px) {
+    .programme-header_left h1 {
+        font-size: 1.5rem;
+    }
+
+    .programme-meta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .programme-meta span {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .year-modules h3 {
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .modules-list .module {
+        padding: 1.25rem;
+    }
+
+    .module .leader {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* ==================================================
+   ACCESSIBILITY IMPROVEMENTS
+   --------------------------------------------------
+   Purpose: Reduces motion for users who prefer minimal animations to improve accessibility.
+*/
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==================================================
+   FOCUS STATES
+   --------------------------------------------------
+   Purpose: Enhances focus states for buttons, modules, staff cards, and year titles with a secondary color outline.
+*/
+.btn:focus,
+.module:focus,
+.staff-member:focus,
+.year-modules h3:focus {
+    outline: 3px solid var(--pro-secondary);
+    outline-offset: 2px;
+    border-radius: var(--pro-radius);
+}
+
+/* ==================================================
+   PRINT STYLES
+   --------------------------------------------------
+   Purpose: Optimizes styles for printing, ensuring readability with simplified backgrounds and colors.
+*/
+@media print {
+    .programme-header {
+        background: white !important;
+        color: black !important;
+    }
+
+    .programme-meta span {
+        background: var(--pro-gray-100) !important;
+        color: black !important;
+        border: 1px solid var(--pro-gray-300) !important;
+    }
+
+    .sidebar-widget {
+        break-inside: avoid;
+        border: 1px solid var(--pro-gray-300) !important;
+    }
+
+    .modules-list .module {
+        break-inside: avoid;
+        border: 1px solid var(--pro-gray-300) !important;
+    }
+}
+
+/* ==================================================
+   MODULE TITLE
+   --------------------------------------------------
+   Purpose: Styles module titles with a primary color for consistency.
+*/
+.modules-list .module h3 {
+    color: #2c3e50 !important;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION
+   --------------------------------------------------
+   Purpose: Styles the modules introduction text with a light background, blue border, and icon.
+*/
+.modules-intro {
+    font-size: 1.08rem;
+    color: #34495e;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+    background: rgba(236, 240, 241, 0.85);
+    padding: 0.75rem 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(44,62,80,0.04);
+    max-width: 600px;
+    border-left: 4px solid #2574A9;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION ICON
+   --------------------------------------------------
+   Purpose: Styles the icon in the modules introduction for visual emphasis.
+*/
+.modules-intro-icon {
+    font-size: 1.3rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    opacity: 0.8;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION MINIMAL
+   --------------------------------------------------
+   Purpose: Styles a minimal version of the modules introduction with no background or border.
+*/
+.modules-intro.minimal {
+    font-size: 1rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    font-style: normal;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION LINED
+   --------------------------------------------------
+   Purpose: Styles a lined version of the modules introduction with a left border.
+*/
+.modules-intro.lined {
+    font-size: 1.05rem;
+    color: #34495e;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    border-left: 3px solid #2574A9;
+    padding-left: 1rem;
+    background: none;
+    font-style: normal;
+    box-shadow: none;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION HIGHLIGHT
+   --------------------------------------------------
+   Purpose: Styles a highlighted version of the modules introduction with emphasized text.
+*/
+.modules-intro.highlight {
+    font-size: 1.05rem;
+    color: #34495e;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    background: none;
+    font-style: normal;
+    box-shadow: none;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION HIGHLIGHT STRONG
+   --------------------------------------------------
+   Purpose: Styles strong text in the highlighted modules introduction with a secondary color.
+*/
+.modules-intro.highlight strong {
+    color: #2574A9;
+    font-weight: 600;
+    margin-right: 0.3rem;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION CLEAN
+   --------------------------------------------------
+   Purpose: Styles a clean version of the modules introduction with minimal styling.
+*/
+.modules-intro.clean {
+    font-size: 1rem;
+    color: #b0b8c1;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    font-style: normal;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION SOFT
+   --------------------------------------------------
+   Purpose: Styles a soft version of the modules introduction with a subtle background and bottom border.
+*/
+.modules-intro.soft {
+    font-size: 1.02rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    background: rgba(255,255,255,0.7);
+    border-bottom: 2px solid #2574A9;
+    padding: 0.7rem 1rem 0.7rem 0.8rem;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-style: normal;
+    box-shadow: none;
+}
+
+/* ==================================================
+   MODULES INTRODUCTION ICON (REDEFINED)
+   --------------------------------------------------
+   Purpose: Styles the icon in the soft modules introduction for consistency.
+*/
+.modules-intro-icon {
+    font-size: 1.1rem;
+    opacity: 0.7;
+    margin-right: 0.4rem;
+}
+
+/* ==================================================
+   YEAR ICON
+   --------------------------------------------------
+   Purpose: Styles the year icon with an orange color for visual distinction.
+*/
+.year-icon {
+    color: #e67e22;
+    font-size: 1.2em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    opacity: 0.85;
+}

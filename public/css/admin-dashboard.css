@@ -1,0 +1,1857 @@
+/* ==================================================
+   ADMIN DASHBOARD STYLESHEET
+   --------------------------------------------------
+   Description: Professional CSS styles for the admin dashboard, covering layout, color themes,
+   cards, actions, notifications, responsiveness, and accessibility.
+   Organization: Each block or class is commented above with its purpose for clarity and maintainability.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   CSS RESET
+   --------------------------------------------------
+   Purpose: Resets default browser styles for consistent rendering across browsers.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/* ==================================================
+   LIGHT THEME VARIABLES
+   --------------------------------------------------
+   Purpose: Defines reusable CSS variables for colors, sizes, transitions, and shadows in light mode.
+*/
+:root {
+    --color-primary: #2c3e50;
+    --color-primary-variant: #34495e;
+    --color-secondary: #2574A9;
+    --color-accent: #e74c3c;
+    --color-success: #27ae60;
+    --color-warning: #f39c12;
+    --color-white: #ffffff;
+    --color-light: #ecf0f1;
+    --color-gray: #95a5a6;
+    --color-dark: #2c3e50;
+    --color-black: #1a252f;
+    --color-bg: #ffffff;
+    --color-bg1: #f8f9fa;
+    --color-bg2: #e9ecef;
+    --color-bg3: #f1f3f4;
+    --color-bg4: #f8f9fa;
+    --color-bg5: #e9ecef;
+    --color-bg6: #f1f3f4;
+    --container-width-lg: 80%;
+    --container-width-md: 90%;
+    --container-width-sm: 94%;
+    --transition: all 300ms ease;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --border-radius: 8px;
+}
+
+/* ==================================================
+   DARK THEME VARIABLES
+   --------------------------------------------------
+   Purpose: Overrides light theme variables for dark mode when .dark-theme is applied.
+*/
+.dark-theme {
+    --color-primary: #ecf0f1;
+    --color-primary-variant: #bdc3c7;
+    --color-secondary: #3498db;
+    --color-accent: #e74c3c;
+    --color-success: #2ecc71;
+    --color-warning: #f1c40f;
+    --color-white: #2c3e50;
+    --color-light: #34495e;
+    --color-gray: #7f8c8d;
+    --color-dark: #ecf0f1;
+    --color-black: #ffffff;
+    --color-bg: #1a252f;
+    --color-bg1: #2c3e50;
+    --color-bg2: #34495e;
+    --color-bg3: #3a4a5c;
+}
+
+/* ==================================================
+   BASE BODY STYLING
+   --------------------------------------------------
+   Purpose: Sets base typography, background, and text color with smooth theme transitions.
+*/
+body {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.6;
+    color: var(--color-dark);
+    background-color: var(--color-bg);
+    overflow-x: hidden;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   MAIN CONTAINER
+   --------------------------------------------------
+   Purpose: Centers content with a responsive width.
+*/
+/* Container for centering and setting max width of dashboard content */
+.container {
+    width: var(--container-width-lg);
+    margin: 0 auto;
+}
+
+/* ==================================================
+   SECTION STYLING
+   --------------------------------------------------
+   Purpose: Applies padding and relative positioning for dashboard sections.
+*/
+section {
+    padding: 3rem 0;
+    position: relative;
+}
+
+/* ==================================================
+   LAST SECTION
+   --------------------------------------------------
+   Purpose: Removes bottom margin from the last section to avoid extra space.
+*/
+section:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================================================
+   SECTION H2 HEADERS
+   --------------------------------------------------
+   Purpose: Styles centered section headers with an icon for visual emphasis.
+*/
+section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* ==================================================
+   SECTION H2 ICONS
+   --------------------------------------------------
+   Purpose: Styles icons in h2 headers with secondary color.
+*/
+section h2 i {
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+}
+
+/* ==================================================
+   ALL HEADERS (H1-H5)
+   --------------------------------------------------
+   Purpose: Ensures consistent styling for all header levels.
+*/
+h1, h2, h3, h4, h5 {
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* ==================================================
+   H1 HEADERS
+   --------------------------------------------------
+   Purpose: Styles large, prominent titles.
+*/
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   H2 HEADERS
+   --------------------------------------------------
+   Purpose: Styles medium-sized subtitles.
+*/
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   H3 HEADERS
+   --------------------------------------------------
+   Purpose: Styles tertiary headers.
+*/
+h3 {
+    font-size: 1.6rem;
+}
+
+/* ==================================================
+   H4 HEADERS
+   --------------------------------------------------
+   Purpose: Styles small headers for cards or details.
+*/
+h4 {
+    font-size: 1.3rem;
+}
+
+/* ==================================================
+   LINKS
+   --------------------------------------------------
+   Purpose: Styles links with a distinct color and smooth transitions.
+*/
+a {
+    color: var(--color-secondary);
+    transition: var(--transition);
+}
+
+/* ==================================================
+   IMAGES
+   --------------------------------------------------
+   Purpose: Ensures images are responsive with rounded corners.
+*/
+img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* ==================================================
+   BUTTONS
+   --------------------------------------------------
+   Purpose: Styles base buttons with support for icons, hover effects, and accessibility.
+*/
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-secondary);
+    color: var(--color-white);
+    padding: 0.8rem 1.8rem;
+    border: 2px solid var(--color-secondary);
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* ==================================================
+   BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Provides visual feedback for button hover states.
+*/
+.btn:hover {
+    background: transparent;
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   PRIMARY BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for critical actions with accent color.
+*/
+.btn-primary {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border-color: var(--color-accent);
+}
+
+/* ==================================================
+   PRIMARY BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts primary button appearance on hover.
+*/
+.btn-primary:hover {
+    background: transparent;
+    color: var(--color-accent);
+}
+
+/* ==================================================
+   SECONDARY BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for less critical actions with gray color.
+*/
+.btn-secondary {
+    background: var(--color-gray);
+    color: var(--color-white);
+    border-color: var(--color-gray);
+}
+
+/* ==================================================
+   SECONDARY BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts secondary button appearance on hover.
+*/
+.btn-secondary:hover {
+    background: transparent;
+    color: var(--color-gray);
+}
+
+/* ==================================================
+   EDIT BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for editing actions with success color.
+*/
+.btn-edit {
+    background: var(--color-success);
+    color: var(--color-white);
+    border-color: var(--color-success);
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+/* ==================================================
+   EDIT BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts edit button appearance on hover.
+*/
+.btn-edit:hover {
+    background: transparent;
+    color: var(--color-success);
+}
+
+/* ==================================================
+   DELETE BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for deletion actions with accent color.
+*/
+.btn-delete {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border-color: var(--color-accent);
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+/* ==================================================
+   DELETE BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts delete button appearance on hover.
+*/
+.btn-delete:hover {
+    background: transparent;
+    color: var(--color-accent);
+}
+
+/* ==================================================
+   ADMIN HEADER
+   --------------------------------------------------
+   Purpose: Styles the dashboard header with a grid layout for text and image.
+*/
+/* Main admin dashboard header section */
+.admin-header {
+    position: relative;
+    top: 4.5rem;
+    overflow: hidden;
+    height: 65vh;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%);
+    display: flex;
+    align-items: center;
+}
+
+/* ==================================================
+   HEADER CONTAINER
+   --------------------------------------------------
+   Purpose: Uses grid to split header into two columns for content and image.
+*/
+/* Grid layout for header content and image */
+.header_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    height: 100%;
+    align-items: center;
+}
+
+/* ==================================================
+   HEADER LEFT H1
+   --------------------------------------------------
+   Purpose: Styles the header title with a decorative underline.
+*/
+/* Styles the left side of the header (title and description) */
+.header_left h1 {
+    color: var(--color-primary);
+    position: relative;
+}
+
+/* ==================================================
+   HEADER LEFT H1 UNDERLINE
+   --------------------------------------------------
+   Purpose: Adds a colored underline to the header title.
+*/
+/* Decorative underline for header title */
+.header_left h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--color-secondary);
+    border-radius: 2px;
+}
+
+/* ==================================================
+   HEADER LEFT PARAGRAPH
+   --------------------------------------------------
+   Purpose: Styles the header description text.
+*/
+/* Styles the description text in the header */
+.header_left p {
+    color: var(--color-gray);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* ==================================================
+   HEADER STATS
+   --------------------------------------------------
+   Purpose: Displays key metrics in a flexible row layout.
+*/
+/* Flex row for displaying key stats in the header */
+.header-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* ==================================================
+   STAT ITEM
+   --------------------------------------------------
+   Purpose: Styles individual stat items with icon and text.
+*/
+/* Styles each stat item in the header */
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-white);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+/* ==================================================
+   STAT ITEM HOVER
+   --------------------------------------------------
+   Purpose: Adds lift and shadow effect on stat item hover.
+*/
+/* Stat value text */
+.stat-item span {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* ==================================================
+   HEADER RIGHT
+   --------------------------------------------------
+   Purpose: Centers the header image or icon.
+*/
+/* Styles the right side of the header (image or icon) */
+.header_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==================================================
+   HEADER IMAGE
+   --------------------------------------------------
+   Purpose: Styles the circular header image with a gradient background.
+*/
+/* Circular image or icon in the header */
+.header_image {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   HEADER IMAGE ICON
+   --------------------------------------------------
+   Purpose: Styles the icon within the header image.
+*/
+/* Icon inside the header image */
+.header_image i {
+    font-size: 8rem;
+    color: var(--color-white);
+}
+
+/* ==================================================
+   DASHBOARD SUMMARY
+   --------------------------------------------------
+   Purpose: Styles the container for summary cards.
+*/
+/* Dashboard summary section container */
+.dashboard-summary {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    margin-top: 6rem;
+}
+
+/* ==================================================
+   DASHBOARD SUMMARY HOVER
+   --------------------------------------------------
+   Purpose: Enhances shadow on hover for visual feedback.
+*/
+.dashboard-summary:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   SUMMARY CARDS
+   --------------------------------------------------
+   Purpose: Arranges summary cards in a responsive grid.
+*/
+/* Summary cards grid */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ==================================================
+   SUMMARY CARD
+   --------------------------------------------------
+   Purpose: Styles individual summary cards with centered content.
+*/
+/* Individual summary card */
+.summary-card {
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* ==================================================
+   SUMMARY CARD SWEEP EFFECT
+   --------------------------------------------------
+   Purpose: Adds a light sweep animation on hover.
+*/
+.summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.4s ease;
+}
+
+/* ==================================================
+   SUMMARY CARD SWEEP HOVER
+   --------------------------------------------------
+   Purpose: Triggers the sweep animation on hover.
+*/
+.summary-card:hover::before {
+    left: 100%;
+}
+
+/* ==================================================
+   PUBLISHED SUMMARY CARD
+   --------------------------------------------------
+   Purpose: Styles cards for published metrics with success theme.
+*/
+.summary-card.published {
+    background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+    border-color: var(--color-success);
+}
+
+/* ==================================================
+   UNPUBLISHED SUMMARY CARD
+   --------------------------------------------------
+   Purpose: Styles cards for unpublished metrics with warning theme.
+*/
+.summary-card.unpublished {
+    background: linear-gradient(135deg, #fff3e0, #fef7e0);
+    border-color: var(--color-warning);
+}
+
+/* ==================================================
+   TOTAL SUMMARY CARD
+   --------------------------------------------------
+   Purpose: Styles cards for total metrics with secondary theme.
+*/
+.summary-card.total {
+    background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+    border-color: var(--color-secondary);
+}
+
+/* ==================================================
+   SUMMARY CARD HOVER
+   --------------------------------------------------
+   Purpose: Adds lift and shadow effect on card hover.
+*/
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   CARD ICON
+   --------------------------------------------------
+   Purpose: Styles circular icons in summary cards.
+*/
+/* Card icon in summary card */
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+/* ==================================================
+   PUBLISHED CARD ICON
+   --------------------------------------------------
+   Purpose: Applies success color to published card icons.
+*/
+.summary-card.published .card-icon {
+    color: var(--color-success);
+}
+
+/* ==================================================
+   UNPUBLISHED CARD ICON
+   --------------------------------------------------
+   Purpose: Applies warning color to unpublished card icons.
+*/
+.summary-card.unpublished .card-icon {
+    color: var(--color-warning);
+}
+
+/* ==================================================
+   TOTAL CARD ICON
+   --------------------------------------------------
+   Purpose: Applies secondary color to total card icons.
+*/
+.summary-card.total .card-icon {
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   CARD ICON CONTENT
+   --------------------------------------------------
+   Purpose: Styles the icon within the card.
+*/
+/* Card icon in summary card */
+.card-icon i {
+    font-size: 1.3rem;
+}
+
+/* ==================================================
+   CARD ICON HOVER
+   --------------------------------------------------
+   Purpose: Scales icon on card hover for visual feedback.
+*/
+.summary-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+/* ==================================================
+   CARD CONTENT
+   --------------------------------------------------
+   Purpose: Styles the content area of summary cards.
+*/
+/* Card content area in summary card */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+/* ==================================================
+   CARD CONTENT H3
+   --------------------------------------------------
+   Purpose: Styles the card title.
+*/
+/* Card title in summary card */
+.card-content h3 {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* ==================================================
+   CARD COUNT
+   --------------------------------------------------
+   Purpose: Styles the large metric count in cards.
+*/
+/* Card count in summary card */
+.summary-card .count {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+/* ==================================================
+   CARD DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the .description element inside .summary-card to provide supporting information below the main metric or title. Makes the text smaller and lighter for visual hierarchy.
+*/
+/* Card description in summary card */
+.summary-card .description {
+    margin: 0;
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* ==================================================
+   DASHBOARD ACTIONS
+   --------------------------------------------------
+   Purpose: Styles the container for action cards.
+*/
+/* Dashboard actions section container */
+.dashboard-actions {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    margin-top: 6rem;
+}
+
+/* ==================================================
+   DASHBOARD ACTIONS HOVER
+   --------------------------------------------------
+   Purpose: Enhances shadow on hover for visual feedback.
+*/
+.dashboard-actions:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   ACTION GRID
+   --------------------------------------------------
+   Purpose: Arranges action cards in a responsive grid.
+*/
+/* Dashboard actions grid */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ==================================================
+   ACTION CARD
+   --------------------------------------------------
+   Purpose: Styles individual action cards with icon, title, and arrow.
+*/
+/* Individual action card */
+.action-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ==================================================
+   ACTION CARD SWEEP EFFECT
+   --------------------------------------------------
+   Purpose: Adds a light sweep animation on hover.
+*/
+.action-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.05), transparent);
+    transition: left 0.4s ease;
+}
+
+/* ==================================================
+   ACTION CARD SWEEP HOVER
+   --------------------------------------------------
+   Purpose: Triggers the sweep animation on hover.
+*/
+.action-card:hover::before {
+    left: 100%;
+}
+
+/* ==================================================
+   ACTION CARD HOVER/FOCUS
+   --------------------------------------------------
+   Purpose: Highlights card on hover or focus with border and lift effect.
+*/
+.action-card:hover,
+.action-card:focus {
+    border-color: var(--color-secondary);
+    background: var(--color-bg1);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   ACTION ICON
+   --------------------------------------------------
+   Purpose: Styles the action card icon.
+*/
+/* Action icon in action card */
+.action-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--color-secondary);
+    transition: var(--transition);
+}
+
+/* ==================================================
+   ACTION ICON HOVER
+   --------------------------------------------------
+   Purpose: Scales icon on card hover for feedback.
+*/
+.action-card:hover .action-icon {
+    transform: scale(1.1);
+}
+
+/* ==================================================
+   ACTION CARD H3
+   --------------------------------------------------
+   Purpose: Styles the action card title.
+*/
+/* Action card title */
+.action-card h3 {
+    color: var(--color-primary);
+    margin: 0 0 0.8rem 0;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+/* ==================================================
+   ACTION CARD PARAGRAPH
+   --------------------------------------------------
+   Purpose: Styles the action card description.
+*/
+/* Action card description */
+.action-card p {
+    margin: 0 0 1rem 0;
+    color: var(--color-gray);
+    text-align: center;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   ACTION ARROW
+   --------------------------------------------------
+   Purpose: Styles the arrow indicating interactivity.
+*/
+/* Action arrow in action card */
+.action-arrow {
+    text-align: center;
+    color: var(--color-secondary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   ACTION ARROW HOVER
+   --------------------------------------------------
+   Purpose: Moves arrow on hover for visual feedback.
+*/
+.action-card:hover .action-arrow {
+    transform: translateX(5px);
+}
+
+/* ==================================================
+   QUICK ACTIONS
+   --------------------------------------------------
+   Purpose: Styles the container for quick action buttons.
+*/
+/* Quick actions section container */
+.dashboard-quick-actions {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+}
+
+/* ==================================================
+   QUICK ACTIONS HOVER
+   --------------------------------------------------
+   Purpose: Enhances shadow on hover for visual feedback.
+*/
+.dashboard-quick-actions:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   QUICK ACTION BUTTONS
+   --------------------------------------------------
+   Purpose: Arranges quick action buttons in a flexible, centered layout.
+*/
+/* Quick actions flex row */
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ==================================================
+   QUICK ACTION BUTTON
+   --------------------------------------------------
+   Purpose: Styles individual quick action buttons with ripple effect.
+*/
+/* Individual quick action button */
+.quick-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    font-size: 0.95rem;
+}
+
+/* ==================================================
+   QUICK ACTION BUTTON RIPPLE EFFECT
+   --------------------------------------------------
+   Purpose: Adds a ripple animation on button click.
+*/
+.quick-action-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+/* ==================================================
+   QUICK ACTION BUTTON ACTIVE
+   --------------------------------------------------
+   Purpose: Expands ripple effect on button click.
+*/
+.quick-action-btn:active::before {
+    width: 200px;
+    height: 200px;
+}
+
+/* ==================================================
+   PRIMARY QUICK ACTION BUTTON
+   --------------------------------------------------
+   Purpose: Styles primary action buttons with accent color.
+*/
+.quick-action-btn.primary {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: 2px solid var(--color-accent);
+}
+
+/* ==================================================
+   PRIMARY QUICK ACTION BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts primary button appearance on hover.
+*/
+.quick-action-btn.primary:hover {
+    background: transparent;
+    color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   SECONDARY QUICK ACTION BUTTON
+   --------------------------------------------------
+   Purpose: Styles secondary action buttons with secondary color.
+*/
+.quick-action-btn.secondary {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border: 2px solid var(--color-secondary);
+}
+
+/* ==================================================
+   SECONDARY QUICK ACTION BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts secondary button appearance on hover.
+*/
+.quick-action-btn.secondary:hover {
+    background: transparent;
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   TERTIARY QUICK ACTION BUTTON
+   --------------------------------------------------
+   Purpose: Styles tertiary action buttons with success color.
+*/
+.quick-action-btn.tertiary {
+    background: var(--color-success);
+    color: var(--color-white);
+    border: 2px solid var(--color-success);
+}
+
+/* ==================================================
+   TERTIARY QUICK ACTION BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts tertiary button appearance on hover.
+*/
+.quick-action-btn.tertiary:hover {
+    background: transparent;
+    color: var(--color-success);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   QUICK ACTION BUTTON ICON
+   --------------------------------------------------
+   Purpose: Styles icons in quick action buttons.
+*/
+/* Quick action button icon */
+.quick-action-btn i {
+    font-size: 1rem;
+}
+
+/* ==================================================
+   RECENT ACTIVITY
+   --------------------------------------------------
+   Purpose: Styles the container for the recent activity feed.
+*/
+/* Recent activity feed section */
+.recent-activity {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+}
+
+/* ==================================================
+   RECENT ACTIVITY HOVER
+   --------------------------------------------------
+   Purpose: Enhances shadow on hover for visual feedback.
+*/
+.recent-activity:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   ACTIVITY LIST
+   --------------------------------------------------
+   Purpose: Arranges activity items in a vertical layout.
+*/
+/* Activity list in recent activity */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ==================================================
+   ACTIVITY ITEM
+   --------------------------------------------------
+   Purpose: Styles individual activity items with icon and content.
+*/
+/* Individual activity item */
+.activity-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   ACTIVITY ITEM HOVER
+   --------------------------------------------------
+   Purpose: Shifts and highlights item on hover.
+*/
+.activity-item:hover {
+    background: var(--color-bg2);
+    transform: translateX(5px);
+}
+
+/* ==================================================
+   ACTIVITY ICON
+   --------------------------------------------------
+   Purpose: Styles circular icons for activity items.
+*/
+/* Activity icon in activity item */
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* ==================================================
+   ACTIVITY CONTENT H4
+   --------------------------------------------------
+   Purpose: Styles the activity item title.
+*/
+/* Activity item title */
+.activity-content h4 {
+    margin: 0 0 0.3rem 0;
+    color: var(--color-primary);
+    font-size: 1rem;
+}
+
+/* ==================================================
+   ACTIVITY CONTENT PARAGRAPH
+   --------------------------------------------------
+   Purpose: Styles the activity item description.
+*/
+/* Activity item description */
+.activity-content p {
+    margin: 0 0 0.3rem 0;
+    color: var(--color-gray);
+    font-size: 0.85rem;
+}
+
+/* ==================================================
+   ACTIVITY CONTENT SMALL
+   --------------------------------------------------
+   Purpose: Styles the activity item timestamp.
+*/
+/* Activity item timestamp */
+.activity-content small {
+    color: var(--color-gray);
+    font-size: 0.75rem;
+}
+
+/* ==================================================
+   ACTIVITY ACTIONS
+   --------------------------------------------------
+   Purpose: Styles the action buttons for activity items.
+*/
+/* Activity actions (e.g., delete button) */
+.activity-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==================================================
+   DELETE NOTIFICATION BUTTON
+   --------------------------------------------------
+   Purpose: Styles the button for deleting notifications.
+*/
+/* Delete notification button */
+.delete-notification-btn {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   DELETE NOTIFICATION BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts delete button appearance on hover.
+*/
+.delete-notification-btn:hover {
+    background: var(--color-primary);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   DELETE NOTIFICATION BUTTON ACTIVE
+   --------------------------------------------------
+   Purpose: Scales down button on click for feedback.
+*/
+.delete-notification-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==================================================
+   DELETE NOTIFICATION BUTTON ICON
+   --------------------------------------------------
+   Purpose: Styles the icon in the delete button.
+*/
+/* Delete notification button icon */
+.delete-notification-btn i {
+    font-size: 0.8rem;
+}
+
+/* ==================================================
+   READ ACTIVITY ITEM
+   --------------------------------------------------
+   Purpose: Styles read activity items with reduced opacity.
+*/
+.activity-item.read {
+    opacity: 0.7;
+    background: var(--color-bg1);
+}
+
+/* ==================================================
+   READ ACTIVITY DELETE BUTTON
+   --------------------------------------------------
+   Purpose: Disables delete button for read activities.
+*/
+.activity-item.read .delete-notification-btn {
+    background: var(--color-gray);
+    cursor: not-allowed;
+}
+
+/* ==================================================
+   READ ACTIVITY DELETE BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Maintains disabled state on hover.
+*/
+.activity-item.read .delete-notification-btn:hover {
+    background: var(--color-gray);
+    transform: none;
+}
+
+/* ==================================================
+   MARKING AS READ ANIMATION
+   --------------------------------------------------
+   Purpose: Animates activity items when marked as read.
+*/
+.activity-item.marking-as-read {
+    animation: fadeOut 0.5s ease-out;
+}
+
+/* ==================================================
+   FADE OUT KEYFRAMES
+   --------------------------------------------------
+   Purpose: Defines animation for marking activities as read.
+*/
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0.7;
+        transform: translateX(-10px);
+    }
+}
+
+/* ==================================================
+   FOOTER
+   --------------------------------------------------
+   Purpose: Styles the dashboard footer with centered copyright.
+*/
+/* Footer area */
+footer {
+    background: var(--color-primary);
+    padding: 2rem 0 1rem;
+    margin-top: 3rem;
+}
+
+/* ==================================================
+   FOOTER COPYRIGHT
+   --------------------------------------------------
+   Purpose: Styles the copyright text in the footer.
+*/
+/* Footer copyright */
+.footer_copyright {
+    width: 100%;
+    background: var(--color-primary);
+    color: #fff;
+    text-align: center;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* ==================================================
+   SEARCH INPUT
+   --------------------------------------------------
+   Purpose: Styles the search input for filtering content.
+*/
+/* Search input for dashboard */
+.search-input {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.6rem 0.8rem;
+    border: 2px solid var(--color-light);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    font-family: inherit;
+    transition: var(--transition);
+    background: var(--color-white);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   SEARCH INPUT FOCUS
+   --------------------------------------------------
+   Purpose: Highlights input on focus for accessibility.
+*/
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(37, 116, 169, 0.1);
+}
+
+/* ==================================================
+   SEARCH INPUT PLACEHOLDER
+   --------------------------------------------------
+   Purpose: Styles placeholder text in the search input.
+*/
+.search-input::placeholder {
+    color: var(--color-gray);
+}
+
+/* ==================================================
+   THEME TOGGLE BUTTON
+   --------------------------------------------------
+   Purpose: Styles the floating button for theme switching.
+*/
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 5rem;
+    right: 1.5rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+/* ==================================================
+   THEME TOGGLE HOVER
+   --------------------------------------------------
+   Purpose: Scales and enhances shadow on hover.
+*/
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   THEME TOGGLE ICON
+   --------------------------------------------------
+   Purpose: Styles the icon in the theme toggle button.
+*/
+/* Theme toggle button icon */
+.theme-toggle i {
+    font-size: 1.1rem;
+}
+
+/* ==================================================
+   NOTIFICATION POPUPS
+   --------------------------------------------------
+   Purpose: Styles notification popups with color-coded borders.
+*/
+/* Notification popups */
+.notification {
+    position: fixed;
+    top: 5rem;
+    right: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--color-white);
+    color: var(--color-primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-hover);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: var(--transition);
+    border-left: 4px solid var(--color-secondary);
+    max-width: 280px;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   SUCCESS NOTIFICATION
+   --------------------------------------------------
+   Purpose: Applies success color to notification border.
+*/
+.notification.success {
+    border-left-color: var(--color-success);
+}
+
+/* ==================================================
+   ERROR NOTIFICATION
+   --------------------------------------------------
+   Purpose: Applies accent color to error notification border.
+*/
+.notification.error {
+    border-left-color: var(--color-accent);
+}
+
+/* ==================================================
+   WARNING NOTIFICATION
+   --------------------------------------------------
+   Purpose: Applies warning color to notification border.
+*/
+.notification.warning {
+    border-left-color: var(--color-warning);
+}
+
+/* ==================================================
+   RIPPLE EFFECT
+   --------------------------------------------------
+   Purpose: Adds a ripple animation for button clicks.
+*/
+/* Ripple effect for buttons */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+/* ==================================================
+   RIPPLE ANIMATION KEYFRAMES
+   --------------------------------------------------
+   Purpose: Defines the ripple effect animation.
+*/
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ==================================================
+   LOADING STATE
+   --------------------------------------------------
+   Purpose: Styles elements when fully loaded.
+*/
+/* Loading state for dashboard */
+.loaded {
+    opacity: 1;
+}
+
+/* ==================================================
+   BODY LOADING STATE
+   --------------------------------------------------
+   Purpose: Fades in body content when not loaded.
+*/
+body:not(.loaded) {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Tablet layout adjustments */
+@media screen and (max-width: 1024px) {
+    /* Adjusts container width for tablets */
+    .container {
+        width: var(--container-width-md);
+    }
+
+    /* Reduces h1 font size for tablets */
+    h1 {
+        font-size: 2rem;
+    }
+
+    /* Reduces h2 font size for tablets */
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    /* Reduces h3 font size for tablets */
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Reduces h4 font size for tablets */
+    h4 {
+        font-size: 1rem;
+    }
+
+    /* Adjusts header container layout for tablets */
+    .header_container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    /* Centers header stats for tablets */
+    .header-stats {
+        justify-content: center;
+    }
+
+    /* Stacks summary cards in one column for tablets */
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stacks action grid in one column for tablets */
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stacks quick actions vertically for tablets */
+    .quick-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Centers footer copyright for tablets */
+    .footer_copyright {
+        text-align: center;
+    }
+
+    /* Moves theme toggle for tablets */
+    .theme-toggle {
+        top: 4.5rem;
+        right: 1rem;
+    }
+
+    /* Adjusts notification width for tablets */
+    .notification {
+        right: 1rem;
+        max-width: calc(100vw - 2rem);
+    }
+}
+
+/* Mobile layout adjustments */
+@media screen and (max-width: 600px) {
+    /* Adjusts container width for mobile */
+    .container {
+        width: var(--container-width-sm);
+    }
+
+    /* Reduces h1 font size for mobile */
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Reduces h2 font size for mobile */
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    /* Adjusts admin header height and padding for mobile */
+    .admin-header {
+        height: auto;
+        padding: 1.5rem 0;
+    }
+
+    /* Stacks header stats vertically for mobile */
+    .header-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Sets stat item width for mobile */
+    .stat-item {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    /* Reduces padding for dashboard sections on mobile */
+    .dashboard-summary,
+    .dashboard-actions,
+    .dashboard-quick-actions,
+    .recent-activity {
+        padding: 1.5rem 1rem;
+    }
+
+    /* Reduces padding for summary cards on mobile */
+    .summary-card {
+        padding: 1.2rem;
+    }
+
+    /* Reduces count font size in summary cards for mobile */
+    .summary-card .count {
+        font-size: 2rem;
+    }
+
+    /* Reduces action icon size for mobile */
+    .action-icon {
+        font-size: 2rem;
+    }
+
+    /* Sets quick action button width for mobile */
+    .quick-action-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    /* Stacks activity item content for mobile */
+    .activity-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+    }
+
+    /* Centers activity icon for mobile */
+    .activity-icon {
+        align-self: center;
+    }
+
+    /* Adjusts theme toggle size and position for mobile */
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        top: 4.5rem;
+        right: 1rem;
+    }
+
+    /* Reduces theme toggle icon size for mobile */
+    .theme-toggle i {
+        font-size: 0.9rem;
+    }
+
+    /* Reduces gap in card details for mobile */
+    .card-details {
+        gap: 0.3rem;
+    }
+
+    /* Reduces font size and padding for detail items on mobile */
+    .detail-item {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    /* Reduces padding for action cards on mobile */
+    .action-card {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Accessibility: high contrast */
+@media (prefers-contrast: high) {
+    .summary-card {
+        border-width: 3px;
+    }
+
+    .btn {
+        border-width: 3px;
+    }
+
+    .action-card {
+        border-width: 3px;
+    }
+}
+
+/* ==================================================
+   ACCESSIBILITY: FOCUS STYLES
+   --------------------------------------------------
+   Purpose: Adds visible focus outlines for keyboard navigation.
+*/
+/* Focus styles for accessibility */
+.btn:focus,
+.action-card:focus,
+.quick-action-btn:focus,
+.search-input:focus,
+.theme-toggle:focus {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+}
+
+/* ==================================================
+   CUSTOM SCROLLBAR
+   --------------------------------------------------
+   Purpose: Styles scrollbars with theme-aware colors.
+*/
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* ==================================================
+   SCROLLBAR TRACK
+   --------------------------------------------------
+   Purpose: Styles the scrollbar track background.
+*/
+/* SCROLLBAR TRACK */
+::-webkit-scrollbar-track {
+    background: var(--color-bg1);
+}
+
+/* ==================================================
+   SCROLLBAR THUMB
+   --------------------------------------------------
+   Purpose: Styles the scrollbar thumb with secondary color.
+*/
+/* SCROLLBAR THUMB */
+::-webkit-scrollbar-thumb {
+    background: var(--color-secondary);
+    border-radius: 3px;
+}
+
+/* ==================================================
+   SCROLLBAR THUMB HOVER
+   --------------------------------------------------
+   Purpose: Changes thumb color on hover.
+*/
+/* SCROLLBAR THUMB HOVER */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* ==================================================
+   SELECTION STYLES
+   --------------------------------------------------
+   Purpose: Styles selected text with theme-aware colors.
+*/
+/* Selection styles */
+::selection {
+    background: var(--color-secondary);
+    color: var(--color-white);
+}
+
+/* ==================================================
+   FADE-IN ANIMATION
+   --------------------------------------------------
+   Purpose: Animates content appearance with a fade-in effect.
+*/
+/* Fade-in animation for content */
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+/* ==================================================
+   FADE-IN KEYFRAMES
+   --------------------------------------------------
+   Purpose: Defines the fade-in animation.
+*/
+/* FADE-IN KEYFRAMES */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================================================
+   BOUNCE ANIMATION
+   --------------------------------------------------
+   Purpose: Animates icons on hover with a bounce effect.
+*/
+/* Bounce animation for icons */
+.action-card:hover .action-icon i {
+    animation: bounce 0.6s ease;
+}
+
+/* ==================================================
+   BOUNCE KEYFRAMES
+   --------------------------------------------------
+   Purpose: Defines the bounce animation for icons.
+*/
+/* BOUNCE KEYFRAMES */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* ==================================================
+   THEME TRANSITIONS
+   --------------------------------------------------
+   Purpose: Ensures smooth color transitions for theme changes.
+*/
+/* Theme transitions for smooth color changes */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ==================================================
+   MAIN CONTENT
+   --------------------------------------------------
+   Purpose: Styles the main content area with proper spacing.
+*/
+/* Main content area of dashboard */
+main {
+    margin-top: 2rem;
+    min-height: calc(100vh - 4rem);
+    padding: 2rem 0;
+}

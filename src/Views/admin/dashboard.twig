@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Student Course Hub</title>
+    <link rel="stylesheet" href="{{ base_path() }}/css/admin-nav.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav_container">
+            <a href="{{ base_path() }}"><h4><i class="uil uil-graduation-cap"></i> Student Course Hub</h4></a>
+            <div class="nav_right">
+                <ul class="nav_menu">
+                    <li class="dropdown">
+                        <a href="#" class="active"><i class="uil uil-user"></i> Admin <i class="uil uil-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ base_path() }}/admin/programmes"><i class="uil uil-notebooks"></i> Programs</a></li>
+                            <li><a href="{{ base_path() }}/admin/modules"><i class="uil uil-book-open"></i> Modules</a></li>
+                            <li><a href="{{ base_path() }}/admin/interests"><i class="uil uil-clipboard-notes"></i> Interests</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button id="open-menu-btn" aria-label="Open navigation menu"><i class="uil uil-bars"></i></button>
+                <button id="close-menu-btn" aria-label="Close navigation menu"><i class="uil uil-multiply"></i></button>
+                <a href="{{ base_path() }}/admin/logout" class="logout-btn" aria-label="Logout"><i class="uil uil-signout"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="admin-header">
+        <div class="container header_container">
+            <div class="header_left">
+                <h1>Admin Dashboard</h1>
+                <p>Manage programs, modules and student interests efficiently and intuitively.</p>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <i class="uil uil-users"></i>
+                        <span>{{ stats.students }} Students</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="uil uil-book-open"></i>
+                        <span>{{ stats.programmes }} Programs</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="uil uil-chart-line"></i>
+                        <span>{{ stats.satisfaction }} Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header_right">
+                <div class="header_image">
+                    <i class="uil uil-analytics"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="dashboard-actions">
+                <h2><i class="uil uil-cog"></i> Management</h2>
+                <div class="action-grid">
+                    <a href="{{ base_path() }}/admin/programmes" class="action-card" aria-label="Manage programs">
+                        <div class="action-icon">
+                            <i class="uil uil-book-open"></i>
+                        </div>
+                        <h3>Manage Programs</h3>
+                        <p>Create, edit and publish undergraduate and graduate programs with ease</p>
+                        <div class="action-arrow">
+                            <i class="uil uil-arrow-right"></i>
+                        </div>
+                    </a>
+                    <a href="{{ base_path() }}/admin/modules" class="action-card" aria-label="Manage modules">
+                        <div class="action-icon">
+                            <i class="uil uil-notebooks"></i>
+                        </div>
+                        <h3>Manage Modules</h3>
+                        <p>Add and organize program modules in a structured way</p>
+                        <div class="action-arrow">
+                            <i class="uil uil-arrow-right"></i>
+                        </div>
+                    </a>
+                    <a href="{{ base_path() }}/admin/interests" class="action-card" aria-label="Manage interest lists">
+                        <div class="action-icon">
+                            <i class="uil uil-clipboard-notes"></i>
+                        </div>
+                        <h3>Interest Lists</h3>
+                        <p>View and manage student interests in an organized way</p>
+                        <div class="action-arrow">
+                            <i class="uil uil-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="dashboard-quick-actions">
+                <h2><i class="uil uil-bolt"></i> Quick Actions</h2>
+                <div class="quick-actions">
+                    <a href="{{ base_path() }}/admin/programmes" class="quick-action-btn primary" aria-label="Create new program">
+                        <i class="uil uil-plus"></i>
+                        <span>Create New Program</span>
+                    </a>
+                    <a href="{{ base_path() }}/admin/interests" class="quick-action-btn secondary" aria-label="Export interest list">
+                        <i class="uil uil-export"></i>
+                        <span>Export Interests</span>
+                    </a>
+                    <a href="{{ base_path() }}/admin/staff/register" class="quick-action-btn secondary" aria-label="Register staff">
+                        <i class="uil uil-user-plus"></i>
+                        <span>Register Staff</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="recent-activity">
+                <h2><i class="uil uil-bell"></i> Recent Notifications</h2>
+                <div class="activity-list">
+                    {% if recent_activities %}
+                        {% for activity in recent_activities %}
+                        <div class="activity-item" data-notification-id="{{ activity.id }}">
+                            <div class="activity-icon">
+                                <i class="{{ activity.icon }}"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>{{ activity.title }}</h4>
+                                <p>{{ activity.description }} by {{ activity.user }}</p>
+                                <small>{{ activity.time_ago }}</small>
+                            </div>
+                            <div class="activity-actions">
+                                <button class="delete-notification-btn" onclick="deleteNotification({{ activity.id }})" title="Delete notification">
+                                    <i class="uil uil-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="uil uil-info-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>No recent notifications</h4>
+                                <p>No notifications have been created yet</p>
+                                <small>Start using the system to see notifications</small>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer_copyright">
+            <small>© 2025 Student Course Hub. All rights reserved.</small>
+        </div>
+    </footer>
+
+    <script src="{{ base_path() }}/js/admin-dashboard.js"></script>
+</body>
+</html>

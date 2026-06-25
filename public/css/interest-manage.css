@@ -1,0 +1,2159 @@
+/* ==================================================
+   ADMIN INTERESTS PAGE STYLESHEET
+   --------------------------------------------------
+   Description: CSS styles for the admin interests management page, covering layout, theming, statistics, filters, tables, modals, and search functionality.
+   Organization: Each block or class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+
+/* ==================================================
+   LIGHT THEME VARIABLES AND BASE STYLES
+   --------------------------------------------------
+   Purpose: Defines reusable CSS variables for colors, sizes, transitions, and shadows in light mode, along with base styles for resetting browser defaults, typography, and buttons.
+*/
+:root {
+    --color-primary: #2c3e50;
+    --color-primary-variant: #34495e;
+    --color-secondary: #2574A9;
+    --color-accent: #e74c3c;
+    --color-success: #27ae60;
+    --color-warning: #f39c12;
+    --color-white: #ffffff;
+    --color-light: #ecf0f1;
+    --color-gray: #95a5a6;
+    --color-dark: #2c3e50;
+    --color-black: #1a252f;
+    --color-bg: #ffffff;
+    --color-bg1: #f8f9fa;
+    --color-bg2: #e9ecef;
+    --color-bg3: #f1f3f4;
+    --container-width-lg: 80%;
+    --container-width-md: 90%;
+    --container-width-sm: 94%;
+    --transition: all 300ms ease;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --border-radius: 8px;
+}
+
+/* ==================================================
+   CSS RESET
+   --------------------------------------------------
+   Purpose: Resets default browser styles to ensure consistent rendering across browsers. Removes margins, padding, and decorations for a clean starting point.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/* ==================================================
+   BODY STYLING
+   --------------------------------------------------
+   Purpose: Sets the base font, line height, text color, and background for the page. Prevents horizontal overflow for clean layouts.
+*/
+body {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.6;
+    color: var(--color-dark);
+    background-color: var(--color-bg);
+    overflow-x: hidden;
+}
+
+/* ==================================================
+   MAIN CONTAINER
+   --------------------------------------------------
+   Purpose: Centers the main content with a responsive width, adjusting based on screen size using theme variables.
+*/
+.container {
+    width: var(--container-width-lg);
+    margin: 0 auto;
+}
+
+/* ==================================================
+   SECTION STYLING
+   --------------------------------------------------
+   Purpose: Applies consistent padding and relative positioning to sections for flexible layouts and child element positioning.
+*/
+section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+/* ==================================================
+   HEADERS (H1-H5)
+   --------------------------------------------------
+   Purpose: Defines consistent styling for all header levels to establish a clear visual hierarchy.
+*/
+h1, h2, h3, h4, h5 {
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* ==================================================
+   H1 HEADERS
+   --------------------------------------------------
+   Purpose: Styles large, prominent titles for main headings with extra bold weight.
+*/
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   H2 HEADERS
+   --------------------------------------------------
+   Purpose: Styles medium-sized subtitles for section headings.
+*/
+h2 {
+    font-size: 2.2rem;
+}
+
+/* ==================================================
+   H3 HEADERS
+   --------------------------------------------------
+   Purpose: Styles tertiary headers for sub-sections or cards.
+*/
+h3 {
+    font-size: 1.6rem;
+}
+
+/* ==================================================
+   H4 HEADERS
+   --------------------------------------------------
+   Purpose: Styles small headers for details or table titles.
+*/
+h4 {
+    font-size: 1.3rem;
+}
+
+/* ==================================================
+   LINKS
+   --------------------------------------------------
+   Purpose: Styles anchor tags with a secondary color and smooth transitions for hover effects.
+*/
+a {
+    color: var(--color-secondary);
+    transition: var(--transition);
+}
+
+/* ==================================================
+   IMAGES
+   --------------------------------------------------
+   Purpose: Ensures images are fully responsive, cover their containers, and have rounded corners.
+*/
+img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* ==================================================
+   BUTTONS
+   --------------------------------------------------
+   Purpose: Defines base button styles with hover effects and accessibility for primary, secondary, warning, and danger actions.
+*/
+.btn {
+    display: inline-block;
+    background: var(--color-secondary);
+    color: var(--color-white);
+    padding: 0.8rem 1.8rem;
+    border: 2px solid var(--color-secondary);
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* ==================================================
+   BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Provides visual feedback on button hover with a transparent background, color change, lift effect, and shadow.
+*/
+.btn:hover {
+    background: transparent;
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   PRIMARY BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for critical actions (e.g., confirm) using the accent color.
+*/
+.btn-primary {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border-color: var(--color-accent);
+}
+
+/* ==================================================
+   PRIMARY BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts primary button appearance on hover.
+*/
+.btn-primary:hover {
+    background: transparent;
+    color: var(--color-accent);
+}
+
+/* ==================================================
+   SECONDARY BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for less critical actions (e.g., cancel) using the secondary color.
+*/
+.btn-secondary {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border-color: var(--color-secondary);
+}
+
+/* ==================================================
+   SECONDARY BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts secondary button appearance on hover.
+*/
+.btn-secondary:hover {
+    background: transparent;
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   WARNING BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for cautionary actions (e.g., warnings) with a warning color.
+*/
+.btn-warning {
+    background: var(--color-warning);
+    color: var(--color-white);
+    border-color: var(--color-warning);
+}
+
+/* ==================================================
+   WARNING BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts warning button appearance on hover.
+*/
+.btn-warning:hover {
+    background: transparent;
+    color: var(--color-warning);
+}
+
+/* ==================================================
+   DANGER BUTTONS
+   --------------------------------------------------
+   Purpose: Styles buttons for destructive actions (e.g., delete) with an accent color and compact size.
+*/
+.btn-danger {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border-color: var(--color-accent);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* ==================================================
+   DANGER BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Adjusts danger button appearance on hover.
+*/
+.btn-danger:hover {
+    background: transparent;
+    color: var(--color-accent);
+}
+
+/* ==================================================
+   SMALL BUTTONS
+   --------------------------------------------------
+   Purpose: Styles smaller buttons for compact UI elements.
+*/
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* Removidos estilos do navbar, nav_container, nav_right, nav_menu, dropdown, dropdown-menu, logout-btn. Agora estÃƒÂ£o em admin-nav.css */
+
+/* ==================================================
+   MANAGE HEADER
+   --------------------------------------------------
+   Purpose: Styles the header section with a light background, grid layout for text and image, and responsive positioning.
+*/
+.manage-header {
+    position: relative;
+    top: 4.5rem;
+    overflow: visible;
+    min-height: 70vh;
+    height: auto;
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%);
+    margin-top: 0;
+    background: rgba(37, 116, 169, 0.05);
+}
+
+/* ==================================================
+   MANAGE HEADER CONTAINER
+   --------------------------------------------------
+   Purpose: Splits the header into two columns (text and image) using a grid layout.
+*/
+.manage-header_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding-top: 0;
+}
+
+/* ==================================================
+   MANAGE HEADER LEFT
+   --------------------------------------------------
+   Purpose: Aligns header text content to the left.
+*/
+.manage-header_left {
+    text-align: left;
+}
+
+/* ==================================================
+   MANAGE HEADER LEFT H1
+   --------------------------------------------------
+   Purpose: Styles the header title with a secondary color.
+*/
+.manage-header_left h1 {
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   MANAGE HEADER LEFT PARAGRAPH
+   --------------------------------------------------
+   Purpose: Styles the header description with a secondary color.
+*/
+.manage-header_left p {
+    margin-bottom: 2rem;
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   MANAGE BENEFITS
+   --------------------------------------------------
+   Purpose: Displays benefits in a vertical flex layout with consistent spacing.
+*/
+.manage-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ==================================================
+   BENEFIT ITEM
+   --------------------------------------------------
+   Purpose: Styles individual benefit items with an icon and text.
+*/
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-dark);
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: 1rem;
+    box-shadow: none;
+}
+
+/* ==================================================
+   BENEFIT ICON
+   --------------------------------------------------
+   Purpose: Styles benefit icons with a secondary color.
+*/
+.benefit i {
+    color: var(--color-secondary);
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* ==================================================
+   BENEFIT TEXT
+   --------------------------------------------------
+   Purpose: Styles benefit text with a dark color and normal weight.
+*/
+.benefit span {
+    color: var(--color-dark);
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+/* ==================================================
+   MANAGE HEADER RIGHT
+   --------------------------------------------------
+   Purpose: Centers the header image or icon.
+*/
+.manage-header_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==================================================
+   MANAGE IMAGE
+   --------------------------------------------------
+   Purpose: Styles a circular header image with a gradient background and shadow.
+*/
+.manage-image {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   MANAGE IMAGE ICON
+   --------------------------------------------------
+   Purpose: Styles the icon within the header image with a secondary color.
+*/
+.manage-image i {
+    font-size: 6rem;
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   MAIN CONTENT
+   --------------------------------------------------
+   Purpose: Positions the main content below the header with sufficient height and padding.
+*/
+main {
+    position: relative;
+    top: 3rem;
+    min-height: calc(100vh - 4.5rem);
+    padding-bottom: 4rem;
+}
+
+/* ==================================================
+   INTEREST MANAGE CONTAINER
+   --------------------------------------------------
+   Purpose: Centers the interest management content with a maximum width and responsive height.
+*/
+.interest-manage-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    min-height: calc(100vh - 4.5rem - 8rem);
+}
+
+/* ==================================================
+   SEARCH RESULTS
+   --------------------------------------------------
+   Purpose: Styles the search results section with spacing for clarity.
+*/
+.search-results {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+}
+
+/* ==================================================
+   STATISTICS SECTION
+   --------------------------------------------------
+   Purpose: Styles the statistics section with a white background, padding, and shadow for a clean look.
+*/
+.stats-section {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   STATS GRID
+   --------------------------------------------------
+   Purpose: Arranges stat cards in a responsive grid layout.
+*/
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   STAT CARD
+   --------------------------------------------------
+   Purpose: Styles individual stat cards with an icon, text, and hover effects.
+*/
+.stat-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   STAT CARD HOVER
+   --------------------------------------------------
+   Purpose: Adds a lift and enhanced shadow on hover for visual feedback.
+*/
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   STAT CARD ICON
+   --------------------------------------------------
+   Purpose: Styles stat icons with a secondary color and circular background.
+*/
+.stat-card i {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    background: var(--color-light);
+    padding: 1rem;
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================================================
+   STAT CONTENT TITLE
+   --------------------------------------------------
+   Purpose: Styles stat titles with a primary color and larger font.
+*/
+.stat-content h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+   STAT CONTENT DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles stat descriptions with a gray color and bold text.
+*/
+.stat-content p {
+    color: var(--color-gray);
+    font-weight: 500;
+}
+
+/* ==================================================
+   FILTERS SECTION
+   --------------------------------------------------
+   Purpose: Styles the filters section for searching and sorting interests with a clean layout.
+*/
+.filters-section {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   FILTERS CONTAINER
+   --------------------------------------------------
+   Purpose: Arranges filter inputs and buttons in a grid layout for alignment.
+*/
+.filters-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 2rem;
+    align-items: end;
+}
+
+/* ==================================================
+   FILTER GROUP
+   --------------------------------------------------
+   Purpose: Styles filter input groups with a vertical layout for labels and inputs.
+*/
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* ==================================================
+   FILTER GROUP LABEL
+   --------------------------------------------------
+   Purpose: Styles filter labels with bold text and primary color.
+*/
+.filter-group label {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   FILTER INPUTS
+   --------------------------------------------------
+   Purpose: Styles filter select and search inputs with consistent borders and focus effects.
+*/
+.filter-select,
+.search-input {
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--color-light);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    transition: var(--transition);
+    background: var(--color-white);
+}
+
+/* ==================================================
+   FILTER INPUTS FOCUS
+   --------------------------------------------------
+   Purpose: Highlights focused filter inputs with a secondary color border and shadow.
+*/
+.filter-select:focus,
+.search-input:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 116, 169, 0.1);
+}
+
+/* ==================================================
+   ACTIONS GROUP
+   --------------------------------------------------
+   Purpose: Arranges action buttons in a flexible row for filter controls.
+*/
+.actions-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ==================================================
+   ACTIONS GROUP BUTTONS
+   --------------------------------------------------
+   Purpose: Styles action buttons with a compact size and icon support.
+*/
+.actions-group .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.85rem;
+}
+
+/* ==================================================
+   INTERESTS SECTION
+   --------------------------------------------------
+   Purpose: Styles the interests section with a light background, rounded corners, and shadow.
+*/
+section.interests-section {
+    background: rgba(37, 116, 169, 0.05) !important;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+/* ==================================================
+   SECTION HEADER
+   --------------------------------------------------
+   Purpose: Styles the section header with a flex layout for title and actions.
+*/
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid var(--color-light);
+}
+
+/* ==================================================
+   SECTION HEADER TITLE
+   --------------------------------------------------
+   Purpose: Styles the section title with a flex layout for icon alignment.
+*/
+.section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+/* ==================================================
+   TABLE ACTIONS
+   --------------------------------------------------
+   Purpose: Arranges action buttons in the section header for table controls.
+*/
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ==================================================
+   SELECT ALL LABEL
+   --------------------------------------------------
+   Purpose: Styles the select-all checkbox label with uppercase text and white color.
+*/
+.select-all-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+/* ==================================================
+   SELECT ALL CHECKBOX
+   --------------------------------------------------
+   Purpose: Styles the select-all checkbox with a secondary color accent and hover effects.
+*/
+.select-all-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--color-secondary);
+    transform: scale(1.2);
+    margin-right: 0.3rem;
+    border: 2px solid var(--color-white);
+    border-radius: 3px;
+    background-color: transparent;
+    position: relative;
+}
+
+/* ==================================================
+   SELECT ALL CHECKBOX CHECKED
+   --------------------------------------------------
+   Purpose: Styles checked select-all checkboxes with a secondary color background.
+*/
+.select-all-label input[type="checkbox"]:checked {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+/* ==================================================
+   SELECT ALL CHECKBOX HOVER
+   --------------------------------------------------
+   Purpose: Adds a border color change and shadow on hover for the select-all checkbox.
+*/
+.select-all-label input[type="checkbox"]:hover {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px rgba(37, 116, 169, 0.3);
+}
+
+/* ==================================================
+   SELECT ALL LABEL HOVER
+   --------------------------------------------------
+   Purpose: Changes the select-all label color on hover.
+*/
+.select-all-label:hover {
+    color: var(--color-secondary);
+    transition: var(--transition);
+}
+
+/* ==================================================
+   INTERESTS TABLE CONTAINER
+   --------------------------------------------------
+   Purpose: Enables horizontal scrolling for the interests table on smaller screens.
+*/
+.interests-table-container {
+    margin-bottom: 2rem;
+    overflow-x: auto;
+}
+
+/* ==================================================
+   INTERESTS SUMMARY
+   --------------------------------------------------
+   Purpose: Styles the summary section below the table with a top border.
+*/
+.interests-summary {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-bg2);
+}
+
+/* ==================================================
+   INTERESTS TABLE
+   --------------------------------------------------
+   Purpose: Styles the table listing interests with a clean, collapsible design.
+*/
+.interests-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   TABLE CELLS
+   --------------------------------------------------
+   Purpose: Styles table headers and cells with padding and borders for readability.
+*/
+.interests-table th,
+.interests-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-light);
+}
+
+/* ==================================================
+   TABLE HEADER
+   --------------------------------------------------
+   Purpose: Styles table headers with a primary color background, white text, and sticky positioning.
+*/
+.interests-table th {
+    background: var(--color-primary);
+    font-weight: 700;
+    color: var(--color-white);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    border-bottom: 3px solid var(--color-secondary);
+}
+
+/* ==================================================
+   TABLE ROW HOVER
+   --------------------------------------------------
+   Purpose: Highlights table rows on hover for better interactivity.
+*/
+.interests-table tr:hover {
+    background: var(--color-bg1);
+}
+
+/* ==================================================
+   CHECKBOX COLUMN
+   --------------------------------------------------
+   Purpose: Styles the checkbox column with a fixed width and centered alignment.
+*/
+.checkbox-column {
+    width: 50px;
+    text-align: center;
+}
+
+/* ==================================================
+   CHECKBOX INPUT
+   --------------------------------------------------
+   Purpose: Styles checkboxes in the table with a secondary color accent and hover effects.
+*/
+.checkbox-column input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--color-secondary);
+    transform: scale(1.1);
+    border: 2px solid var(--color-light);
+    border-radius: 3px;
+    background-color: transparent;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   CHECKBOX INPUT CHECKED
+   --------------------------------------------------
+   Purpose: Styles checked checkboxes with a secondary color background.
+*/
+.checkbox-column input[type="checkbox"]:checked {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+/* ==================================================
+   CHECKBOX INPUT HOVER
+   --------------------------------------------------
+   Purpose: Adds a border color change and shadow on hover for checkboxes.
+*/
+.checkbox-column input[type="checkbox"]:hover {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px rgba(37, 116, 169, 0.2);
+    transform: scale(1.15);
+}
+
+/* ==================================================
+   NO DATA MESSAGE
+   --------------------------------------------------
+   Purpose: Styles the message displayed when no data is available in the table.
+*/
+.no-data {
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-gray);
+}
+
+/* ==================================================
+   NO DATA ICON
+   --------------------------------------------------
+   Purpose: Styles the icon for the no-data message.
+*/
+.no-data i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* ==================================================
+   PAGINATION CONTAINER
+   --------------------------------------------------
+   Purpose: Styles the pagination controls with centered buttons and a top border.
+*/
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    border-top: 1px solid var(--color-light);
+}
+
+/* ==================================================
+   PAGINATION BUTTON
+   --------------------------------------------------
+   Purpose: Styles pagination buttons with a compact size and centered text.
+*/
+.pagination-container .btn {
+    padding: 0.5rem 1rem;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* ==================================================
+   PAGINATION ELLIPSIS
+   --------------------------------------------------
+   Purpose: Styles the ellipsis in pagination with a gray color.
+*/
+.pagination-ellipsis {
+    padding: 0.5rem;
+    color: var(--color-gray);
+}
+
+/* ==================================================
+   MODAL
+   --------------------------------------------------
+   Purpose: Styles a fixed modal overlay for confirmations or additional information.
+*/
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* ==================================================
+   MODAL CONTENT
+   --------------------------------------------------
+   Purpose: Styles the modal content with a white background, padding, and shadow.
+*/
+.modal-content {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    width: 90%;
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   MODAL TITLE
+   --------------------------------------------------
+   Purpose: Styles the modal title with a primary color.
+*/
+.modal-content h3 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+/* ==================================================
+   MODAL DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the modal description with a gray color and line height.
+*/
+.modal-content p {
+    margin-bottom: 2rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+}
+
+/* ==================================================
+   MODAL ACTIONS
+   --------------------------------------------------
+   Purpose: Arranges modal action buttons in a flex layout for alignment.
+*/
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* ==================================================
+   MODAL BUTTONS
+   --------------------------------------------------
+   Purpose: Ensures modal buttons have a minimum width for usability.
+*/
+.modal-actions .btn {
+    min-width: 100px;
+}
+
+/* ==================================================
+   MESSAGE
+   --------------------------------------------------
+   Purpose: Styles fixed notification messages with a slide-in animation.
+*/
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    color: var(--color-white);
+    font-weight: 600;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+/* ==================================================
+   MESSAGE SUCCESS
+   --------------------------------------------------
+   Purpose: Styles success messages with a success color background.
+*/
+.message-success {
+    background: var(--color-success);
+}
+
+/* ==================================================
+   MESSAGE ERROR
+   --------------------------------------------------
+   Purpose: Styles error messages with an accent color background.
+*/
+.message-error {
+    background: var(--color-accent);
+}
+
+/* ==================================================
+   MESSAGE INFO
+   --------------------------------------------------
+   Purpose: Styles informational messages with a secondary color background.
+*/
+.message-info {
+    background: var(--color-secondary);
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (TABLETS)
+   --------------------------------------------------
+   Purpose: Adjusts layout, font sizes, and navigation for screens up to 1024px.
+*/
+@media screen and (max-width: 1024px) {
+    /* ==================================================
+       CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Adjusts container width for tablet screens.
+    */
+    .container {
+        width: var(--container-width-md);
+    }
+
+    /* ==================================================
+       HEADERS (TABLET)
+       -----------------------------------------------
+       Purpose: Reduces header font sizes for tablet screens.
+    */
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+
+    /* Removidos estilos do navbar mobile. Agora estÃƒÂ£o em admin-nav.css */
+
+    /* ==================================================
+       MANAGE HEADER CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Stacks header content vertically on tablets.
+    */
+    .manage-header_container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* ==================================================
+       MANAGE HEADER LEFT (TABLET)
+       -----------------------------------------------
+       Purpose: Centers header text for tablet screens.
+    */
+    .manage-header_left {
+        text-align: center;
+    }
+
+    /* ==================================================
+       FOOTER CONTAINER (TABLET)
+       -----------------------------------------------
+       Purpose: Arranges footer columns in a two-column grid on tablets.
+    */
+    .footer_container {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    /* ==================================================
+       NAVIGATION LINKS (TABLET)
+       -----------------------------------------------
+       Purpose: Stacks navigation links vertically on tablets.
+    */
+    .navigation-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts layout, font sizes, and spacing for screens up to 600px.
+*/
+@media screen and (max-width: 600px) {
+    /* ==================================================
+       CONTAINER (MOBILE)
+       -----------------------------------------------
+       Purpose: Adjusts container width for mobile screens.
+    */
+    .container {
+        width: var(--container-width-sm);
+    }
+
+    /* ==================================================
+       HEADERS (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header font sizes for mobile screens.
+    */
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    /* ==================================================
+       MANAGE HEADER (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header height for mobile screens.
+    */
+    .manage-header {
+        min-height: 50vh;
+    }
+
+    /* ==================================================
+       MANAGE HEADER CONTAINER (MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks header content vertically on mobile.
+    */
+    .manage-header_container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* ==================================================
+       MANAGE HEADER LEFT (MOBILE)
+       -----------------------------------------------
+       Purpose: Centers header text for mobile screens.
+    */
+    .manage-header_left {
+        text-align: center;
+    }
+
+    /* ==================================================
+       MANAGE IMAGE (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces header image size for mobile screens.
+    */
+    .manage-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* ==================================================
+       MANAGE IMAGE ICON (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces icon size in the header image for mobile.
+    */
+    .manage-image i {
+        font-size: 4rem;
+    }
+
+    /* ==================================================
+       FOOTER CONTAINER (MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks footer columns vertically on mobile.
+    */
+    .footer_container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* ==================================================
+       NAVIGATION MENU (MOBILE)
+       -----------------------------------------------
+       Purpose: Makes the navigation menu full-width on mobile.
+    */
+    .nav_menu {
+        width: 100%;
+    }
+
+    /* ==================================================
+       BUTTONS (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces button size for mobile usability.
+    */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       INTERESTS TABLE (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces table font size for mobile screens.
+    */
+    .interests-table {
+        font-size: 0.8rem;
+    }
+
+    /* ==================================================
+       TABLE CELLS (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces cell padding for compact mobile display.
+    */
+    .interests-table th,
+    .interests-table td {
+        padding: 0.5rem;
+    }
+
+    /* ==================================================
+       REMOVE BUTTON (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces remove button size for mobile screens.
+    */
+    .remove-button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    /* ==================================================
+       FILTERS CONTAINER (MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks filter inputs vertically on mobile.
+    */
+    .filters-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* ==================================================
+       ACTIONS GROUP (MOBILE)
+       -----------------------------------------------
+       Purpose: Centers action buttons on mobile screens.
+    */
+    .actions-group {
+        justify-content: center;
+    }
+
+    /* ==================================================
+       ACTIONS GROUP BUTTONS (MOBILE)
+       -----------------------------------------------
+       Purpose: Ensures action buttons have a minimum width on mobile.
+    */
+    .actions-group .btn {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    /* ==================================================
+       STATS GRID (MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks stat cards vertically on mobile.
+    */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* ==================================================
+       STAT CARD (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces stat card padding for mobile screens.
+    */
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    /* ==================================================
+       SECTION HEADER (MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks section header content vertically on mobile.
+    */
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    /* ==================================================
+       TABLE ACTIONS (MOBILE)
+       -----------------------------------------------
+       Purpose: Spreads table action buttons across the full width on mobile.
+    */
+    .table-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* ==================================================
+       MODAL CONTENT (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces modal padding and margin for mobile screens.
+    */
+    .modal-content {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    /* ==================================================
+       MODAL ACTIONS (MOBILE)
+       -----------------------------------------------
+       Purpose: Stacks modal action buttons vertically on mobile.
+    */
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    /* ==================================================
+       MODAL BUTTONS (MOBILE)
+       -----------------------------------------------
+       Purpose: Makes modal buttons full-width on mobile.
+    */
+    .modal-actions .btn {
+        width: 100%;
+    }
+}
+
+/* ==================================================
+   PAGE CONTENT
+   --------------------------------------------------
+   Purpose: Styles the main page content with consistent padding.
+*/
+.page-content {
+    padding: 2rem 0;
+}
+
+/* ==================================================
+   NAVIGATION LINKS
+   --------------------------------------------------
+   Purpose: Styles navigation links with spacing below.
+*/
+.nav-links {
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   SEARCH BAR WRAPPER
+   --------------------------------------------------
+   Purpose: Styles the search bar container with a maximum width and centered alignment.
+*/
+.search-bar-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem auto 1.5rem auto;
+}
+
+/* ==================================================
+   SEARCH BAR
+   --------------------------------------------------
+   Purpose: Styles the search input with padding for an icon and focus effects.
+*/
+.search-bar {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border: 2px solid var(--color-light);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    transition: var(--transition);
+    background: var(--color-white);
+}
+
+/* ==================================================
+   SEARCH BAR FOCUS
+   --------------------------------------------------
+   Purpose: Highlights the search bar on focus with a secondary color border.
+*/
+.search-bar:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 116, 169, 0.1);
+}
+
+/* ==================================================
+   SEARCH BAR PLACEHOLDER
+   --------------------------------------------------
+   Purpose: Styles the search bar placeholder with a gray color.
+*/
+.search-bar::placeholder {
+    color: var(--color-gray);
+}
+
+/* ==================================================
+   SEARCH BAR ICON
+   --------------------------------------------------
+   Purpose: Positions the search icon inside the search bar.
+*/
+.search-bar-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-secondary);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+
+/* Removidos estilos do dropdown e logout. Agora estÃƒÂ£o em admin-nav.css */
+
+/* ==================================================
+   LEADER BUTTON
+   --------------------------------------------------
+   Purpose: Styles buttons for assigning leaders with a secondary color and hover effects.
+*/
+.leader-btn {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ==================================================
+   LEADER BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Changes leader button appearance on hover or focus with a primary color.
+*/
+.leader-btn:hover, .leader-btn:focus {
+    background: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+/* ==================================================
+   REMOVE BUTTON
+   --------------------------------------------------
+   Purpose: Styles buttons for removing items with an accent color and hover effects.
+*/
+.remove-btn {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ==================================================
+   REMOVE BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Changes remove button appearance on hover or focus.
+*/
+.remove-btn:hover, .remove-btn:focus {
+    background: var(--color-accent);
+    transform: translateY(-1px);
+}
+
+/* ==================================================
+   BUTTON LABEL
+   --------------------------------------------------
+   Purpose: Styles button labels for inline display.
+*/
+.btn-label {
+    display: inline;
+}
+
+/* ==================================================
+   BUTTON LABEL (MOBILE)
+   --------------------------------------------------
+   Purpose: Hides button labels on mobile for compact display.
+*/
+@media (max-width: 600px) {
+    .btn-label {
+        display: none;
+    }
+
+    /* ==================================================
+       LEADER AND REMOVE BUTTONS (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces button size for mobile screens.
+    */
+    .leader-btn, .remove-btn {
+        padding: 0.5rem;
+        min-width: 40px;
+    }
+}
+
+/* ==================================================
+   STYLED SEARCH SECTION
+   --------------------------------------------------
+   Purpose: Styles the search section with a light background, shadow, and right-aligned text.
+*/
+.styled-search-section {
+    background: rgba(37, 116, 169, 0.05);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    text-align: right;
+    color: var(--color-dark);
+}
+
+/* ==================================================
+   STYLED SEARCH SECTION TITLE
+   --------------------------------------------------
+   Purpose: Styles the search section title with a secondary color and right alignment.
+*/
+.styled-search-section h2 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+    text-align: right;
+}
+
+/* ==================================================
+   STYLED SEARCH SECTION DESCRIPTION
+   --------------------------------------------------
+   Purpose: Styles the search section description with a secondary color and right alignment.
+*/
+.styled-search-section p {
+    color: var(--color-secondary);
+    margin-bottom: 1.5rem;
+    text-align: right;
+}
+
+/* ==================================================
+   STYLED SEARCH FORM
+   --------------------------------------------------
+   Purpose: Styles the search form with a vertical flex layout and centered alignment.
+*/
+.styled-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ==================================================
+   STYLED LABEL
+   --------------------------------------------------
+   Purpose: Styles form labels with a secondary color and bold text.
+*/
+.styled-label {
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: left;
+}
+
+/* ==================================================
+   SEARCH HEADER
+   --------------------------------------------------
+   Purpose: Styles the search header with a light background, icon, and centered text.
+*/
+.search-header {
+    background: rgba(37, 116, 169, 0.1);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    box-shadow: 0 2px 8px rgba(37, 116, 169, 0.1);
+    border-bottom: 2px solid rgba(37, 116, 169, 0.2);
+    justify-content: center;
+    text-align: center;
+}
+
+/* ==================================================
+   SEARCH HEADER ICON
+   --------------------------------------------------
+   Purpose: Styles the search header icon with a secondary color.
+*/
+.search-header i {
+    font-size: 2.3rem;
+    color: var(--color-secondary);
+    margin-right: 0.8rem;
+}
+
+/* ==================================================
+   SEARCH HEADER TITLE
+   --------------------------------------------------
+   Purpose: Styles the search header title with a secondary color and bold weight.
+*/
+.search-header h2 {
+    font-size: 2rem;
+    color: var(--color-secondary);
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+/* ==================================================
+   SEARCH RESULTS TITLE
+   --------------------------------------------------
+   Purpose: Styles the search results title with a primary color and icon.
+*/
+.search-results h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* ==================================================
+   SEARCH RESULTS ICON
+   --------------------------------------------------
+   Purpose: Styles the icon in the search results title with a secondary color.
+*/
+.search-results h2 i {
+    color: var(--color-secondary);
+    margin-right: 0.5rem;
+}
+
+/* ==================================================
+   SEARCH HEADER (MOBILE)
+   --------------------------------------------------
+   Purpose: Centers the search header content on mobile screens.
+*/
+@media (max-width: 600px) {
+    .search-header {
+        justify-content: center;
+        text-align: center;
+    }
+    .search-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* ==================================================
+   STYLED INPUT
+   --------------------------------------------------
+   Purpose: Styles search form inputs with consistent borders and focus effects.
+*/
+.styled-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--color-light);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   STYLED INPUT FOCUS
+   --------------------------------------------------
+   Purpose: Highlights focused search inputs with a secondary color border and shadow.
+*/
+.styled-input:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 116, 169, 0.1);
+}
+
+/* ==================================================
+   STYLED SEARCH BUTTON
+   --------------------------------------------------
+   Purpose: Styles the search button with a secondary color and hover effects.
+*/
+.styled-search-btn {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+/* ==================================================
+   STYLED SEARCH BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Changes the search button appearance on hover or focus with a primary color.
+*/
+.styled-search-btn:hover, .styled-search-btn:focus {
+    background: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==================================================
+   STYLED SEARCH SECTION (MOBILE)
+   --------------------------------------------------
+   Purpose: Reduces padding and spacing in the search section for mobile screens.
+*/
+@media (max-width: 600px) {
+    .styled-search-section {
+        padding: 1.5rem;
+    }
+
+    /* ==================================================
+       STYLED SEARCH FORM (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces form spacing on mobile.
+    */
+    .styled-search-form {
+        gap: 1rem;
+    }
+
+    /* ==================================================
+       STYLED INPUT (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces input padding for mobile screens.
+    */
+    .styled-input {
+        padding: 0.7rem 0.8rem;
+    }
+
+    /* ==================================================
+       STYLED SEARCH BUTTON (MOBILE)
+       -----------------------------------------------
+       Purpose: Reduces button size for mobile usability.
+    */
+    .styled-search-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================================================
+   INPUT ROW
+   --------------------------------------------------
+   Purpose: Arranges form inputs in a horizontal flex layout with spacing.
+*/
+.input-row {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+}
+
+/* ==================================================
+   INPUT GROUP HORIZONTAL
+   --------------------------------------------------
+   Purpose: Styles horizontal input groups with a vertical layout for labels and inputs.
+*/
+.input-group-horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+/* ==================================================
+   INPUT GROUP HORIZONTAL LABEL
+   --------------------------------------------------
+   Purpose: Styles labels in horizontal input groups with a secondary color.
+*/
+.input-group-horizontal label {
+    font-weight: 600;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   INPUT GROUP HORIZONTAL INPUT
+   --------------------------------------------------
+   Purpose: Ensures inputs in horizontal groups are full-width.
+*/
+.input-group-horizontal input {
+    width: 100%;
+}
+
+/* ==================================================
+   INPUT GROUP BUTTON
+   --------------------------------------------------
+   Purpose: Styles button groups with a flex layout for alignment.
+*/
+.input-group-btn {
+    display: flex;
+    align-items: end;
+}
+
+/* ==================================================
+   INPUT GROUP BUTTON STYLE
+   --------------------------------------------------
+   Purpose: Styles buttons in button groups with a fixed height and centered content.
+*/
+.input-group-btn .btn {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+/* ==================================================
+   RESPONSIVE FORM AND INPUT ROW (TABLET)
+   --------------------------------------------------
+   Purpose: Stacks form and input row content vertically on screens up to 800px.
+*/
+@media (max-width: 800px) {
+    .styled-search-form, .input-row {
+        flex-direction: column;
+    }
+
+    /* ==================================================
+       INPUT GROUP HORIZONTAL (TABLET)
+       -----------------------------------------------
+       Purpose: Makes horizontal input groups full-width on tablets.
+    */
+    .input-group-horizontal {
+        width: 100%;
+    }
+
+    /* ==================================================
+       INPUT GROUP BUTTON (TABLET)
+       -----------------------------------------------
+       Purpose: Makes button groups full-width on tablets.
+    */
+    .input-group-btn {
+        width: 100%;
+    }
+}
+
+/* ==================================================
+   INPUT GROUP VERTICAL
+   --------------------------------------------------
+   Purpose: Styles vertical input groups with a vertical layout for labels and inputs.
+*/
+.input-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* ==================================================
+   INPUT GROUP VERTICAL LABEL
+   --------------------------------------------------
+   Purpose: Styles labels in vertical input groups with a secondary color.
+*/
+.input-group-vertical label {
+    font-weight: 600;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+
+/* ==================================================
+   INPUT GROUP VERTICAL INPUT
+   --------------------------------------------------
+   Purpose: Styles inputs in vertical groups with consistent borders and focus effects.
+*/
+.input-group-vertical input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--color-light);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   STYLED SEARCH FORM (REDEFINED)
+   --------------------------------------------------
+   Purpose: Ensures the search form uses a vertical flex layout with spacing.
+*/
+.styled-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ==================================================
+   INPUT GROUP BUTTON (REDEFINED)
+   --------------------------------------------------
+   Purpose: Centers button groups in the search form.
+*/
+.input-group-btn {
+    display: flex;
+    justify-content: center;
+}
+
+/* ==================================================
+   INPUT GROUP BUTTON STYLE (REDEFINED)
+   --------------------------------------------------
+   Purpose: Styles buttons in button groups with a minimum width and centered content.
+*/
+.input-group-btn .btn {
+    min-width: 150px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================================================
+   STYLED SEARCH SECTION (TABLET)
+   --------------------------------------------------
+   Purpose: Reduces padding in the search section for screens up to 700px.
+*/
+@media (max-width: 700px) {
+    .styled-search-section {
+        padding: 1.5rem;
+    }
+}
+
+/* ==================================================
+   LEADER MODAL CONTENT
+   --------------------------------------------------
+   Purpose: Styles the modal content for leader information with a white background and shadow.
+*/
+.leader-modal-content {
+    background: #fff;
+    padding: 1.2rem;
+    border-radius: 8px;
+    max-width: 320px;
+    margin: auto;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(37, 116, 169, 0.10);
+}
+
+/* ==================================================
+   LEADER MODAL CLOSE
+   --------------------------------------------------
+   Purpose: Styles the close button for the leader modal with a secondary color.
+*/
+.leader-modal-close {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--color-secondary);
+    transition: color 0.2s;
+}
+
+/* ==================================================
+   LEADER MODAL CLOSE HOVER
+   --------------------------------------------------
+   Purpose: Changes the close button color on hover to a primary color.
+*/
+.leader-modal-close:hover {
+    color: var(--color-primary);
+}
+
+/* ==================================================
+   LEADER MODAL ICON
+   --------------------------------------------------
+   Purpose: Styles the icon in the leader modal with centered alignment.
+*/
+.leader-modal-icon {
+    text-align: center;
+    margin-bottom: 0.4rem;
+}
+
+/* ==================================================
+   LEADER MODAL ICON STYLE
+   --------------------------------------------------
+   Purpose: Styles the leader modal icon with a secondary color.
+*/
+.leader-modal-icon i {
+    font-size: 1.7rem;
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   LEADER MODAL TITLE
+   --------------------------------------------------
+   Purpose: Styles the leader modal title with a secondary color and centered alignment.
+*/
+.leader-modal-title {
+    text-align: center;
+    color: var(--color-secondary);
+    margin-bottom: 0.7rem;
+    font-size: 1.15rem;
+}
+
+/* ==================================================
+   LEADER MODAL CONTENT PARAGRAPH
+   --------------------------------------------------
+   Purpose: Styles paragraphs in the leader modal with a flex layout for icon and text.
+*/
+.leader-modal-content p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1rem;
+}
+
+/* ==================================================
+   LEADER MODAL CONTENT LAST PARAGRAPH
+   --------------------------------------------------
+   Purpose: Removes bottom margin for the last paragraph in the leader modal.
+*/
+.leader-modal-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================================================
+   LEADER MODAL CONTENT ICON
+   --------------------------------------------------
+   Purpose: Styles icons in the leader modal with a secondary color.
+*/
+.leader-modal-content i {
+    color: var(--color-secondary);
+    margin-right: 0.1rem;
+    font-size: 1.1em;
+}
+
+/* ==================================================
+   LEADER MODAL CONTENT STRONG
+   --------------------------------------------------
+   Purpose: Styles strong text in the leader modal with a primary color and bold weight.
+*/
+.leader-modal-content strong {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-right: 0.2rem;
+}
+
+/* ==================================================
+   SEARCH ERROR MESSAGE
+   --------------------------------------------------
+   Purpose: Styles error messages for search with a red background and border.
+*/
+.search-error-message {
+    color: #ff1744;
+    background: #fff0f0;
+    border: 1px solid #ff1744;
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ==================================================
+   FOOTER COPYRIGHT
+   --------------------------------------------------
+   Purpose: Styles the copyright section with a primary color background and centered text.
+*/
+.footer_copyright {
+    width: 100%;
+    background: var(--color-primary);
+    color: #fff;
+    text-align: center;
+    height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* ==================================================
+   FOOTER
+   --------------------------------------------------
+   Purpose: Resets footer styles to remove default margins and padding.
+*/
+footer {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+}
+
+/* ==================================================
+   FOOTER (ADMIN INTERESTS PAGE)
+   --------------------------------------------------
+   Purpose: Styles the footer on the admin interests page with a gradient background and light text.
+*/
+body.admin-interests-page footer {
+    background: linear-gradient(90deg, #23272b 0%, #2c3e50 100%) !important;
+    color: #d3dae3 !important;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ==================================================
+   FOOTER COPYRIGHT (ADMIN INTERESTS PAGE)
+   --------------------------------------------------
+   Purpose: Styles the copyright section on the admin interests page with a transparent background and light text.
+*/
+body.admin-interests-page .footer_copyright {
+    background: transparent !important;
+    color: #d3dae3 !important;
+    height: 4.5rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}

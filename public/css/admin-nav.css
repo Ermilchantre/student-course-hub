@@ -1,0 +1,573 @@
+/* ==================================================
+   ADMIN NAVBAR GLOBAL STYLES
+   --------------------------------------------------
+   Description: CSS styles for the admin navigation bar, defining layout, theming, and responsive behavior for desktop and mobile devices.
+   Organization: Each block or class has a comment above explaining its purpose, functionality, and UI role.
+   Version: 1.0
+   Last Updated: July 22, 2025
+   ==================================================
+*/
+:root {
+    --color-primary: #2c3e50;
+    --color-primary-variant: #34495e;
+    --color-secondary: #2574A9;
+    --color-accent: #e74c3c;
+    --color-white: #ffffff;
+    --color-dark: #2c3e50;
+    --color-bg1: #f8f9fa;
+    --color-bg2: #e9ecef;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --border-radius: 8px;
+    --transition: all 300ms ease;
+}
+
+/* ==================================================
+   NAVIGATION BAR
+   --------------------------------------------------
+   Purpose: Styles the fixed navigation bar with a gradient background, secondary color border, and shadow for a modern look.
+*/
+nav {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-variant) 100%);
+    width: 100vw;
+    height: 4.5rem;
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    border-bottom: 3px solid var(--color-secondary);
+    transition: var(--transition);
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15);
+}
+
+/* ==================================================
+   WINDOW SCROLL
+   --------------------------------------------------
+   Purpose: Adjusts the navigation barÃ¢â‚¬â„¢s background and shadow when the page is scrolled for visual distinction.
+*/
+.window-scroll {
+    background: var(--color-primary);
+    box-shadow: var(--shadow);
+}
+
+/* ==================================================
+   NAVIGATION CONTAINER
+   --------------------------------------------------
+   Purpose: Arranges navigation content with flexbox for balanced alignment between logo and menu items.
+*/
+.nav_container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+/* ==================================================
+   NAVIGATION LOGO
+   --------------------------------------------------
+   Purpose: Styles the navigation logo (h4) with white text, an icon, and a subtle shadow for emphasis.
+*/
+nav h4 {
+    color: var(--color-white);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================================================
+   NAVIGATION LOGO ICON
+   --------------------------------------------------
+   Purpose: Styles the icon in the navigation logo with a secondary color and shadow for visual appeal.
+*/
+nav h4 i {
+    font-size: 1.6rem;
+    color: var(--color-secondary);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* ==================================================
+   NAVIGATION LOGO LINK
+   --------------------------------------------------
+   Purpose: Styles the link within the navigation logo with white text and a hover effect.
+*/
+nav h4 a {
+    color: var(--color-white);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   NAVIGATION LOGO LINK HOVER
+   --------------------------------------------------
+   Purpose: Changes the logo link color on hover for interactive feedback.
+*/
+nav h4 a:hover {
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   NAVIGATION RIGHT
+   --------------------------------------------------
+   Purpose: Aligns menu items and logout button on the right side of the navigation bar using flexbox.
+*/
+.nav_right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1em;
+    flex: 1;
+}
+
+/* ==================================================
+   NAVIGATION RIGHT MENU
+   --------------------------------------------------
+   Purpose: Ensures the navigation menu within the right section has no margin for proper alignment.
+*/
+.nav_right .nav_menu {
+    margin: 0;
+}
+
+/* ==================================================
+   NAVIGATION MENU
+   --------------------------------------------------
+   Purpose: Styles the navigation menu as a horizontal flex container with spaced items.
+*/
+.nav_menu {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+/* ==================================================
+   NAVIGATION MENU LINKS
+   --------------------------------------------------
+   Purpose: Styles menu links with white text, rounded corners, and an animated underline effect on hover.
+*/
+.nav_menu a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================================================
+   NAVIGATION MENU LINK UNDERLINE
+   --------------------------------------------------
+   Purpose: Adds an animated underline to menu links that scales in on hover.
+*/
+.nav_menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-secondary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+/* ==================================================
+   NAVIGATION MENU LINK UNDERLINE HOVER
+   --------------------------------------------------
+   Purpose: Animates the underline to scale in from the left on hover.
+*/
+.nav_menu a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ==================================================
+   NAVIGATION MENU LINK HOVER
+   --------------------------------------------------
+   Purpose: Changes the menu link background and position on hover for visual feedback.
+*/
+.nav_menu a:hover {
+    background: var(--color-primary-variant);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+
+/* ==================================================
+   NAVIGATION MENU LINK ICON
+   --------------------------------------------------
+   Purpose: Styles icons within menu links for consistent sizing.
+*/
+.nav_menu a i {
+    font-size: 1rem;
+}
+
+/* ==================================================
+   DROPDOWN ADMIN MENU
+   --------------------------------------------------
+   Purpose: Positions the dropdown menu container relative to its parent for proper placement.
+*/
+.nav_menu .dropdown {
+    position: relative;
+}
+
+/* ==================================================
+   DROPDOWN TRIGGER
+   --------------------------------------------------
+   Purpose: Styles the dropdown trigger link with flex alignment for icon and text.
+*/
+.nav_menu .dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    cursor: pointer;
+}
+
+/* ==================================================
+   DROPDOWN MENU
+   --------------------------------------------------
+   Purpose: Styles the dropdown menu with a white background, shadow, and fade-in animation for smooth display.
+*/
+.nav_menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--color-white);
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    min-width: 180px;
+    z-index: 100;
+    padding: 0.5em 0;
+    margin-top: 0.5em;
+    animation: fadeIn 0.2s;
+}
+
+/* ==================================================
+   DROPDOWN MENU VISIBILITY
+   --------------------------------------------------
+   Purpose: Shows the dropdown menu on hover or focus for accessibility.
+*/
+.nav_menu .dropdown:hover > .dropdown-menu,
+.nav_menu .dropdown:focus-within > .dropdown-menu {
+    display: block;
+}
+
+/* ==================================================
+   DROPDOWN MENU ITEMS
+   --------------------------------------------------
+   Purpose: Ensures dropdown menu items span the full width of the menu.
+*/
+.nav_menu .dropdown-menu li {
+    width: 100%;
+}
+
+/* ==================================================
+   DROPDOWN MENU LINKS
+   --------------------------------------------------
+   Purpose: Styles dropdown menu links with primary color text and hover effects.
+*/
+.nav_menu .dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.7em 1.2em;
+    color: var(--color-primary);
+    background: none;
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* ==================================================
+   DROPDOWN MENU LINKS HOVER
+   --------------------------------------------------
+   Purpose: Changes the dropdown menu link background and color on hover for feedback.
+*/
+.nav_menu .dropdown-menu a:hover {
+    background: var(--color-bg2);
+    color: var(--color-secondary);
+}
+
+/* ==================================================
+   FADE-IN ANIMATION
+   --------------------------------------------------
+   Purpose: Defines a fade-in animation for the dropdown menuÃ¢â‚¬â„¢s appearance.
+*/
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================================================
+   MOBILE MENU BUTTONS
+   --------------------------------------------------
+   Purpose: Styles the open and close menu buttons for mobile navigation, hidden by default on desktop.
+*/
+nav button#open-menu-btn,
+nav button#close-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--color-white);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* ==================================================
+   MOBILE MENU BUTTONS HOVER
+   --------------------------------------------------
+   Purpose: Scales the mobile menu buttons on hover for interactive feedback.
+*/
+nav button#open-menu-btn:hover,
+nav button#close-menu-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (TABLETS)
+   --------------------------------------------------
+   Purpose: Adjusts navigation for screens up to 1024px, enabling mobile menu buttons and a slide-in menu.
+*/
+@media screen and (max-width: 1024px) {
+    /* ==================================================
+       MOBILE MENU BUTTONS
+       -----------------------------------------------
+       Purpose: Displays the open and close menu buttons for mobile navigation.
+    */
+    nav button#open-menu-btn,
+    nav button#close-menu-btn {
+        display: block;
+    }
+
+    /* ==================================================
+       NAVIGATION MENU (MOBILE)
+       -----------------------------------------------
+       Purpose: Styles the mobile navigation menu as a full-screen slide-in panel.
+    */
+    .nav_menu {
+        position: fixed;
+        top: 4.5rem;
+        right: -100%;
+        height: calc(100vh - 4.5rem);
+        width: 18rem;
+        background: var(--color-primary);
+        flex-direction: column;
+        gap: 0;
+        transition: var(--transition);
+        padding: 2rem 0;
+        box-shadow: var(--shadow);
+    }
+
+    /* ==================================================
+       NAVIGATION MENU SHOW
+       -----------------------------------------------
+       Purpose: Slides in the mobile menu when activated.
+    */
+    .nav_menu.show {
+        right: 0;
+    }
+
+    /* ==================================================
+       DROPDOWN MENU (MOBILE)
+       -----------------------------------------------
+       Purpose: Adjusts the dropdown menu for mobile, removing shadows and positioning.
+    */
+    .nav_menu .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        min-width: 100%;
+        margin-top: 0;
+        border-radius: 0;
+        background: var(--color-bg1);
+    }
+
+    /* ==================================================
+       LOGOUT BUTTON (MOBILE)
+       -----------------------------------------------
+       Purpose: Adjusts the logout buttonÃ¢â‚¬â„¢s margin, padding, and font size for mobile screens.
+    */
+    nav .nav_right .logout-btn,
+    body.admin-interests-page nav .nav_right .logout-btn,
+    nav .nav_right a.logout-btn,
+    body.admin-interests-page nav .nav_right a.logout-btn {
+        margin-left: 0.5em !important;
+        padding: 0.5em 1em !important;
+        font-size: 0.95em !important;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (DESKTOP)
+   --------------------------------------------------
+   Purpose: Ensures mobile menu buttons are hidden on screens larger than 1024px.
+*/
+@media screen and (min-width: 1025px) {
+    /* ==================================================
+       MOBILE MENU BUTTONS (DESKTOP)
+       -----------------------------------------------
+       Purpose: Hides the open and close menu buttons on desktop screens.
+    */
+    nav button#open-menu-btn,
+    nav button#close-menu-btn {
+        display: none !important;
+    }
+}
+
+/* ==================================================
+   LOGOUT BUTTON
+   --------------------------------------------------
+   Purpose: Styles the logout button with an accent color, overriding default .btn styles for consistency.
+*/
+nav .nav_right .logout-btn,
+body.admin-interests-page nav .nav_right .logout-btn,
+nav .nav_right a.logout-btn,
+body.admin-interests-page nav .nav_right a.logout-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    background: var(--color-accent) !important;
+    color: var(--color-white) !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: var(--border-radius) !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    margin-left: 1.5em !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transform: none !important;
+    box-shadow: none !important;
+    /* Override any .btn styles */
+    border: none !important;
+    border-color: transparent !important;
+    border-width: 0 !important;
+    border-style: none !important;
+    /* Override any pseudo-elements */
+    content: none !important;
+}
+
+/* ==================================================
+   LOGOUT BUTTON PSEUDO-ELEMENT OVERRIDE
+   --------------------------------------------------
+   Purpose: Disables any pseudo-elements (e.g., .btn::before) for the logout button.
+*/
+nav .nav_right .logout-btn::before,
+body.admin-interests-page nav .nav_right .logout-btn::before,
+nav .nav_right a.logout-btn::before,
+body.admin-interests-page nav .nav_right a.logout-btn::before {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: none !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* ==================================================
+   LOGOUT BUTTON ADDITIONAL OVERRIDE
+   --------------------------------------------------
+   Purpose: Ensures .btn styles donÃ¢â‚¬â„¢t affect the logout button by reapplying specific styles.
+*/
+.logout-btn.btn,
+a.logout-btn.btn,
+nav .nav_right .logout-btn.btn,
+body.admin-interests-page nav .nav_right .logout-btn.btn {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.95rem !important;
+    border: none !important;
+    border-color: transparent !important;
+    border-width: 0 !important;
+    border-style: none !important;
+    background: var(--color-accent) !important;
+    color: var(--color-white) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================================================
+   LOGOUT BUTTON FINAL OVERRIDE
+   --------------------------------------------------
+   Purpose: Applies final styles to the logout button to ensure precedence, especially for links with logout functionality.
+*/
+body.admin-interests-page nav .nav_right a[href*="logout"],
+body.admin-interests-page nav .nav_right .logout-btn,
+nav .nav_right a[href*="logout"],
+nav .nav_right .logout-btn {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.95rem !important;
+    border: none !important;
+    border-color: transparent !important;
+    border-width: 0 !important;
+    border-style: none !important;
+    background: var(--color-accent) !important;
+    color: var(--color-white) !important;
+    transform: none !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-weight: 500 !important;
+    border-radius: var(--border-radius) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-left: 1.5em !important;
+}
+
+/* ==================================================
+   LOGOUT BUTTON ICON
+   --------------------------------------------------
+   Purpose: Styles the icon within the logout button for consistent sizing.
+*/
+.logout-btn i {
+    font-size: 1.2em;
+}
+
+/* ==================================================
+   LOGOUT BUTTON HOVER
+   --------------------------------------------------
+   Purpose: Changes the logout buttonÃ¢â‚¬â„¢s background, color, and position on hover, overriding .btn:hover styles.
+*/
+nav .nav_right .logout-btn:hover,
+body.admin-interests-page nav .nav_right .logout-btn:hover,
+nav .nav_right a.logout-btn:hover,
+body.admin-interests-page nav .nav_right a.logout-btn:hover {
+    background: var(--color-dark) !important;
+    color: var(--color-accent) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-hover) !important;
+    /* Override any .btn:hover styles */
+    border: none !important;
+    border-color: transparent !important;
+}
+
+/* ==================================================
+   LOGOUT BUTTON (MOBILE)
+   --------------------------------------------------
+   Purpose: Adjusts the logout buttonÃ¢â‚¬â„¢s margin, padding, and font size for mobile screens.
+*/
+@media screen and (max-width: 1024px) {
+    .logout-btn {
+        margin-left: 0.5em;
+        padding: 0.5em 1em;
+        font-size: 0.95em;
+    }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- ==================================================
+   DOCUMENT TYPE
+   Purpose: Declares the document as HTML5 to ensure standardized rendering.
+   Functionality: Instructs browsers to use HTML5 standards, enabling modern web features and consistent parsing.
+   Client-Side Role: Ensures compatibility with modern browsers for proper page display.
+   Logic: Uses DOCTYPE declaration to prevent quirks mode and enforce HTML5 rendering.
+-->
+<html>
+<!-- ==================================================
+   HTML ELEMENT
+   Purpose: Serves as the root container for the base template, defining the document structure.
+   Functionality: Provides a minimal structure for child templates to extend, with no language specified.
+   Client-Side Role: Encapsulates all page content, including head, body, and template blocks.
+   Logic: Lacks lang attribute; child templates inherit this structure for consistent layout.
+-->
+<head>
+    <!-- ==================================================
+       HEAD SECTION
+       Purpose: Configures metadata, page title, and external resources for styling across all pages.
+       Functionality: Defines character encoding, a dynamic title block, and links to CSS and fonts.
+       Client-Side Role: Controls visual presentation and resource loading for all pages using this template.
+       Logic: Uses a title block for extensibility and loads styles1.css, Unicons, and Montserrat font.
+    -->
+    <meta charset="UTF-8">
+    <title>{% block title %}Student Course Hub{% endblock %}</title>
+    <!-- Purpose: Sets a dynamic page title.
+       Functionality: Allows child templates to override the default title "Student Course Hub".
+       Client-Side Role: Displays a page-specific title in the browser tab.
+       Logic: Uses a template block for flexibility in title customization.
+    -->
+    <link rel="stylesheet" href="{{ base_path() }}/css/styles1.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ==================================================
+       BODY SECTION
+       Purpose: Contains the main content of the page, defined by child templates.
+       Functionality: Provides a content block for child templates to insert page-specific content.
+       Client-Side Role: Renders the core content area for all pages using this template.
+       Logic: Uses a template block to allow dynamic content injection by child templates.
+    -->
+    {% block content %}{% endblock %}
+    <!-- Purpose: Placeholder for page-specific content.
+       Functionality: Allows child templates to define unique content for each page.
+       Client-Side Role: Enables flexible content rendering for different pages.
+       Logic: Uses a template block to support extensibility and modularity.
+    -->
+    <script src="{{ base_path() }}/js/main.js"></script>
+    // ==================================================
+    // SCRIPT SECTION
+    // Purpose: Loads JavaScript for shared functionality across all pages.
+    // Functionality: Includes main.js to enable common interactive features or initialization logic.
+    // Client-Side Role: Enhances user interaction with shared JavaScript functionality.
+    // Logic: Loads main.js using base_path() for dynamic routing; specific functionality depends on the script.
+</body>
+</html>
