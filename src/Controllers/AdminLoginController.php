@@ -493,10 +493,17 @@ class AdminLoginController
     */
     private function sendResetEmail($email, $userName, $token)
     {
+        // Get base path safely
+        $basePath = '';
+        if (isset($GLOBALS['base_path'])) {
+            $basePath = $GLOBALS['base_path'];
+        } elseif (function_exists('base_path')) {
+            $basePath = base_path();
+        }
+
         // Constructs reset link
-        require_once __DIR__ . '/../../config/app.php';
-        $basePath = appBasePath();
-        $resetLink = 'http://' . $_SERVER['HTTP_HOST'] . $basePath . '/admin/reset-password?token=' . urlencode($token);
+        $resetLink = 'http://' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . $basePath . '/admin/reset-password?token=' . urlencode($token);
+        
         $subject = 'Password Reset Request - Student Course Hub';
         $body = "<p>Hello, $userName!</p><p>We received a request to reset your password. Click the link below to set a new password:</p>"
             . "<p><a href='$resetLink'>$resetLink</a></p>"
@@ -505,7 +512,6 @@ class AdminLoginController
         // Retrieves SendGrid API key
         $sendgridApiKey = $_ENV['SENDGRID_API_KEY'] ?? null;
         if (!$sendgridApiKey) {
-            // Logs missing API key error
             error_log('SendGrid API key not set.');
             return;
         }
@@ -519,10 +525,8 @@ class AdminLoginController
         $sendgrid = new \SendGrid($sendgridApiKey);
 
         try {
-            // Sends the email
             $sendgrid->send($emailObj);
         } catch (\Exception $e) {
-            // Logs SendGrid error
             error_log('SendGrid error: ' . $e->getMessage());
         }
     }
