@@ -25,7 +25,7 @@
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
         "firebase/php-jwt": "^6.11",
-        "monolog/monolog": "^2.8",
+        "monolog/monolog": "^3.12",
         "php-di/php-di": "^7.0",
         "respect/validation": "^2.4",
         "sendgrid/sendgrid": "^8.1",
